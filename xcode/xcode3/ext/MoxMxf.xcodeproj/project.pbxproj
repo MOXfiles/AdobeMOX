@@ -1,0 +1,280 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A2497FD1AE06FC600E5559C /* IOStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A2497FB1AE06FC600E5559C /* IOStream.cpp */; };
+		2A2497FE1AE06FC600E5559C /* IOStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A2497FC1AE06FC600E5559C /* IOStream.h */; };
+		2A2498151AE0716D00E5559C /* Types.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A2498141AE0716D00E5559C /* Types.h */; };
+		2A24981E1AE0736E00E5559C /* StdIOStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A24981C1AE0736E00E5559C /* StdIOStream.h */; };
+		2A24981F1AE0736E00E5559C /* StdIOStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A24981D1AE0736E00E5559C /* StdIOStream.cpp */; };
+		2A2498271AE074A900E5559C /* mxflib_files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A2498261AE074A900E5559C /* mxflib_files.cpp */; };
+		2A24990F1AE0834D00E5559C /* OutputFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A24990D1AE0834D00E5559C /* OutputFile.h */; };
+		2A2499101AE0834D00E5559C /* OutputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A24990E1AE0834D00E5559C /* OutputFile.cpp */; };
+		2A24991A1AE086AD00E5559C /* Dictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A2499181AE086AD00E5559C /* Dictionary.h */; };
+		2A24991B1AE086AD00E5559C /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A2499191AE086AD00E5559C /* Dictionary.cpp */; };
+		2A2499341AE0905800E5559C /* Descriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A2499321AE0905800E5559C /* Descriptor.h */; };
+		2A2499351AE0905800E5559C /* Descriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A2499331AE0905800E5559C /* Descriptor.cpp */; };
+		2A2499391AE091B300E5559C /* Track.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A2499371AE091B300E5559C /* Track.h */; };
+		2A24993A1AE091B300E5559C /* Track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A2499381AE091B300E5559C /* Track.cpp */; };
+		2A2499BE1AE09BA600E5559C /* Exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A2499BC1AE09BA600E5559C /* Exception.h */; };
+		2A2499BF1AE09BA600E5559C /* Exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A2499BD1AE09BA600E5559C /* Exception.cpp */; };
+		2A249AA41AE0BD2D00E5559C /* InputFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A249AA21AE0BD2D00E5559C /* InputFile.h */; };
+		2A249AA51AE0BD2D00E5559C /* InputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A249AA31AE0BD2D00E5559C /* InputFile.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2A2497FB1AE06FC600E5559C /* IOStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IOStream.cpp; sourceTree = "<group>"; };
+		2A2497FC1AE06FC600E5559C /* IOStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOStream.h; sourceTree = "<group>"; };
+		2A2498141AE0716D00E5559C /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		2A24981C1AE0736E00E5559C /* StdIOStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdIOStream.h; sourceTree = "<group>"; };
+		2A24981D1AE0736E00E5559C /* StdIOStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdIOStream.cpp; sourceTree = "<group>"; };
+		2A2498261AE074A900E5559C /* mxflib_files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mxflib_files.cpp; sourceTree = "<group>"; };
+		2A24990D1AE0834D00E5559C /* OutputFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputFile.h; sourceTree = "<group>"; };
+		2A24990E1AE0834D00E5559C /* OutputFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutputFile.cpp; sourceTree = "<group>"; };
+		2A2499181AE086AD00E5559C /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
+		2A2499191AE086AD00E5559C /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dictionary.cpp; sourceTree = "<group>"; };
+		2A2499321AE0905800E5559C /* Descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.h; sourceTree = "<group>"; };
+		2A2499331AE0905800E5559C /* Descriptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Descriptor.cpp; sourceTree = "<group>"; };
+		2A2499371AE091B300E5559C /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		2A2499381AE091B300E5559C /* Track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Track.cpp; sourceTree = "<group>"; };
+		2A2499BC1AE09BA600E5559C /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
+		2A2499BD1AE09BA600E5559C /* Exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Exception.cpp; sourceTree = "<group>"; };
+		2A249AA21AE0BD2D00E5559C /* InputFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputFile.h; sourceTree = "<group>"; };
+		2A249AA31AE0BD2D00E5559C /* InputFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputFile.cpp; sourceTree = "<group>"; };
+		2A249D651AE0DB9600E5559C /* mxflib_messages.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mxflib_messages.cpp; sourceTree = "<group>"; };
+		D2AAC046055464E500DB518D /* libMoxMxf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMoxMxf.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D289987405E68DCB004EDB86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* MoxMxf */ = {
+			isa = PBXGroup;
+			children = (
+				2A2497FA1AE06FC600E5559C /* MoxMxf */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = MoxMxf;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC046055464E500DB518D /* libMoxMxf.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A2497FA1AE06FC600E5559C /* MoxMxf */ = {
+			isa = PBXGroup;
+			children = (
+				2A2497FB1AE06FC600E5559C /* IOStream.cpp */,
+				2A2497FC1AE06FC600E5559C /* IOStream.h */,
+				2A2498141AE0716D00E5559C /* Types.h */,
+				2A24981C1AE0736E00E5559C /* StdIOStream.h */,
+				2A24981D1AE0736E00E5559C /* StdIOStream.cpp */,
+				2A24990D1AE0834D00E5559C /* OutputFile.h */,
+				2A24990E1AE0834D00E5559C /* OutputFile.cpp */,
+				2A2499181AE086AD00E5559C /* Dictionary.h */,
+				2A2499191AE086AD00E5559C /* Dictionary.cpp */,
+				2A2499321AE0905800E5559C /* Descriptor.h */,
+				2A2499331AE0905800E5559C /* Descriptor.cpp */,
+				2A2499371AE091B300E5559C /* Track.h */,
+				2A2499381AE091B300E5559C /* Track.cpp */,
+				2A2499BC1AE09BA600E5559C /* Exception.h */,
+				2A2499BD1AE09BA600E5559C /* Exception.cpp */,
+				2A249AA21AE0BD2D00E5559C /* InputFile.h */,
+				2A249AA31AE0BD2D00E5559C /* InputFile.cpp */,
+				2A2498261AE074A900E5559C /* mxflib_files.cpp */,
+				2A249D651AE0DB9600E5559C /* mxflib_messages.cpp */,
+			);
+			name = MoxMxf;
+			path = ../../../../libmox/MoxMxf;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC043055464E500DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A2497FE1AE06FC600E5559C /* IOStream.h in Headers */,
+				2A2498151AE0716D00E5559C /* Types.h in Headers */,
+				2A24981E1AE0736E00E5559C /* StdIOStream.h in Headers */,
+				2A24990F1AE0834D00E5559C /* OutputFile.h in Headers */,
+				2A24991A1AE086AD00E5559C /* Dictionary.h in Headers */,
+				2A2499341AE0905800E5559C /* Descriptor.h in Headers */,
+				2A2499391AE091B300E5559C /* Track.h in Headers */,
+				2A2499BE1AE09BA600E5559C /* Exception.h in Headers */,
+				2A249AA41AE0BD2D00E5559C /* InputFile.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC045055464E500DB518D /* MoxMxf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "MoxMxf" */;
+			buildPhases = (
+				D2AAC043055464E500DB518D /* Headers */,
+				D2AAC044055464E500DB518D /* Sources */,
+				D289987405E68DCB004EDB86 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoxMxf;
+			productName = MoxMxf;
+			productReference = D2AAC046055464E500DB518D /* libMoxMxf.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "MoxMxf" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* MoxMxf */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC045055464E500DB518D /* MoxMxf */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC044055464E500DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A2497FD1AE06FC600E5559C /* IOStream.cpp in Sources */,
+				2A24981F1AE0736E00E5559C /* StdIOStream.cpp in Sources */,
+				2A2498271AE074A900E5559C /* mxflib_files.cpp in Sources */,
+				2A2499101AE0834D00E5559C /* OutputFile.cpp in Sources */,
+				2A24991B1AE086AD00E5559C /* Dictionary.cpp in Sources */,
+				2A2499351AE0905800E5559C /* Descriptor.cpp in Sources */,
+				2A24993A1AE091B300E5559C /* Track.cpp in Sources */,
+				2A2499BF1AE09BA600E5559C /* Exception.cpp in Sources */,
+				2A249AA51AE0BD2D00E5559C /* InputFile.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91EC08733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = MoxMxf;
+			};
+			name = Debug;
+		};
+		1DEB91ED08733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = MoxMxf;
+			};
+			name = Release;
+		};
+		1DEB91F008733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = MXFLIB_NO_FILE_IO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../../mxflib,
+					../../../../libmox,
+					../../../../openexr/IlmBase/Iex,
+					.,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB91F108733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = MXFLIB_NO_FILE_IO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../../mxflib,
+					../../../../libmox,
+					../../../../openexr/IlmBase/Iex,
+					.,
+				);
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "MoxMxf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91EC08733DB70010E9CD /* Debug */,
+				1DEB91ED08733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "MoxMxf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91F008733DB70010E9CD /* Debug */,
+				1DEB91F108733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
