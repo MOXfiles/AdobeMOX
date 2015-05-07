@@ -80,13 +80,47 @@ exSDKQueryOutputSettings(
 	
 	if(outputSettingsP->inExportVideo)
 	{
+		exParamValues width, height, frameRate, pixelAspectRatio, fieldType;
 	
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoWidth, &width);
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoHeight, &height);
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoFPS, &frameRate);
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoAspect, &pixelAspectRatio);
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoFieldType, &fieldType);
+		
+		outputSettingsP->outVideoWidth = width.value.intValue;
+		outputSettingsP->outVideoHeight = height.value.intValue;
+		outputSettingsP->outVideoFrameRate = frameRate.value.timeValue;
+		outputSettingsP->outVideoAspectNum = pixelAspectRatio.value.ratioValue.numerator;
+		outputSettingsP->outVideoAspectDen = pixelAspectRatio.value.ratioValue.denominator;
+		outputSettingsP->outVideoFieldType = fieldType.value.intValue;
+		
+		videoBitrate += 1000;
 	}
 	
 	
 	if(outputSettingsP->inExportAudio)
 	{
+		exParamValues sampleRate, channelType;
 	
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEAudioRatePerSecond, &sampleRate);
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEAudioNumChannels, &channelType);
+		
+		PrAudioChannelType audioFormat = (PrAudioChannelType)channelType.value.intValue;
+		
+		if(audioFormat < kPrAudioChannelType_Mono || audioFormat > kPrAudioChannelType_51)
+			audioFormat = kPrAudioChannelType_Stereo;
+			
+		const int audioChannels = (audioFormat == kPrAudioChannelType_51 ? 6 :
+									audioFormat == kPrAudioChannelType_Stereo ? 2 :
+									audioFormat == kPrAudioChannelType_Mono ? 1 :
+									2);
+									
+		outputSettingsP->outAudioSampleRate = sampleRate.value.floatValue;
+		outputSettingsP->outAudioChannelType = audioFormat;
+		outputSettingsP->outAudioSampleType = kPrAudioSampleType_Compressed;
+		
+		videoBitrate += 1000;
 	}
 	
 	// outBitratePerSecond in kbps

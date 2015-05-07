@@ -13,6 +13,11 @@
 		2A1B3AB91AE819E8009E713A /* Codec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B3AB71AE819E8009E713A /* Codec.cpp */; };
 		2A1B3B571AE821F5009E713A /* UncompressedCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A1B3B551AE821F5009E713A /* UncompressedCodec.h */; };
 		2A1B3B581AE821F5009E713A /* UncompressedCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B3B561AE821F5009E713A /* UncompressedCodec.cpp */; };
+		2A788CAA1AEEB76B001776FD /* PixelType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A788CA91AEEB76B001776FD /* PixelType.cpp */; };
+		2A7893E01AF185F0001776FD /* AudioChannelList.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A7893DE1AF185F0001776FD /* AudioChannelList.h */; };
+		2A7893E11AF185F0001776FD /* AudioChannelList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A7893DF1AF185F0001776FD /* AudioChannelList.cpp */; };
+		2A7893ED1AF196DF001776FD /* SampleType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A7893EB1AF196DF001776FD /* SampleType.h */; };
+		2A7893EE1AF196DF001776FD /* SampleType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A7893EC1AF196DF001776FD /* SampleType.cpp */; };
 		2AA0E0901AE490960053B71F /* InputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0E08E1AE490960053B71F /* InputFile.cpp */; };
 		2AA0E0911AE490960053B71F /* InputFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AA0E08F1AE490960053B71F /* InputFile.h */; };
 		2AA0E0EA1AE560290053B71F /* OutputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0E0E81AE560290053B71F /* OutputFile.cpp */; };
@@ -39,14 +44,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1B3F8E1AE9579C009E713A /* MoxMxf.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* libMoxMxf.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = MoxMxf;
 		};
 		2A1B3F941AE957B8009E713A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1B3F8E1AE9579C009E713A /* MoxMxf.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* MoxMxf */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = MoxMxf;
 		};
 		2AA0E23D1AE576850053B71F /* PBXContainerItemProxy */ = {
@@ -115,6 +120,11 @@
 		2A1B3B551AE821F5009E713A /* UncompressedCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncompressedCodec.h; sourceTree = "<group>"; };
 		2A1B3B561AE821F5009E713A /* UncompressedCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UncompressedCodec.cpp; sourceTree = "<group>"; };
 		2A1B3F8E1AE9579C009E713A /* MoxMxf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MoxMxf.xcodeproj; sourceTree = "<group>"; };
+		2A788CA91AEEB76B001776FD /* PixelType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelType.cpp; sourceTree = "<group>"; };
+		2A7893DE1AF185F0001776FD /* AudioChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioChannelList.h; sourceTree = "<group>"; };
+		2A7893DF1AF185F0001776FD /* AudioChannelList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioChannelList.cpp; sourceTree = "<group>"; };
+		2A7893EB1AF196DF001776FD /* SampleType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleType.h; sourceTree = "<group>"; };
+		2A7893EC1AF196DF001776FD /* SampleType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SampleType.cpp; sourceTree = "<group>"; };
 		2AA0E08E1AE490960053B71F /* InputFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputFile.cpp; sourceTree = "<group>"; };
 		2AA0E08F1AE490960053B71F /* InputFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputFile.h; sourceTree = "<group>"; };
 		2AA0E0E81AE560290053B71F /* OutputFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutputFile.cpp; sourceTree = "<group>"; };
@@ -198,6 +208,7 @@
 				2AA0E49C1AE5D8F60053B71F /* ChannelList.h */,
 				2AA0E49D1AE5D8F60053B71F /* ChannelList.cpp */,
 				2AA0E4A11AE5D9BE0053B71F /* PixelType.h */,
+				2A788CA91AEEB76B001776FD /* PixelType.cpp */,
 				2AA0E6121AE6CF6F0053B71F /* FrameBuffer.h */,
 				2AA0E6131AE6CF6F0053B71F /* FrameBuffer.cpp */,
 				2A1B3A3E1AE80BFA009E713A /* AudioCompression.h */,
@@ -206,6 +217,10 @@
 				2A1B3AB71AE819E8009E713A /* Codec.cpp */,
 				2A1B3B551AE821F5009E713A /* UncompressedCodec.h */,
 				2A1B3B561AE821F5009E713A /* UncompressedCodec.cpp */,
+				2A7893DE1AF185F0001776FD /* AudioChannelList.h */,
+				2A7893DF1AF185F0001776FD /* AudioChannelList.cpp */,
+				2A7893EB1AF196DF001776FD /* SampleType.h */,
+				2A7893EC1AF196DF001776FD /* SampleType.cpp */,
 			);
 			name = MoxFiles;
 			path = ../../../../libmox/MoxFiles;
@@ -253,6 +268,8 @@
 				2A1B3A3F1AE80BFA009E713A /* AudioCompression.h in Headers */,
 				2A1B3AB81AE819E8009E713A /* Codec.h in Headers */,
 				2A1B3B571AE821F5009E713A /* UncompressedCodec.h in Headers */,
+				2A7893E01AF185F0001776FD /* AudioChannelList.h in Headers */,
+				2A7893ED1AF196DF001776FD /* SampleType.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +401,9 @@
 				2AA0E6151AE6CF6F0053B71F /* FrameBuffer.cpp in Sources */,
 				2A1B3AB91AE819E8009E713A /* Codec.cpp in Sources */,
 				2A1B3B581AE821F5009E713A /* UncompressedCodec.cpp in Sources */,
+				2A788CAA1AEEB76B001776FD /* PixelType.cpp in Sources */,
+				2A7893E11AF185F0001776FD /* AudioChannelList.cpp in Sources */,
+				2A7893EE1AF196DF001776FD /* SampleType.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

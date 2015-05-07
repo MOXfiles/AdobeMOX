@@ -39,6 +39,9 @@
 
 #include "MOX_Premiere_Import.h"
 
+#include <MoxFiles/InputFile.h>
+#include <MoxFiles/Thread.h>
+#include <MoxMxf/PlatformIOStream.h>
 
 #include <assert.h>
 #include <math.h>
@@ -64,6 +67,8 @@ typedef PrSDKPPixCacheSuite PrCacheSuite;
 #endif
 
 
+using namespace MoxFiles;
+
 
 typedef struct
 {	
@@ -73,6 +78,10 @@ typedef struct
 	csSDK_int32				height;
 	csSDK_int32				frameRateNum;
 	csSDK_int32				frameRateDen;
+	
+	MoxMxf::PlatformIOStream *stream;
+	MoxFiles::InputFile		*file;
+	
 	//csSDK_uint8				bit_depth;
 	//float					audioSampleRate;
 	//int						numChannels;
@@ -209,6 +218,9 @@ SDKOpenFile8(
 
 		localRecP = reinterpret_cast<ImporterLocalRec8Ptr>( *localRecH );
 		
+		localRecP->stream = NULL;
+		localRecP->file = NULL;
+		
 		
 		// Acquire needed suites
 		localRecP->memFuncs = stdParms->piSuites->memFuncs;
@@ -289,6 +301,28 @@ SDKOpenFile8(
 
 	}
 
+	if(result == malNoError && localRecP->file == NULL)
+	{
+		assert(localRecP->stream == NULL);
+		
+		try
+		{
+			if( supportsThreads() )
+				setGlobalThreadCount(g_num_cpus);
+		
+			localRecP->stream = new MoxMxf::PlatformIOStream(CAST_REFNUM(*SDKfileRef));
+			
+			localRecP->file = new MoxFiles::InputFile(*localRecP->stream);
+		}
+		catch(MoxMxf::BaseExc &e)
+		{
+			result = imBadHeader;
+		}
+		catch(...)
+		{
+			result = imOtherErr;
+		}
+	}
 	
 	// close file and delete private data if we got a bad file
 	if(result != malNoError)
@@ -327,7 +361,20 @@ SDKQuietFile(
 		stdParms->piSuites->memFuncs->lockHandle(reinterpret_cast<char**>(ldataH));
 
 		ImporterLocalRec8Ptr localRecP = reinterpret_cast<ImporterLocalRec8Ptr>( *ldataH );
-
+		
+		if(localRecP->file != NULL)
+		{
+			delete localRecP->file;
+			
+			localRecP->file = NULL;
+		}
+		
+		if(localRecP->stream != NULL)
+		{
+			delete localRecP->stream;
+			
+			localRecP->stream = NULL;
+		}
 
 		stdParms->piSuites->memFuncs->unlockHandle(reinterpret_cast<char**>(ldataH));
 
@@ -456,56 +503,78 @@ SDKGetInfo8(
 	stdParms->piSuites->memFuncs->lockHandle(reinterpret_cast<char**>(ldataH));
 	ImporterLocalRec8Ptr localRecP = reinterpret_cast<ImporterLocalRec8Ptr>( *ldataH );
 
-
+	if(localRecP == NULL || localRecP->file == NULL)
+	{
+		assert(false);
+		return imOtherErr;
+	}
+	
 	SDKFileInfo8->hasVideo = kPrFalse;
 	SDKFileInfo8->hasAudio = kPrFalse;
 	
 	
-
-		// Video information
-		SDKFileInfo8->hasVideo				= kPrTrue;
-		SDKFileInfo8->vidInfo.subType		= PrPixelFormat_BGRA_4444_8u;
-		SDKFileInfo8->vidInfo.imageWidth	= 640;
-		SDKFileInfo8->vidInfo.imageHeight	= 480;
-		SDKFileInfo8->vidInfo.depth			= 8 * 3;	// for RGB, no A
-		SDKFileInfo8->vidInfo.fieldType		= prFieldsUnknown; // Matroska talks about DefaultDecodedFieldDuration but...
-		SDKFileInfo8->vidInfo.isStill		= kPrFalse;
-		SDKFileInfo8->vidInfo.noDuration	= imNoDurationFalse;
-		SDKFileInfo8->vidDuration			= 12 * 24;
-		SDKFileInfo8->vidScale				= 24;
-		SDKFileInfo8->vidSampleSize			= 1;
-
-		SDKFileInfo8->vidInfo.alphaType		= alphaNone;
-
-		// Matroska defined a chunk called DisplayUnit, but libwebm doesn't support it
-		// http://www.matroska.org/technical/specs/index.html#DisplayUnit
-		// We'll just let Premiere guess what the pixel aspect ratio is
-		//SDKFileInfo8->vidInfo.pixelAspectNum = 1;
-		//SDKFileInfo8->vidInfo.pixelAspectDen = 1;
-
-		// store some values we want to get without going to the file
-		localRecP->width = SDKFileInfo8->vidInfo.imageWidth;
-		localRecP->height = SDKFileInfo8->vidInfo.imageHeight;
-
-		localRecP->frameRateNum = SDKFileInfo8->vidScale;
-		localRecP->frameRateDen = SDKFileInfo8->vidSampleSize;
-
-
-		const long long bitDepth = 24;
+	try
+	{
+		const Header &head = localRecP->file->header();
 		
+		const ChannelList &channels = head.channels();
 		
-		// Audio information
-		SDKFileInfo8->hasAudio				= kPrTrue;
-		SDKFileInfo8->audInfo.numChannels	= 2;
-		SDKFileInfo8->audInfo.sampleRate	= 48000;
-		SDKFileInfo8->audInfo.sampleType	= bitDepth == 8 ? kPrAudioSampleType_8BitInt :
-												bitDepth == 16 ? kPrAudioSampleType_16BitInt :
-												bitDepth == 24 ? kPrAudioSampleType_24BitInt :
-												bitDepth == 32 ? kPrAudioSampleType_32BitFloat :
-												bitDepth == 64 ? kPrAudioSampleType_64BitFloat :
-												kPrAudioSampleType_Compressed;
+		if(channels.size() > 0)
+		{
+			const Rational &fps = head.frameRate();
+			const Rational &par = head.pixelAspectRatio();
+		
+			// Video information
+			SDKFileInfo8->hasVideo				= kPrTrue;
+			SDKFileInfo8->vidInfo.subType		= PrPixelFormat_BGRA_4444_8u;
+			SDKFileInfo8->vidInfo.imageWidth	= head.width();
+			SDKFileInfo8->vidInfo.imageHeight	= head.height();
+			SDKFileInfo8->vidInfo.depth			= 8 * 3;	// for RGB, no A
+			SDKFileInfo8->vidInfo.fieldType		= prFieldsUnknown; // Matroska talks about DefaultDecodedFieldDuration but...
+			SDKFileInfo8->vidInfo.isStill		= kPrFalse;
+			SDKFileInfo8->vidInfo.noDuration	= imNoDurationFalse;
+			SDKFileInfo8->vidDuration			= head.duration() * fps.Denominator;
+			SDKFileInfo8->vidScale				= fps.Numerator;
+			SDKFileInfo8->vidSampleSize			= fps.Denominator;
+
+			SDKFileInfo8->vidInfo.alphaType		= alphaNone;
+
+			SDKFileInfo8->vidInfo.pixelAspectNum = par.Numerator;
+			SDKFileInfo8->vidInfo.pixelAspectDen = par.Denominator;
+
+			// store some values we want to get without going to the file
+			localRecP->width = SDKFileInfo8->vidInfo.imageWidth;
+			localRecP->height = SDKFileInfo8->vidInfo.imageHeight;
+
+			localRecP->frameRateNum = SDKFileInfo8->vidScale;
+			localRecP->frameRateDen = SDKFileInfo8->vidSampleSize;
+		}
 
 		
+		const AudioChannelList &audioChannels = head.audioChannels();
+		
+		if(audioChannels.size() > 0)
+		{
+			const long long bitDepth = 24;
+			
+			// Audio information
+			SDKFileInfo8->hasAudio				= kPrTrue;
+			SDKFileInfo8->audInfo.numChannels	= audioChannels.size();
+			SDKFileInfo8->audInfo.sampleRate	= 48000;
+			SDKFileInfo8->audInfo.sampleType	= bitDepth == 8 ? kPrAudioSampleType_8BitInt :
+													bitDepth == 16 ? kPrAudioSampleType_16BitInt :
+													bitDepth == 24 ? kPrAudioSampleType_24BitInt :
+													bitDepth == 32 ? kPrAudioSampleType_32BitFloat :
+													bitDepth == 64 ? kPrAudioSampleType_64BitFloat :
+													kPrAudioSampleType_Compressed;
+		}
+	}
+	catch(...)
+	{
+		result = imOtherErr;
+	}
+	
+			
 	stdParms->piSuites->memFuncs->unlockHandle(reinterpret_cast<char**>(ldataH));
 
 	return result;
@@ -602,6 +671,69 @@ SDKGetSourceVideo(
 	{
 		// ok, we'll read the file - clear error
 		result = malNoError;
+		
+		imFrameFormat *frameFormat = &sourceVideoRec->inFrameFormats[0];
+		
+		prRect theRect;
+		if(frameFormat->inFrameWidth == 0 && frameFormat->inFrameHeight == 0)
+		{
+			frameFormat->inFrameWidth = localRecP->width;
+			frameFormat->inFrameHeight = localRecP->height;
+		}
+		
+		// Windows and MacOS have different definitions of Rects, so use the cross-platform prSetRect
+		prSetRect(&theRect, 0, 0, frameFormat->inFrameWidth, frameFormat->inFrameHeight);
+		
+		
+		
+		try
+		{
+			InputFile *infile = localRecP->file;
+			
+			const Header &head = infile->header();
+			
+			assert(frameFormat->inFrameHeight == head.height() && frameFormat->inFrameWidth == head.width());
+			
+			
+			PPixHand ppix;
+		
+			localRecP->PPixCreatorSuite->CreatePPix(&ppix, PrPPixBufferAccess_ReadWrite, PrPixelFormat_BGRA_4444_8u, &theRect);
+			
+
+			char *frameBufferP = NULL;
+			csSDK_int32 rowbytes = 0;
+			
+			localRecP->PPixSuite->GetPixels(ppix, PrPPixBufferAccess_ReadWrite, &frameBufferP);
+			localRecP->PPixSuite->GetRowBytes(ppix, &rowbytes);
+			
+			char *origin = frameBufferP + (rowbytes * (frameFormat->inFrameHeight - 1));
+			
+			FrameBuffer frameBuffer(frameFormat->inFrameWidth, frameFormat->inFrameHeight);
+			
+			frameBuffer.insert("B", Slice(MoxFiles::UINT8, origin + 0, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+			frameBuffer.insert("G", Slice(MoxFiles::UINT8, origin + 1, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+			frameBuffer.insert("R", Slice(MoxFiles::UINT8, origin + 2, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+			frameBuffer.insert("A", Slice(MoxFiles::UINT8, origin + 3, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 255));
+			
+			
+			infile->getFrame(theFrame, frameBuffer);
+
+
+			localRecP->PPixCacheSuite->AddFrameToCache(	localRecP->importerID,
+														0,
+														ppix,
+														theFrame,
+														NULL,
+														NULL);
+														
+			*sourceVideoRec->outFrame = ppix;
+			
+			// Premiere will handle the disposing of the frame buffer
+		}
+		catch(...)
+		{
+			result = imOtherErr;
+		}
 		
 		
 	}

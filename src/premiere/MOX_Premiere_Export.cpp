@@ -46,6 +46,9 @@
 
 #include <MoxFiles/Thread.h>
 
+#include <MoxMxf/PlatformIOStream.h>
+
+
 #ifdef PRMAC_ENV
 	#include <mach/mach.h>
 #else
@@ -67,7 +70,7 @@ static const csSDK_int32 MOX_Export_Class = 'MOX ';
 extern int g_num_cpus;
 
 
-
+/*
 class PrIOStream : public MoxMxf::IOStream
 {
   public:
@@ -173,7 +176,7 @@ PrIOStream::FileSize()
 	
 	return pos;
 }
-
+*/
 
 static void
 utf16ncpy(prUTF16Char *dest, const char *src, int max_len)
@@ -483,6 +486,7 @@ exSDKExport(
 	ExportSettings				*mySettings				= reinterpret_cast<ExportSettings*>(exportInfoP->privateData);
 	PrSDKExportParamSuite		*paramSuite				= mySettings->exportParamSuite;
 	PrSDKExportInfoSuite		*exportInfoSuite		= mySettings->exportInfoSuite;
+	PrSDKExportFileSuite		*exportFileSuite		= mySettings->exportFileSuite;
 	PrSDKSequenceRenderSuite	*renderSuite			= mySettings->sequenceRenderSuite;
 	PrSDKSequenceAudioSuite		*audioSuite				= mySettings->sequenceAudioSuite;
 	PrSDKMemoryManagerSuite		*memorySuite			= mySettings->memorySuite;
@@ -562,19 +566,31 @@ exSDKExport(
 	
 	if(result == malNoError)
 	{
+		prUTF16Char *filepath = NULL;
+	
 		try
 		{
 			using namespace MoxFiles;
 			
+			csSDK_int32 pathLen = 0;
+			result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, NULL);
+			assert(result == suiteError_NoError);
+			
+			filepath = new prUTF16Char[pathLen + 1];
+			result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, filepath);
+			assert(result == suiteError_NoError);
+			
+		
 			if( supportsThreads() )
 				setGlobalThreadCount(g_num_cpus);
+			
 		
 			const Rational par(pixelAspectRatioP.value.ratioValue.numerator, pixelAspectRatioP.value.ratioValue.denominator);
 			const Rational fps = get_framerate(ticksPerSecond, frameRateP.value.timeValue);
 		
 			Header head(widthP.value.intValue, heightP.value.intValue, par, fps, UNCOMPRESSED);
 			
-			MoxFiles::ChannelList &channels = head.channels();
+			ChannelList &channels = head.channels();
 			
 			channels.insert("R", Channel(MoxFiles::UINT8));
 			channels.insert("G", Channel(MoxFiles::UINT8));
@@ -583,7 +599,8 @@ exSDKExport(
 			if(alpha)
 				channels.insert("A", Channel(MoxFiles::UINT8));
 			
-			PrIOStream outstream(mySettings->exportFileSuite, exportInfoP->fileObject);
+			
+			MoxMxf::PlatformIOStream outstream(filepath, MoxMxf::PlatformIOStream::ReadWrite);
 			
 			OutputFile outfile(outstream, head);
 			
@@ -665,6 +682,8 @@ exSDKExport(
 		{
 			result = exportReturn_InternalError;
 		}
+		
+		delete [] filepath;
 	}
 	
 	

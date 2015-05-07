@@ -11,6 +11,7 @@
 		2A06EF73177D75F100233616 /* MOX_Premiere_Export_Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A06EF72177D75F100233616 /* MOX_Premiere_Export_Params.cpp */; };
 		2A58AED9176CF23F00669435 /* MOX_Premiere_Export.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A58AED4176CF23F00669435 /* MOX_Premiere_Export.cpp */; };
 		2A58AEDA176CF23F00669435 /* MOX_Premiere_Import.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A58AED6176CF23F00669435 /* MOX_Premiere_Import.cpp */; };
+		2A7892CE1AF13AAB001776FD /* PlatformIOStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A7892BF1AF13AAB001776FD /* PlatformIOStream.cpp */; };
 		2AA0E0231AE48FE90053B71F /* libMoxMxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA0DFB91AE4847D0053B71F /* libMoxMxf.a */; };
 		2AA0E0241AE48FED0053B71F /* libMoxFiles.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA0DFCA1AE484C60053B71F /* libMoxFiles.a */; };
 		2AA0E04A1AE490400053B71F /* libmxflib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA0E0491AE4903B0053B71F /* libmxflib.a */; };
@@ -151,6 +152,8 @@
 		2A58AED5176CF23F00669435 /* MOX_Premiere_Export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOX_Premiere_Export.h; sourceTree = "<group>"; };
 		2A58AED6176CF23F00669435 /* MOX_Premiere_Import.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOX_Premiere_Import.cpp; sourceTree = "<group>"; };
 		2A58AED7176CF23F00669435 /* MOX_Premiere_Import.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOX_Premiere_Import.h; sourceTree = "<group>"; };
+		2A7892BF1AF13AAB001776FD /* PlatformIOStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformIOStream.cpp; sourceTree = "<group>"; };
+		2A7892C01AF13AAB001776FD /* PlatformIOStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformIOStream.h; sourceTree = "<group>"; };
 		2AA0DFB11AE4847D0053B71F /* MoxMxf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MoxMxf.xcodeproj; path = ext/MoxMxf.xcodeproj; sourceTree = "<group>"; };
 		2AA0DFC21AE484C60053B71F /* MoxFiles.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MoxFiles.xcodeproj; path = ext/MoxFiles.xcodeproj; sourceTree = "<group>"; };
 		2AA0E0411AE4903B0053B71F /* mxflib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mxflib.xcodeproj; path = ext/mxflib/mxflib.xcodeproj; sourceTree = "<group>"; };
@@ -158,7 +161,7 @@
 		2AA0E1471AE56CE70053B71F /* IlmBaseConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IlmBaseConfig.h; path = ext/IlmBaseConfig.h; sourceTree = "<group>"; };
 		2AA0E1621AE56D230053B71F /* OpenEXR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenEXR.xcodeproj; path = ext/OpenEXR.xcodeproj; sourceTree = "<group>"; };
 		2AA0E1651AE56D230053B71F /* OpenEXRConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenEXRConfig.h; path = ext/OpenEXRConfig.h; sourceTree = "<group>"; };
-		2AA0E4231AE5BD8D0053B71F /* mxflib_messages.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mxflib_messages.cpp; path = ../../../libmox/MoxMxf/mxflib_messages.cpp; sourceTree = SOURCE_ROOT; };
+		2AA0E4231AE5BD8D0053B71F /* mxflib_messages.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mxflib_messages.cpp; sourceTree = "<group>"; };
 		8D01CCD10486CAD60068D4B7 /* MOX_Premiere_Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MOX_Premiere_Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,12 +186,12 @@
 			isa = PBXGroup;
 			children = (
 				2A58AED3176CF23F00669435 /* premiere */,
+				2A7892B01AF13AAB001776FD /* MoxMxf */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				2AA0DFC21AE484C60053B71F /* MoxFiles.xcodeproj */,
 				2AA0DFB11AE4847D0053B71F /* MoxMxf.xcodeproj */,
 				2AA0E0411AE4903B0053B71F /* mxflib.xcodeproj */,
-				2AA0E4231AE5BD8D0053B71F /* mxflib_messages.cpp */,
 				2AA0E1471AE56CE70053B71F /* IlmBaseConfig.h */,
 				2AA0E1441AE56CE70053B71F /* IlmBase.xcodeproj */,
 				2AA0E1651AE56D230053B71F /* OpenEXRConfig.h */,
@@ -242,6 +245,17 @@
 			);
 			name = premiere;
 			path = ../../src/premiere;
+			sourceTree = SOURCE_ROOT;
+		};
+		2A7892B01AF13AAB001776FD /* MoxMxf */ = {
+			isa = PBXGroup;
+			children = (
+				2AA0E4231AE5BD8D0053B71F /* mxflib_messages.cpp */,
+				2A7892C01AF13AAB001776FD /* PlatformIOStream.h */,
+				2A7892BF1AF13AAB001776FD /* PlatformIOStream.cpp */,
+			);
+			name = MoxMxf;
+			path = ../../../libmox/MoxMxf;
 			sourceTree = SOURCE_ROOT;
 		};
 		2AA0DFB21AE4847D0053B71F /* Products */ = {
@@ -459,6 +473,7 @@
 				2A58AEDA176CF23F00669435 /* MOX_Premiere_Import.cpp in Sources */,
 				2A06EF73177D75F100233616 /* MOX_Premiere_Export_Params.cpp in Sources */,
 				2AA0E4241AE5BD8D0053B71F /* mxflib_messages.cpp in Sources */,
+				2A7892CE1AF13AAB001776FD /* PlatformIOStream.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
