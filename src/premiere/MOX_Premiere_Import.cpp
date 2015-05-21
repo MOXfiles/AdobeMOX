@@ -82,9 +82,9 @@ typedef struct
 	MoxMxf::PlatformIOStream *stream;
 	MoxFiles::InputFile		*file;
 	
-	//csSDK_uint8				bit_depth;
-	//float					audioSampleRate;
-	//int						numChannels;
+	csSDK_uint8				bit_depth;
+	float					audioSampleRate;
+	int						numChannels;
 	
 	
 	PlugMemoryFuncsPtr		memFuncs;
@@ -101,7 +101,7 @@ typedef struct
 // http://matroska.org/technical/specs/notes.html#TimecodeScale
 // Time (in nanoseconds) = TimeCode * TimeCodeScale
 // When we call finctions like GetTime, we're given Time in Nanoseconds.
-static const long long S2NS = 1000000000LL;
+//static const long long S2NS = 1000000000LL;
 
 
 static prMALError 
@@ -314,14 +314,12 @@ SDKOpenFile8(
 			
 			localRecP->file = new MoxFiles::InputFile(*localRecP->stream);
 		}
+		catch(MoxMxf::IoExc &e)
+		{	result = imFileOpenFailed;	}
 		catch(MoxMxf::BaseExc &e)
-		{
-			result = imBadHeader;
-		}
+		{	result = imBadHeader;	}
 		catch(...)
-		{
-			result = imOtherErr;
-		}
+		{	result = imOtherErr;	}
 	}
 	
 	// close file and delete private data if we got a bad file
@@ -523,21 +521,24 @@ SDKGetInfo8(
 		{
 			const Rational &fps = head.frameRate();
 			const Rational &par = head.pixelAspectRatio();
+			
+			const bool has_alpha = (channels.findChannel("A") != NULL);
+			const int num_channels = (has_alpha ? 4 : 3);
 		
 			// Video information
 			SDKFileInfo8->hasVideo				= kPrTrue;
 			SDKFileInfo8->vidInfo.subType		= PrPixelFormat_BGRA_4444_8u;
 			SDKFileInfo8->vidInfo.imageWidth	= head.width();
 			SDKFileInfo8->vidInfo.imageHeight	= head.height();
-			SDKFileInfo8->vidInfo.depth			= 8 * 3;	// for RGB, no A
-			SDKFileInfo8->vidInfo.fieldType		= prFieldsUnknown; // Matroska talks about DefaultDecodedFieldDuration but...
+			SDKFileInfo8->vidInfo.depth			= 8 * num_channels;
+			SDKFileInfo8->vidInfo.fieldType		= prFieldsUnknown;
 			SDKFileInfo8->vidInfo.isStill		= kPrFalse;
 			SDKFileInfo8->vidInfo.noDuration	= imNoDurationFalse;
 			SDKFileInfo8->vidDuration			= head.duration() * fps.Denominator;
 			SDKFileInfo8->vidScale				= fps.Numerator;
 			SDKFileInfo8->vidSampleSize			= fps.Denominator;
 
-			SDKFileInfo8->vidInfo.alphaType		= alphaNone;
+			SDKFileInfo8->vidInfo.alphaType		= (has_alpha ? alphaStraight : alphaNone);
 
 			SDKFileInfo8->vidInfo.pixelAspectNum = par.Numerator;
 			SDKFileInfo8->vidInfo.pixelAspectDen = par.Denominator;
@@ -548,6 +549,8 @@ SDKGetInfo8(
 
 			localRecP->frameRateNum = SDKFileInfo8->vidScale;
 			localRecP->frameRateDen = SDKFileInfo8->vidSampleSize;
+			
+			localRecP->bit_depth = 8; // hard-coded for now
 		}
 
 		
@@ -555,18 +558,55 @@ SDKGetInfo8(
 		
 		if(audioChannels.size() > 0)
 		{
-			const long long bitDepth = 24;
+			PrAudioSampleType sample_type = kPrAudioSampleType_Other;
+			
+			for(AudioChannelList::ConstIterator ch = audioChannels.begin(); ch != audioChannels.end(); ++ch)
+			{
+				const AudioChannel &chan = ch.channel();
+				
+				PrAudioSampleType chan_depth;
+				
+				switch(chan.type)
+				{
+					case UNSIGNED8:		chan_depth = kPrAudioSampleType_8BitInt;	break;
+					case SIGNED16:		chan_depth = kPrAudioSampleType_16BitInt;	break;
+					case SIGNED24:		chan_depth = kPrAudioSampleType_24BitInt;	break;
+					case SIGNED32:		chan_depth = kPrAudioSampleType_32BitInt;	break;
+					case AFLOAT:		chan_depth = kPrAudioSampleType_32BitFloat;	break;
+					
+					default:
+						throw MoxMxf::NoImplExc("");
+				}
+				
+				if(sample_type == kPrAudioSampleType_Other)
+				{
+					sample_type = chan_depth;
+				}
+				else
+				{
+					assert(sample_type == chan_depth);
+				}
+			}
+			
+			const Rational &sample_rate = head.sampleRate();
+			const float float_sample_rate = (float)sample_rate.Numerator / (float)sample_rate.Denominator;
+			
+			int num_channels = audioChannels.size();
+			
+			if(num_channels > 2 && num_channels != 6)
+			{
+				num_channels = 2; // can't do 8 channels or whatever
+			}
 			
 			// Audio information
 			SDKFileInfo8->hasAudio				= kPrTrue;
-			SDKFileInfo8->audInfo.numChannels	= audioChannels.size();
-			SDKFileInfo8->audInfo.sampleRate	= 48000;
-			SDKFileInfo8->audInfo.sampleType	= bitDepth == 8 ? kPrAudioSampleType_8BitInt :
-													bitDepth == 16 ? kPrAudioSampleType_16BitInt :
-													bitDepth == 24 ? kPrAudioSampleType_24BitInt :
-													bitDepth == 32 ? kPrAudioSampleType_32BitFloat :
-													bitDepth == 64 ? kPrAudioSampleType_64BitFloat :
-													kPrAudioSampleType_Compressed;
+			SDKFileInfo8->audInfo.numChannels	= num_channels;
+			SDKFileInfo8->audInfo.sampleRate	= float_sample_rate;
+			SDKFileInfo8->audInfo.sampleType	= sample_type;
+			
+			
+			localRecP->audioSampleRate			= SDKFileInfo8->audInfo.sampleRate;
+			localRecP->numChannels				= SDKFileInfo8->audInfo.numChannels;
 		}
 	}
 	catch(...)
@@ -759,8 +799,38 @@ SDKImportAudio7(
 	ImporterLocalRec8H ldataH = reinterpret_cast<ImporterLocalRec8H>(audioRec7->privateData);
 	stdParms->piSuites->memFuncs->lockHandle(reinterpret_cast<char**>(ldataH));
 	ImporterLocalRec8Ptr localRecP = reinterpret_cast<ImporterLocalRec8Ptr>( *ldataH );
+		
+	assert(audioRec7->position >= 0); // Do they really want contiguous samples?
 
-
+	try
+	{
+		InputFile *infile = localRecP->file;
+		
+		const AudioChannelList &chans = infile->header().audioChannels();
+		
+		
+		AudioBuffer buffer(audioRec7->size);
+		
+		int n = 0;
+		
+		for(AudioChannelList::ConstIterator ch = chans.begin(); ch != chans.end() && n < localRecP->numChannels; ++ch)
+		{
+			const Name &name = ch.name();
+			
+			const ptrdiff_t stride = sizeof(float);
+			
+			buffer.insert(name.text(), AudioSlice(AFLOAT, (char *)audioRec7->buffer[n++], stride));
+		}
+		
+		
+		infile->seekAudio(audioRec7->position);
+		
+		infile->readAudio(audioRec7->size, buffer);
+	}
+	catch(...)
+	{
+		result = imOtherErr;
+	}
 	
 					
 	stdParms->piSuites->memFuncs->unlockHandle(reinterpret_cast<char**>(ldataH));

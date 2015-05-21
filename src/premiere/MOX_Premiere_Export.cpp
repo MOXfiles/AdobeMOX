@@ -42,7 +42,7 @@
 
 #include "MOX_Premiere_Export_Params.h"
 
-#include <MoxFiles/OutputFile.cpp>
+#include <MoxFiles/OutputFile.h>
 
 #include <MoxFiles/Thread.h>
 
@@ -499,8 +499,8 @@ exSDKExport(
 	mySettings->timeSuite->GetTicksPerSecond(&ticksPerSecond);
 	
 	
-	csSDK_uint32 exID = exportInfoP->exporterPluginID;
-	csSDK_int32 gIdx = 0;
+	const csSDK_uint32 exID = exportInfoP->exporterPluginID;
+	const csSDK_int32 gIdx = 0;
 	
 	exParamValues widthP, heightP, pixelAspectRatioP, fieldTypeP, frameRateP, alphaP;
 	
@@ -541,7 +541,7 @@ exSDKExport(
 	renderParms.inFieldType = fieldTypeP.value.intValue;
 	renderParms.inDeinterlace = kPrFalse;
 	renderParms.inDeinterlaceQuality = kPrRenderQuality_High;
-	renderParms.inCompositeOnBlack = kPrTrue;
+	renderParms.inCompositeOnBlack = (alpha ? kPrFalse : kPrTrue);
 	
 	
 	csSDK_uint32 videoRenderID = 0;
@@ -585,19 +585,49 @@ exSDKExport(
 				setGlobalThreadCount(g_num_cpus);
 			
 		
-			const Rational par(pixelAspectRatioP.value.ratioValue.numerator, pixelAspectRatioP.value.ratioValue.denominator);
-			const Rational fps = get_framerate(ticksPerSecond, frameRateP.value.timeValue);
+			//const Rational par(pixelAspectRatioP.value.ratioValue.numerator, pixelAspectRatioP.value.ratioValue.denominator);
+			const Rational frameRate = get_framerate(ticksPerSecond, frameRateP.value.timeValue);
+			const Rational sampleRate = Rational(sampleRateP.value.floatValue, 1);
 		
-			Header head(widthP.value.intValue, heightP.value.intValue, par, fps, UNCOMPRESSED);
+			Header head(widthP.value.intValue, heightP.value.intValue, frameRate, sampleRate, UNCOMPRESSED, PCM);
 			
-			ChannelList &channels = head.channels();
+			if(exportInfoP->exportVideo)
+			{
+				const MoxFiles::PixelType pixelType = MoxFiles::UINT8;
+				
+				ChannelList &channels = head.channels();
+				
+				channels.insert("R", Channel(pixelType));
+				channels.insert("G", Channel(pixelType));
+				channels.insert("B", Channel(pixelType));
+				
+				if(alpha)
+					channels.insert("A", Channel(pixelType));
+			}
 			
-			channels.insert("R", Channel(MoxFiles::UINT8));
-			channels.insert("G", Channel(MoxFiles::UINT8));
-			channels.insert("B", Channel(MoxFiles::UINT8));
 			
-			if(alpha)
-				channels.insert("A", Channel(MoxFiles::UINT8));
+			csSDK_int32 maxBlip = 100;
+			mySettings->sequenceAudioSuite->GetMaxBlip(audioRenderID, frameRateP.value.timeValue, &maxBlip);
+			
+			float *pr_audio_buffer[6] = {NULL, NULL, NULL, NULL, NULL, NULL};
+			
+			std::vector<Name> audio_channels;
+			
+			if(exportInfoP->exportAudio)
+			{
+				audio_channels = StandardAudioChannelList(audioChannels);
+				
+				const SampleType sampleType = MoxFiles::SIGNED24;
+				
+				AudioChannelList &channels = head.audioChannels();
+				
+				for(int i = 0; i < audio_channels.size(); i++)
+				{
+					channels.insert(audio_channels[i].text(), AudioChannel(sampleType));
+					
+					pr_audio_buffer[i] = (float *)malloc(sizeof(float) * maxBlip);
+				}
+			}
 			
 			
 			MoxMxf::PlatformIOStream outstream(filepath, MoxMxf::PlatformIOStream::ReadWrite);
@@ -605,77 +635,124 @@ exSDKExport(
 			OutputFile outfile(outstream, head);
 			
 			
+			//const PrAudioSample endAudioSample = (exportInfoP->endTime - exportInfoP->startTime) /
+			//										(ticksPerSecond / (PrAudioSample)sampleRateP.value.floatValue);
+													
+			const PrAudioSample samplesPerFrame = (((PrAudioSample)sampleRateP.value.floatValue * ticksPerSecond) +
+														(frameRateP.value.timeValue / 2)) / frameRateP.value.timeValue;
+													
+			assert(ticksPerSecond % (PrAudioSample)sampleRateP.value.floatValue == 0);
+			
+			
+			
 			PrTime videoTime = exportInfoP->startTime;
 			
 			while(videoTime <= exportInfoP->endTime && result == malNoError)
 			{
-				SequenceRender_GetFrameReturnRec renderResult;
-				
-				result = renderSuite->RenderVideoFrame(videoRenderID,
-														videoTime,
-														&renderParms,
-														kRenderCacheType_None,
-														&renderResult);
-			
-				if(result == suiteError_NoError)
+				if(exportInfoP->exportVideo)
 				{
-					prRect bounds;
-					csSDK_uint32 parN, parD;
+					SequenceRender_GetFrameReturnRec renderResult;
 					
-					pixSuite->GetBounds(renderResult.outFrame, &bounds);
-					pixSuite->GetPixelAspectRatio(renderResult.outFrame, &parN, &parD);
-					
-					const int width = bounds.right - bounds.left;
-					const int height = bounds.bottom - bounds.top;
-					
-					assert(width == widthP.value.intValue);
-					assert(height == heightP.value.intValue);
-					assert(parN == pixelAspectRatioP.value.ratioValue.numerator);
-					assert(parD == pixelAspectRatioP.value.ratioValue.denominator);
-					
-									
-					PrPixelFormat pixFormat;
-					char *frameBufferP = NULL;
-					csSDK_int32 rowbytes = 0;
-					
-					pixSuite->GetPixelFormat(renderResult.outFrame, &pixFormat);
-					pixSuite->GetPixels(renderResult.outFrame, PrPPixBufferAccess_ReadOnly, &frameBufferP);
-					pixSuite->GetRowBytes(renderResult.outFrame, &rowbytes);
-					
-					if(pixFormat == PrPixelFormat_BGRA_4444_8u)
-					{
-						FrameBufferPtr frame = new FrameBuffer(width, height);
-						
-						char *origin = frameBufferP + ((height - 1) * rowbytes);
-						
-						frame->insert("B", Slice(MoxFiles::UINT8, origin + 0, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-						frame->insert("G", Slice(MoxFiles::UINT8, origin + 1, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-						frame->insert("R", Slice(MoxFiles::UINT8, origin + 2, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-						
-						if(alpha)
-							frame->insert("A", Slice(MoxFiles::UINT8, origin + 3, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 255));
-						
-						
-						outfile.pushFrame(frame);
-					}
-					else
-						assert(false);
+					result = renderSuite->RenderVideoFrame(videoRenderID,
+															videoTime,
+															&renderParms,
+															kRenderCacheType_None,
+															&renderResult);
 				
-					pixSuite->Dispose(renderResult.outFrame);
-					
-					
-					
-					const float progress = (double)(videoTime - exportInfoP->startTime) / (double)(exportInfoP->endTime - exportInfoP->startTime);
-
-					result = mySettings->exportProgressSuite->UpdateProgressPercent(exID, progress);
-					
-					if(result == suiteError_ExporterSuspended)
+					if(result == suiteError_NoError)
 					{
-						result = mySettings->exportProgressSuite->WaitForResume(exID);
+						prRect bounds;
+						csSDK_uint32 parN, parD;
+						
+						pixSuite->GetBounds(renderResult.outFrame, &bounds);
+						pixSuite->GetPixelAspectRatio(renderResult.outFrame, &parN, &parD);
+						
+						const int width = bounds.right - bounds.left;
+						const int height = bounds.bottom - bounds.top;
+						
+						assert(width == widthP.value.intValue);
+						assert(height == heightP.value.intValue);
+						assert(parN == pixelAspectRatioP.value.ratioValue.numerator);
+						assert(parD == pixelAspectRatioP.value.ratioValue.denominator);
+						
+										
+						PrPixelFormat pixFormat;
+						char *frameBufferP = NULL;
+						csSDK_int32 rowbytes = 0;
+						
+						pixSuite->GetPixelFormat(renderResult.outFrame, &pixFormat);
+						pixSuite->GetPixels(renderResult.outFrame, PrPPixBufferAccess_ReadOnly, &frameBufferP);
+						pixSuite->GetRowBytes(renderResult.outFrame, &rowbytes);
+						
+						if(pixFormat == PrPixelFormat_BGRA_4444_8u)
+						{
+							FrameBuffer frame(width, height);
+							
+							char *origin = frameBufferP + ((height - 1) * rowbytes);
+							
+							frame.insert("B", Slice(MoxFiles::UINT8, origin + 0, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+							frame.insert("G", Slice(MoxFiles::UINT8, origin + 1, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+							frame.insert("R", Slice(MoxFiles::UINT8, origin + 2, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+							
+							if(alpha)
+								frame.insert("A", Slice(MoxFiles::UINT8, origin + 3, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 255));
+							
+							
+							outfile.pushFrame(frame);
+						}
+						else
+							assert(false);
+					
+						pixSuite->Dispose(renderResult.outFrame);
 					}
 				}
-			
+				
+				
+				if(exportInfoP->exportAudio && result == malNoError)
+				{
+					PrAudioSample samples_to_get = samplesPerFrame;
+					
+					while(samples_to_get > 0 && result == malNoError)
+					{
+						PrAudioSample get_samples = std::min<PrAudioSample>(samples_to_get, maxBlip);
+					
+						result = audioSuite->GetAudio(audioRenderID, get_samples, pr_audio_buffer, false);
+						
+						if(result == suiteError_NoError)
+						{
+							AudioBuffer audioBuffer(get_samples);
+							
+							for(int i = 0; i < audio_channels.size(); i++)
+							{
+								audioBuffer.insert(audio_channels[i].text(), AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[i], sizeof(float)));
+							}
+							
+							outfile.pushAudio(audioBuffer);
+							
+							samples_to_get -= get_samples;
+						}
+					}
+				}
+				
+				
 				videoTime += frameRateP.value.timeValue;
+				
+						
+				const float progress = (double)(videoTime - exportInfoP->startTime) / (double)(exportInfoP->endTime - exportInfoP->startTime);
+
+				result = mySettings->exportProgressSuite->UpdateProgressPercent(exID, progress);
+				
+				if(result == suiteError_ExporterSuspended)
+				{
+					result = mySettings->exportProgressSuite->WaitForResume(exID);
+				}
+			}
+			
+			
+			for(int i = 0; i < 6; i++)
+			{
+				if(pr_audio_buffer[i] != NULL)
+					free(pr_audio_buffer[i]);
 			}
 		}
 		catch(...)
