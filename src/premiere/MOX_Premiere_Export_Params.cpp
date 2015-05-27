@@ -290,7 +290,7 @@ exSDKGenerateDefaultParams(
 	// Alpha channel
 	exParamValues alphaValues;
 	alphaValues.structVersion = 1;
-	alphaValues.value.intValue = kPrTrue;
+	alphaValues.value.intValue = kPrFalse;
 	alphaValues.disabled = kPrFalse;
 	alphaValues.hidden = kPrFalse;
 	
@@ -342,7 +342,7 @@ exSDKGenerateDefaultParams(
 	// Sample rate
 	exParamValues sampleRateValues;
 	sampleRateValues.value.floatValue = 48000.f; //sampleRateP.mFloat64;
-	sampleRateValues.disabled = kPrTrue;
+	sampleRateValues.disabled = kPrFalse;
 	sampleRateValues.hidden = kPrFalse;
 	
 	exNewParamInfo sampleRateParam;

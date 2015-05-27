@@ -313,6 +313,8 @@ SDKOpenFile8(
 			localRecP->stream = new MoxMxf::PlatformIOStream(CAST_REFNUM(*SDKfileRef));
 			
 			localRecP->file = new MoxFiles::InputFile(*localRecP->stream);
+			
+			assert(SDKfileOpenRec8->inReadWrite == kPrOpenFileAccess_ReadOnly);
 		}
 		catch(MoxMxf::IoExc &e)
 		{	result = imFileOpenFailed;	}

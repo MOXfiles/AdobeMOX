@@ -638,8 +638,8 @@ exSDKExport(
 			//const PrAudioSample endAudioSample = (exportInfoP->endTime - exportInfoP->startTime) /
 			//										(ticksPerSecond / (PrAudioSample)sampleRateP.value.floatValue);
 													
-			const PrAudioSample samplesPerFrame = (((PrAudioSample)sampleRateP.value.floatValue * ticksPerSecond) +
-														(frameRateP.value.timeValue / 2)) / frameRateP.value.timeValue;
+			const PrAudioSample samplesPerFrame = (((PrAudioSample)sampleRateP.value.floatValue * frameRateP.value.timeValue) +
+														(ticksPerSecond / 2)) / ticksPerSecond;
 													
 			assert(ticksPerSecond % (PrAudioSample)sampleRateP.value.floatValue == 0);
 			
