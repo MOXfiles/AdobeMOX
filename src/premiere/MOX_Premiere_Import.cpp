@@ -79,7 +79,7 @@ typedef struct
 	csSDK_int32				frameRateNum;
 	csSDK_int32				frameRateDen;
 	
-	MoxMxf::PlatformIOStream *stream;
+	PlatformIOStream		*stream;
 	MoxFiles::InputFile		*file;
 	
 	csSDK_uint8				bit_depth;
@@ -310,7 +310,7 @@ SDKOpenFile8(
 			if( supportsThreads() )
 				setGlobalThreadCount(g_num_cpus);
 		
-			localRecP->stream = new MoxMxf::PlatformIOStream(CAST_REFNUM(*SDKfileRef));
+			localRecP->stream = new PlatformIOStream(CAST_REFNUM(*SDKfileRef));
 			
 			localRecP->file = new MoxFiles::InputFile(*localRecP->stream);
 			
@@ -438,8 +438,16 @@ SDKGetIndPixelFormat(
 	ImporterLocalRec8H ldataH = reinterpret_cast<ImporterLocalRec8H>(SDKIndPixelFormatRec->privatedata);
 	ImporterLocalRec8Ptr localRecP = reinterpret_cast<ImporterLocalRec8Ptr>( *ldataH );
 
-
 	if(idx == 0)
+	{
+		const PrPixelFormat pix_fmt = (localRecP->bit_depth == 8 ? PrPixelFormat_BGRA_4444_8u :
+										localRecP->bit_depth == 16 ? PrPixelFormat_BGRA_4444_16u :
+										localRecP->bit_depth == 32 ? PrPixelFormat_BGRA_4444_32f :
+										PrPixelFormat_BGRA_4444_8u);
+										
+		SDKIndPixelFormatRec->outPixelFormat = pix_fmt;
+	}
+	else if(idx == 1)
 	{
 		SDKIndPixelFormatRec->outPixelFormat = PrPixelFormat_BGRA_4444_8u;
 	}
@@ -526,13 +534,25 @@ SDKGetInfo8(
 			
 			const bool has_alpha = (channels.findChannel("A") != NULL);
 			const int num_channels = (has_alpha ? 4 : 3);
+			
+			int bit_depth = 8;
+			
+			for(ChannelList::ConstIterator i = channels.begin(); i != channels.end(); ++i)
+			{
+				const Channel &chan = i.channel();
+				
+				if(bit_depth < PixelBits(chan.type))
+				{
+					bit_depth = PixelBits(chan.type);
+				}
+			}
 		
 			// Video information
 			SDKFileInfo8->hasVideo				= kPrTrue;
 			SDKFileInfo8->vidInfo.subType		= PrPixelFormat_BGRA_4444_8u;
 			SDKFileInfo8->vidInfo.imageWidth	= head.width();
 			SDKFileInfo8->vidInfo.imageHeight	= head.height();
-			SDKFileInfo8->vidInfo.depth			= 8 * num_channels;
+			SDKFileInfo8->vidInfo.depth			= bit_depth * num_channels;
 			SDKFileInfo8->vidInfo.fieldType		= prFieldsUnknown;
 			SDKFileInfo8->vidInfo.isStill		= kPrFalse;
 			SDKFileInfo8->vidInfo.noDuration	= imNoDurationFalse;
@@ -552,7 +572,7 @@ SDKGetInfo8(
 			localRecP->frameRateNum = SDKFileInfo8->vidScale;
 			localRecP->frameRateDen = SDKFileInfo8->vidSampleSize;
 			
-			localRecP->bit_depth = 8; // hard-coded for now
+			localRecP->bit_depth = SDKFileInfo8->vidInfo.depth;
 		}
 
 		
@@ -597,7 +617,7 @@ SDKGetInfo8(
 			
 			if(num_channels > 2 && num_channels != 6)
 			{
-				num_channels = 2; // can't do 8 channels or whatever
+				num_channels = 2; // can only do mono, stereo, and 5.1
 			}
 			
 			// Audio information
@@ -734,12 +754,11 @@ SDKGetSourceVideo(
 			
 			const Header &head = infile->header();
 			
-			assert(frameFormat->inFrameHeight == head.height() && frameFormat->inFrameWidth == head.width());
+			const PrPixelFormat pix_fmt = frameFormat->inPixelFormat;
 			
 			
 			PPixHand ppix;
-		
-			localRecP->PPixCreatorSuite->CreatePPix(&ppix, PrPPixBufferAccess_ReadWrite, PrPixelFormat_BGRA_4444_8u, &theRect);
+			localRecP->PPixCreatorSuite->CreatePPix(&ppix, PrPPixBufferAccess_ReadWrite, pix_fmt, &theRect);
 			
 
 			char *frameBufferP = NULL;
@@ -750,12 +769,32 @@ SDKGetSourceVideo(
 			
 			char *origin = frameBufferP + (rowbytes * (frameFormat->inFrameHeight - 1));
 			
+			
 			FrameBuffer frameBuffer(frameFormat->inFrameWidth, frameFormat->inFrameHeight);
 			
-			frameBuffer.insert("B", Slice(MoxFiles::UINT8, origin + 0, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-			frameBuffer.insert("G", Slice(MoxFiles::UINT8, origin + 1, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-			frameBuffer.insert("R", Slice(MoxFiles::UINT8, origin + 2, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-			frameBuffer.insert("A", Slice(MoxFiles::UINT8, origin + 3, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 255));
+			if(pix_fmt == PrPixelFormat_BGRA_4444_8u)
+			{
+				frameBuffer.insert("B", Slice(MoxFiles::UINT8, origin + (sizeof(unsigned char) * 0), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+				frameBuffer.insert("G", Slice(MoxFiles::UINT8, origin + (sizeof(unsigned char) * 1), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+				frameBuffer.insert("R", Slice(MoxFiles::UINT8, origin + (sizeof(unsigned char) * 2), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+				frameBuffer.insert("A", Slice(MoxFiles::UINT8, origin + (sizeof(unsigned char) * 3), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 255));
+			}
+			else if(pix_fmt == PrPixelFormat_BGRA_4444_16u)
+			{
+				frameBuffer.insert("B", Slice(MoxFiles::UINT16A, origin + (sizeof(unsigned short) * 0), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 0));
+				frameBuffer.insert("G", Slice(MoxFiles::UINT16A, origin + (sizeof(unsigned short) * 1), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 0));
+				frameBuffer.insert("R", Slice(MoxFiles::UINT16A, origin + (sizeof(unsigned short) * 2), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 0));
+				frameBuffer.insert("A", Slice(MoxFiles::UINT16A, origin + (sizeof(unsigned short) * 3), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 32768));
+			}
+			else if(pix_fmt == PrPixelFormat_BGRA_4444_32f)
+			{
+				frameBuffer.insert("B", Slice(MoxFiles::FLOAT, origin + (sizeof(float) * 0), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
+				frameBuffer.insert("G", Slice(MoxFiles::FLOAT, origin + (sizeof(float) * 1), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
+				frameBuffer.insert("R", Slice(MoxFiles::FLOAT, origin + (sizeof(float) * 2), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
+				frameBuffer.insert("A", Slice(MoxFiles::FLOAT, origin + (sizeof(float) * 3), sizeof(float) * 4, -rowbytes, 1, 1, 1.0));
+			}
+			else
+				assert(false);
 			
 			
 			infile->getFrame(theFrame, frameBuffer);
@@ -776,8 +815,6 @@ SDKGetSourceVideo(
 		{
 			result = imOtherErr;
 		}
-		
-		
 	}
 
 
@@ -813,17 +850,41 @@ SDKImportAudio7(
 		
 		AudioBuffer buffer(audioRec7->size);
 		
-		int n = 0;
+		const ptrdiff_t stride = sizeof(float);
 		
-		for(AudioChannelList::ConstIterator ch = chans.begin(); ch != chans.end() && n < localRecP->numChannels; ++ch)
+		if(chans.size() == 1)
 		{
-			const Name &name = ch.name();
-			
-			const ptrdiff_t stride = sizeof(float);
-			
-			buffer.insert(name.text(), AudioSlice(AFLOAT, (char *)audioRec7->buffer[n++], stride));
-		}
+			assert(localRecP->numChannels == 1);
 		
+			buffer.insert("Mono", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[0], stride));
+		}
+		if(chans.size() == 2)
+		{
+			assert(localRecP->numChannels == 2);
+		
+			buffer.insert("Left", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[0], stride));
+			buffer.insert("Right", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[1], stride));
+		}
+		if(chans.size() == 6)
+		{
+			assert(localRecP->numChannels == 6);
+		
+			buffer.insert("Left", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[0], stride));
+			buffer.insert("Right", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[1], stride));
+			buffer.insert("RearLeft", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[2], stride));
+			buffer.insert("RearRight", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[3], stride));
+			buffer.insert("Center", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[4], stride));
+			buffer.insert("LFE", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[5], stride));
+		}
+		else
+		{
+			// what we go to when there's some large number of channels
+			assert(localRecP->numChannels == 2);
+		
+			buffer.insert("Channel1", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[0], stride));
+			buffer.insert("Channel2", AudioSlice(MoxFiles::AFLOAT, (char *)audioRec7->buffer[1], stride));
+		}
+				
 		
 		infile->seekAudio(audioRec7->position);
 		

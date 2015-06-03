@@ -46,7 +46,7 @@
 
 #include <MoxFiles/Thread.h>
 
-#include <MoxMxf/PlatformIOStream.h>
+//#include <MoxMxf/PlatformIOStream.h>
 
 
 #ifdef PRMAC_ENV
@@ -70,7 +70,7 @@ static const csSDK_int32 MOX_Export_Class = 'MOX ';
 extern int g_num_cpus;
 
 
-/*
+
 class PrIOStream : public MoxMxf::IOStream
 {
   public:
@@ -88,11 +88,16 @@ class PrIOStream : public MoxMxf::IOStream
   private:
 	PrSDKExportFileSuite *_fileSuite;
 	const csSDK_uint32 _fileObject;
+	
+	MoxMxf::UInt64 _fileLen;
+	MoxMxf::UInt64 _filePos;
 };
 
 PrIOStream::PrIOStream(PrSDKExportFileSuite *fileSuite, csSDK_uint32 fileObject) :
 	_fileSuite(fileSuite),
-	_fileObject(fileObject)
+	_fileObject(fileObject),
+	_fileLen(0),
+	_filePos(0)
 {
 	prSuiteError err = _fileSuite->Open(_fileObject);
 	
@@ -114,13 +119,18 @@ PrIOStream::FileSeek(MoxMxf::UInt64 offset)
 
 	prSuiteError err = _fileSuite->Seek(_fileObject, offset, pos, fileSeekMode_Begin);
 	
+	_filePos = offset;
+	
 	return err;
 }
 
 MoxMxf::UInt64
 PrIOStream::FileRead(unsigned char *dest, MoxMxf::UInt64 size)
 {
-	assert(false); // Premiere can't read files it's writing
+	// Premiere can't read files it's writing
+	// mxflib will try to read, but expects to be at end of file
+
+	assert(_filePos == _fileLen);
 
 	return 0;
 }
@@ -129,6 +139,15 @@ MoxMxf::UInt64
 PrIOStream::FileWrite(const unsigned char *source, MoxMxf::UInt64 size)
 {
 	prSuiteError err = _fileSuite->Write(_fileObject, (void *)source, size);
+	
+	if(_fileLen == _filePos)
+	{
+		_fileLen += size;
+	}
+	else
+		assert(false);
+	
+	_filePos += size;
 	
 	return (err == suiteError_NoError ? size : 0);
 }
@@ -144,6 +163,8 @@ PrIOStream::FileTell()
 	prSuiteError err = _fileSuite->Seek(_fileObject, 0, pos, PR_SEEK_CURRENT);
 	
 	assert(err == suiteError_NoError);
+	
+	assert(pos == _filePos);
 	
 	return pos;
 }
@@ -165,6 +186,8 @@ PrIOStream::FileSize()
 {
 	assert(false); // hopefully writers don't have to know this
 	
+	prInt64 current_pos = FileTell();
+	
 	prInt64 pos = 0;
 
 // son of a gun, fileSeekMode_End and fileSeekMode_Current are flipped inside Premiere!
@@ -172,11 +195,17 @@ PrIOStream::FileSize()
 
 	prSuiteError err = _fileSuite->Seek(_fileObject, 0, pos, PR_SEEK_END);
 	
+	assert(pos == FileTell());
+	
+	FileSeek(current_pos);
+	
 	assert(err == suiteError_NoError);
+	
+	assert(pos == _fileLen);
 	
 	return pos;
 }
-*/
+
 
 static void
 utf16ncpy(prUTF16Char *dest, const char *src, int max_len)
@@ -522,14 +551,31 @@ exSDKExport(
 	if(audioFormat < kPrAudioChannelType_Mono || audioFormat > kPrAudioChannelType_51)
 		audioFormat = kPrAudioChannelType_Stereo;
 	
-	const int audioChannels = (audioFormat == kPrAudioChannelType_51 ? 6 :
-								audioFormat == kPrAudioChannelType_Stereo ? 2 :
-								audioFormat == kPrAudioChannelType_Mono ? 1 :
-								2);
+	const int numAudioChannels = (audioFormat == kPrAudioChannelType_51 ? 6 :
+									audioFormat == kPrAudioChannelType_Stereo ? 2 :
+									audioFormat == kPrAudioChannelType_Mono ? 1 :
+									2);
 	
+	
+	exParamValues videoBitDepthP, audioBitDepthP;
+	paramSuite->GetParamValue(exID, gIdx, MOXVideoBitDepth, &videoBitDepthP);
+	paramSuite->GetParamValue(exID, gIdx, MOXAudioBitDepth, &audioBitDepthP);
+	
+	const MOX_VideoBitDepth videoBitDepth = (MOX_VideoBitDepth)videoBitDepthP.value.intValue;
+	const MOX_AudioBitDepth audioBitDepth = (MOX_AudioBitDepth)audioBitDepthP.value.intValue;
+				
 		
 	SequenceRender_ParamsRec renderParms;
-	PrPixelFormat pixelFormats[] = { PrPixelFormat_BGRA_4444_8u };
+	
+	const PrPixelFormat preferredFormat = (videoBitDepth == VideoBitDepth_8bit ? PrPixelFormat_BGRA_4444_8u :
+											videoBitDepth == VideoBitDepth_10bit ? PrPixelFormat_BGRA_4444_16u :
+											videoBitDepth == VideoBitDepth_12bit ? PrPixelFormat_BGRA_4444_16u :
+											videoBitDepth == VideoBitDepth_16bit ? PrPixelFormat_BGRA_4444_16u :
+											videoBitDepth == VideoBitDepth_16bit_Float ? PrPixelFormat_BGRA_4444_32f :
+											videoBitDepth == VideoBitDepth_32bit_Float ? PrPixelFormat_BGRA_4444_32f :
+											PrPixelFormat_BGRA_4444_8u);
+	
+	PrPixelFormat pixelFormats[] = { preferredFormat };
 									
 	renderParms.inRequestedPixelFormatArray = pixelFormats;
 	renderParms.inRequestedPixelFormatArrayCount = 1;
@@ -555,10 +601,18 @@ exSDKExport(
 	
 	if(exportInfoP->exportAudio && result == malNoError)
 	{
+		const PrAudioSampleType nativeSampleType = (audioBitDepth == AudioBitDepth_8bit ? kPrAudioSampleType_8BitInt :
+													audioBitDepth == AudioBitDepth_16bit ? kPrAudioSampleType_16BitInt :
+													audioBitDepth == AudioBitDepth_24bit ? kPrAudioSampleType_24BitInt :
+													audioBitDepth == AudioBitDepth_32bit ? kPrAudioSampleType_32BitInt :
+													audioBitDepth == AudioBitDepth_32bit_Float ? kPrAudioSampleType_32BitFloat :
+													kPrAudioSampleType_8BitInt);
+														
+	
 		result = audioSuite->MakeAudioRenderer(exID,
 												exportInfoP->startTime,
 												audioFormat,
-												kPrAudioSampleType_32BitFloat,
+												nativeSampleType,
 												sampleRateP.value.floatValue, 
 												&audioRenderID);
 	}
@@ -566,19 +620,19 @@ exSDKExport(
 	
 	if(result == malNoError)
 	{
-		prUTF16Char *filepath = NULL;
+		//prUTF16Char *filepath = NULL;
 	
 		try
 		{
 			using namespace MoxFiles;
 			
-			csSDK_int32 pathLen = 0;
-			result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, NULL);
-			assert(result == suiteError_NoError);
+			//csSDK_int32 pathLen = 0;
+			//result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, NULL);
+			//assert(result == suiteError_NoError);
 			
-			filepath = new prUTF16Char[pathLen + 1];
-			result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, filepath);
-			assert(result == suiteError_NoError);
+			//filepath = new prUTF16Char[pathLen + 1];
+			//result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, filepath);
+			//assert(result == suiteError_NoError);
 			
 		
 			if( supportsThreads() )
@@ -593,7 +647,13 @@ exSDKExport(
 			
 			if(exportInfoP->exportVideo)
 			{
-				const MoxFiles::PixelType pixelType = MoxFiles::UINT8;
+				const MoxFiles::PixelType pixelType = (videoBitDepth == VideoBitDepth_8bit ? MoxFiles::UINT8 :
+														videoBitDepth == VideoBitDepth_10bit ? MoxFiles::UINT10 :
+														videoBitDepth == VideoBitDepth_12bit ? MoxFiles::UINT12 :
+														videoBitDepth == VideoBitDepth_16bit ? MoxFiles::UINT16 :
+														videoBitDepth == VideoBitDepth_16bit_Float ? MoxFiles::HALF :
+														videoBitDepth == VideoBitDepth_32bit_Float ? MoxFiles::FLOAT :
+														MoxFiles::UINT8);
 				
 				ChannelList &channels = head.channels();
 				
@@ -611,26 +671,48 @@ exSDKExport(
 			
 			float *pr_audio_buffer[6] = {NULL, NULL, NULL, NULL, NULL, NULL};
 			
-			std::vector<Name> audio_channels;
-			
 			if(exportInfoP->exportAudio)
 			{
-				audio_channels = StandardAudioChannelList(audioChannels);
-				
-				const SampleType sampleType = MoxFiles::SIGNED24;
+				const SampleType sampleType = (audioBitDepth == AudioBitDepth_8bit ? MoxFiles::UNSIGNED8 :
+												audioBitDepth == AudioBitDepth_16bit ? MoxFiles::SIGNED16 :
+												audioBitDepth == AudioBitDepth_24bit ? MoxFiles::SIGNED24 :
+												audioBitDepth == AudioBitDepth_32bit ? MoxFiles::SIGNED32 :
+												audioBitDepth == AudioBitDepth_32bit_Float ? MoxFiles::AFLOAT :
+												MoxFiles::SIGNED24);
 				
 				AudioChannelList &channels = head.audioChannels();
 				
-				for(int i = 0; i < audio_channels.size(); i++)
+				if(numAudioChannels == 1)
 				{
-					channels.insert(audio_channels[i].text(), AudioChannel(sampleType));
-					
-					pr_audio_buffer[i] = (float *)malloc(sizeof(float) * maxBlip);
+					channels.insert("Mono", AudioChannel(sampleType));
+				}
+				else if(numAudioChannels == 2)
+				{
+					channels.insert("Left", AudioChannel(sampleType));
+					channels.insert("Right", AudioChannel(sampleType));
+				}
+				else if(numAudioChannels == 6)
+				{
+					channels.insert("Left", AudioChannel(sampleType));
+					channels.insert("Right", AudioChannel(sampleType));
+					channels.insert("RearLeft", AudioChannel(sampleType));
+					channels.insert("RearRight", AudioChannel(sampleType));
+					channels.insert("Center", AudioChannel(sampleType));
+					channels.insert("LFE", AudioChannel(sampleType));
+				}
+				else
+					assert(false);
+				
+				
+				for(int i = 0; i < numAudioChannels; i++)
+				{
+					pr_audio_buffer[i] = (float *)malloc(maxBlip * sizeof(float));
 				}
 			}
 			
 			
-			MoxMxf::PlatformIOStream outstream(filepath, MoxMxf::PlatformIOStream::ReadWrite);
+			//PlatformIOStream outstream(filepath, PlatformIOStream::ReadWrite);
+			PrIOStream outstream(exportFileSuite, exportInfoP->fileObject);
 			
 			OutputFile outfile(outstream, head);
 			
@@ -684,24 +766,50 @@ exSDKExport(
 						pixSuite->GetPixels(renderResult.outFrame, PrPPixBufferAccess_ReadOnly, &frameBufferP);
 						pixSuite->GetRowBytes(renderResult.outFrame, &rowbytes);
 						
+						
+						FrameBuffer frame(width, height);
+						
 						if(pixFormat == PrPixelFormat_BGRA_4444_8u)
 						{
-							FrameBuffer frame(width, height);
-							
 							char *origin = frameBufferP + ((height - 1) * rowbytes);
 							
-							frame.insert("B", Slice(MoxFiles::UINT8, origin + 0, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-							frame.insert("G", Slice(MoxFiles::UINT8, origin + 1, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
-							frame.insert("R", Slice(MoxFiles::UINT8, origin + 2, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+							frame.insert("B", Slice(MoxFiles::UINT8, origin + (0 * sizeof(unsigned char)), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+							frame.insert("G", Slice(MoxFiles::UINT8, origin + (1 * sizeof(unsigned char)), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
+							frame.insert("R", Slice(MoxFiles::UINT8, origin + (2 * sizeof(unsigned char)), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 0));
 							
 							if(alpha)
-								frame.insert("A", Slice(MoxFiles::UINT8, origin + 3, sizeof(unsigned char) * 4, -rowbytes, 1, 1, 255));
+								frame.insert("A", Slice(MoxFiles::UINT8, origin + (3 * sizeof(unsigned char)), sizeof(unsigned char) * 4, -rowbytes, 1, 1, 255));
+						}
+						else if(pixFormat == PrPixelFormat_BGRA_4444_16u)
+						{
+							char *origin = frameBufferP + ((height - 1) * rowbytes);
 							
+							frame.insert("B", Slice(MoxFiles::UINT16A, origin + (0 * sizeof(unsigned short)), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 0));
+							frame.insert("G", Slice(MoxFiles::UINT16A, origin + (1 * sizeof(unsigned short)), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 0));
+							frame.insert("R", Slice(MoxFiles::UINT16A, origin + (2 * sizeof(unsigned short)), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 0));
 							
-							outfile.pushFrame(frame);
+							if(alpha)
+								frame.insert("A", Slice(MoxFiles::UINT16A, origin + (3 * sizeof(unsigned short)), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 32768));
+						}
+						else if(pixFormat == PrPixelFormat_BGRA_4444_32f)
+						{
+							char *origin = frameBufferP + ((height - 1) * rowbytes);
+							
+							frame.insert("B", Slice(MoxFiles::FLOAT, origin + (0 * sizeof(float)), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
+							frame.insert("G", Slice(MoxFiles::FLOAT, origin + (1 * sizeof(float)), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
+							frame.insert("R", Slice(MoxFiles::FLOAT, origin + (2 * sizeof(float)), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
+							
+							if(alpha)
+								frame.insert("A", Slice(MoxFiles::FLOAT, origin + (3 * sizeof(float)), sizeof(float) * 4, -rowbytes, 1, 1, 1.0));
 						}
 						else
 							assert(false);
+
+						if(frame.size() == 0)
+							throw MoxMxf::LogicExc("Empty FrameBuffer");
+						
+						
+						outfile.pushFrame(frame);
 					
 						pixSuite->Dispose(renderResult.outFrame);
 					}
@@ -722,10 +830,26 @@ exSDKExport(
 						{
 							AudioBuffer audioBuffer(get_samples);
 							
-							for(int i = 0; i < audio_channels.size(); i++)
+							if(numAudioChannels == 1)
 							{
-								audioBuffer.insert(audio_channels[i].text(), AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[i], sizeof(float)));
+								audioBuffer.insert("Mono", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[0], sizeof(float)));
 							}
+							else if(numAudioChannels == 2)
+							{
+								audioBuffer.insert("Left", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[0], sizeof(float)));
+								audioBuffer.insert("Right", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[1], sizeof(float)));
+							}
+							else if(numAudioChannels == 6)
+							{
+								audioBuffer.insert("Left", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[0], sizeof(float)));
+								audioBuffer.insert("Right", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[1], sizeof(float)));
+								audioBuffer.insert("RearLeft", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[2], sizeof(float)));
+								audioBuffer.insert("RearRight", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[3], sizeof(float)));
+								audioBuffer.insert("Center", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[4], sizeof(float)));
+								audioBuffer.insert("LFE", AudioSlice(MoxFiles::AFLOAT, (char *)pr_audio_buffer[5], sizeof(float)));
+							}
+							else
+								assert(false);
 							
 							outfile.pushAudio(audioBuffer);
 							
@@ -760,7 +884,7 @@ exSDKExport(
 			result = exportReturn_InternalError;
 		}
 		
-		delete [] filepath;
+		//delete [] filepath;
 	}
 	
 	

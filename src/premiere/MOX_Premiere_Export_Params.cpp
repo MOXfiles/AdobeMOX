@@ -304,6 +304,32 @@ exSDKGenerateDefaultParams(
 	exportParamSuite->AddParam(exID, gIdx, ADBEBasicVideoGroup, &alphaParam);
 	
 	
+	// Video Codec Settings Group
+	utf16ncpy(groupString, "Codec settings", 255);
+	exportParamSuite->AddParamGroup(exID, gIdx,
+									ADBEVideoTabGroup, ADBEVideoCodecGroup, groupString,
+									kPrFalse, kPrFalse, kPrFalse);
+									
+	
+	// Bit depth
+	exParamValues videoBitDepthValues;
+	videoBitDepthValues.structVersion = 1;
+	videoBitDepthValues.rangeMin.intValue = VideoBitDepth_8bit;
+	videoBitDepthValues.rangeMax.intValue = VideoBitDepth_32bit_Float;
+	videoBitDepthValues.value.intValue = VideoBitDepth_8bit;
+	videoBitDepthValues.disabled = kPrFalse;
+	videoBitDepthValues.hidden = kPrFalse;
+	
+	exNewParamInfo videoBitDepthParam;
+	videoBitDepthParam.structVersion = 1;
+	strncpy(videoBitDepthParam.identifier, MOXVideoBitDepth, 255);
+	videoBitDepthParam.paramType = exParamType_int;
+	videoBitDepthParam.flags = exParamFlag_none;
+	videoBitDepthParam.paramValues = videoBitDepthValues;
+	
+	exportParamSuite->AddParam(exID, gIdx, ADBEVideoCodecGroup, &videoBitDepthParam);
+	
+									
 	// Version
 	exParamValues versionValues;
 	versionValues.structVersion = 1;
@@ -341,7 +367,7 @@ exSDKGenerateDefaultParams(
 	
 	// Sample rate
 	exParamValues sampleRateValues;
-	sampleRateValues.value.floatValue = 48000.f; //sampleRateP.mFloat64;
+	sampleRateValues.value.floatValue = sampleRateP.mFloat64;
 	sampleRateValues.disabled = kPrFalse;
 	sampleRateValues.hidden = kPrFalse;
 	
@@ -370,6 +396,30 @@ exSDKGenerateDefaultParams(
 	
 	exportParamSuite->AddParam(exID, gIdx, ADBEBasicAudioGroup, &channelTypeParam);
 	
+	
+	// Audio Codec Settings Group
+	utf16ncpy(groupString, "Codec settings", 255);
+	exportParamSuite->AddParamGroup(exID, gIdx,
+									ADBEAudioTabGroup, ADBEAudioCodecGroup, groupString,
+									kPrFalse, kPrFalse, kPrFalse);
+	
+	// Bit depth
+	exParamValues audioBitDepthValues;
+	audioBitDepthValues.structVersion = 1;
+	audioBitDepthValues.rangeMin.intValue = AudioBitDepth_8bit;
+	audioBitDepthValues.rangeMax.intValue = AudioBitDepth_32bit_Float;
+	audioBitDepthValues.value.intValue = AudioBitDepth_24bit;
+	audioBitDepthValues.disabled = kPrFalse;
+	audioBitDepthValues.hidden = kPrFalse;
+	
+	exNewParamInfo audioBitDepthParam;
+	audioBitDepthParam.structVersion = 1;
+	strncpy(audioBitDepthParam.identifier, MOXAudioBitDepth, 255);
+	audioBitDepthParam.paramType = exParamType_int;
+	audioBitDepthParam.flags = exParamFlag_none;
+	audioBitDepthParam.paramValues = audioBitDepthValues;
+	
+	exportParamSuite->AddParam(exID, gIdx, ADBEAudioCodecGroup, &audioBitDepthParam);
 	
 	
 
@@ -538,6 +588,31 @@ exSDKPostProcessParams(
 	exportParamSuite->SetParamName(exID, gIdx, ADBEVideoAlpha, paramString);
 	
 	
+	// Video codec settings
+	utf16ncpy(paramString, "Codec settings", 255);
+	exportParamSuite->SetParamName(exID, gIdx, ADBEVideoCodecGroup, paramString);
+	
+	
+	// Video bit depth
+	utf16ncpy(paramString, "Bit Depth", 255);
+	exportParamSuite->SetParamName(exID, gIdx, MOXVideoBitDepth, paramString);
+	
+	MOX_VideoBitDepth videoBitDepths[] = { VideoBitDepth_8bit, VideoBitDepth_16bit, VideoBitDepth_32bit_Float };
+	
+	const char *videoBitDepthStrings[] = { "8-bit", "16-bit", "32-bit float" };
+	
+	exportParamSuite->ClearConstrainedValues(exID, gIdx, MOXVideoBitDepth);
+	
+	exOneParamValueRec tempVideoBitDepth;
+	
+	for(csSDK_int32 i=0; i < sizeof(videoBitDepths) / sizeof(MOX_VideoBitDepth); i++)
+	{
+		tempVideoBitDepth.intValue = videoBitDepths[i];
+		utf16ncpy(paramString, videoBitDepthStrings[i], 255);
+		exportParamSuite->AddConstrainedValuePair(exID, gIdx, MOXVideoBitDepth, &tempVideoBitDepth, paramString);
+	}
+	
+	
 	// Audio Settings group
 	utf16ncpy(paramString, "Audio Settings", 255);
 	exportParamSuite->SetParamName(exID, gIdx, ADBEBasicAudioGroup, paramString);
@@ -586,6 +661,30 @@ exSDKPostProcessParams(
 		exportParamSuite->AddConstrainedValuePair(exID, gIdx, ADBEAudioNumChannels, &tempChannelType, paramString);
 	}
 	
+	
+	// Audio codec settings
+	utf16ncpy(paramString, "Codec settings", 255);
+	exportParamSuite->SetParamName(exID, gIdx, ADBEAudioCodecGroup, paramString);
+	
+	
+	// Audio bit depth
+	utf16ncpy(paramString, "Bit Depth", 255);
+	exportParamSuite->SetParamName(exID, gIdx, MOXAudioBitDepth, paramString);
+	
+	MOX_AudioBitDepth audioBitDepths[] = { AudioBitDepth_8bit, AudioBitDepth_16bit, AudioBitDepth_24bit };
+	
+	const char *audioBitDepthStrings[] = { "8-bit", "16-bit", "24-bit" };
+	
+	exportParamSuite->ClearConstrainedValues(exID, gIdx, MOXAudioBitDepth);
+	
+	exOneParamValueRec tempAudioBitDepth;
+	
+	for(csSDK_int32 i=0; i < sizeof(audioBitDepths) / sizeof(MOX_AudioBitDepth); i++)
+	{
+		tempAudioBitDepth.intValue = audioBitDepths[i];
+		utf16ncpy(paramString, audioBitDepthStrings[i], 255);
+		exportParamSuite->AddConstrainedValuePair(exID, gIdx, MOXAudioBitDepth, &tempAudioBitDepth, paramString);
+	}
 	
 
 	return result;

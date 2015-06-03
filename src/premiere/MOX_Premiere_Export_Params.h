@@ -51,6 +51,27 @@
 #define MOXPluginVersion	"MOXPluginVersion"
 
 
+typedef enum {
+	VideoBitDepth_8bit = 8,
+	VideoBitDepth_10bit = 10,
+	VideoBitDepth_12bit = 12,
+	VideoBitDepth_16bit = 16,
+	VideoBitDepth_16bit_Float = 253,
+	VideoBitDepth_32bit_Float = 254
+} MOX_VideoBitDepth;
+
+typedef enum {
+	AudioBitDepth_8bit = 8,
+	AudioBitDepth_16bit = 16,
+	AudioBitDepth_24bit = 24,
+	AudioBitDepth_32bit = 32,
+	AudioBitDepth_32bit_Float = 254
+} MOX_AudioBitDepth;
+
+
+#define MOXVideoBitDepth	"MOXVideoBitDepth"
+#define MOXAudioBitDepth	"MOXAudioBitDepth"
+
 
 prMALError
 exSDKQueryOutputSettings(
