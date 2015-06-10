@@ -146,6 +146,16 @@ SDKInit(
 }
 
 
+static prMALError
+SDKShutdown()
+{
+	if( MoxFiles::supportsThreads() )
+		MoxFiles::setGlobalThreadCount(0);
+	
+	return malNoError;
+}
+
+
 static prMALError 
 SDKGetIndFormat(
 	imStdParms		*stdParms, 
@@ -919,6 +929,10 @@ PREMPLUGENTRY DllExport xImportEntry (
 		case imInit:
 			result =	SDKInit(stdParms, 
 								reinterpret_cast<imImportInfoRec*>(param1));
+			break;
+
+		case imShutdown:
+			result =	SDKShutdown();
 			break;
 
 		case imGetInfo8:

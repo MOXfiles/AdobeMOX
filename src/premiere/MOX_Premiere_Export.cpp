@@ -305,6 +305,16 @@ exSDKStartup(
 
 
 static prMALError
+exSDKShutdown()
+{
+	if( MoxFiles::supportsThreads() )
+		MoxFiles::setGlobalThreadCount(0);
+	
+	return malNoError;
+}
+
+
+static prMALError
 exSDKBeginInstance(
 	exportStdParms			*stdParmsP, 
 	exExporterInstanceRec	*instanceRecP)
@@ -915,6 +925,10 @@ DllExport PREMPLUGENTRY xSDKExport (
 		case exSelStartup:
 			result = exSDKStartup(	stdParmsP, 
 									reinterpret_cast<exExporterInfoRec*>(param1));
+			break;
+
+		case exSelShutdown:
+			result = exSDKShutdown();
 			break;
 
 		case exSelBeginInstance:
