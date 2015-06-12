@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MOX"
+	Name="MOX_Premiere"
 	ProjectGUID="{8C4F19A7-759D-4D52-BAEC-7ADF50FBFE8F}"
 	RootNamespace="MOX"
 	TargetFrameworkVersion="131072"
@@ -75,7 +75,7 @@
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="true"
 				AdditionalDependencies="vfw32.lib msacm32.lib winmm.lib comctl32.lib"
-				OutputFile="C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\MOX.prm"
+				OutputFile="C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\NOX.prm"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -146,7 +146,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)\MOX.prm"
+				OutputFile="$(OutDir)\NOX.prm"
 				TargetMachine="17"
 			/>
 			<Tool
