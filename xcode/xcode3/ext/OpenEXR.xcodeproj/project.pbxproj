@@ -1006,8 +1006,8 @@
 			);
 			name = "Generate Headers";
 			outputPaths = (
-				"$(SRCROOT)/../../IlmImf/b44ExpLogTable.h",
-				"$(SRCROOT)/../../IlmImf/dwaLookups.h",
+				"$(SRCROOT)/../../../../openexr/OpenEXR/IlmImf/b44ExpLogTable.h",
+				"$(SRCROOT)/../../../../openexr/OpenEXR/IlmImf/dwaLookups.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

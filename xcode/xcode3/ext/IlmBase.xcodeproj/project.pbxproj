@@ -524,8 +524,8 @@
 			);
 			name = "Generate Headers";
 			outputPaths = (
-				"$(SRCROOT)/../../Half/toFloat.h",
-				"$(SRCROOT)/../../Half/eLut.h",
+				"$(SRCROOT)/../../../../openexr/IlmBase/Half/toFloat.h",
+				"$(SRCROOT)/../../../../openexr/IlmBase/Half/eLut.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

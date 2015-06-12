@@ -25,98 +25,98 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E21B28F7FF00343D83 /* MoxFiles.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* libMoxFiles.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = MoxFiles;
 		};
 		2A1F75F71B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E51B28F7FF00343D83 /* MoxMxf.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* libMoxMxf.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = MoxMxf;
 		};
 		2A1F75FA1B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E81B28F7FF00343D83 /* mxflib.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* libmxflib.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = mxflib;
 		};
 		2A1F75FF1B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75EC1B28F7FF00343D83 /* IlmBase.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2A6D4C4D15CDEB0A006BADE7 /* libIlmBase.a */;
+			remoteGlobalIDString = 2A6D4C4D15CDEB0A006BADE7;
 			remoteInfo = IlmBase;
 		};
 		2A1F76011B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75EC1B28F7FF00343D83 /* IlmBase.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2A6D4CFF15CDEBEF006BADE7 /* eLut */;
+			remoteGlobalIDString = 2A6D4CFF15CDEBEF006BADE7;
 			remoteInfo = eLut;
 		};
 		2A1F76031B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75EC1B28F7FF00343D83 /* IlmBase.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2A6D4D3715CDF275006BADE7 /* toFloat */;
+			remoteGlobalIDString = 2A6D4D3715CDF275006BADE7;
 			remoteInfo = toFloat;
 		};
 		2A1F76081B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75F01B28F7FF00343D83 /* OpenEXR.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2A6D4B1515CDE3DE006BADE7 /* libOpenEXR.a */;
+			remoteGlobalIDString = 2A6D4B1515CDE3DE006BADE7;
 			remoteInfo = OpenEXR;
 		};
 		2A1F760A1B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75F01B28F7FF00343D83 /* OpenEXR.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2A58889A19784D9F000D94D0 /* b44ExpLogTable */;
+			remoteGlobalIDString = 2A58889A19784D9F000D94D0;
 			remoteInfo = b44ExpLogTable;
 		};
 		2A1F760C1B28F7FF00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75F01B28F7FF00343D83 /* OpenEXR.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2A5888DC197850F5000D94D0 /* dwaLookups */;
+			remoteGlobalIDString = 2A5888DC197850F5000D94D0;
 			remoteInfo = dwaLookups;
 		};
 		2A1F76131B28F81C00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E81B28F7FF00343D83 /* mxflib.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* mxflib */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = mxflib;
 		};
 		2A1F76151B28F81C00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75F01B28F7FF00343D83 /* OpenEXR.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 2A6D4B1415CDE3DE006BADE7 /* OpenEXR */;
+			remoteGlobalIDString = 2A6D4B1415CDE3DE006BADE7;
 			remoteInfo = OpenEXR;
 		};
 		2A1F76171B28F81C00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E51B28F7FF00343D83 /* MoxMxf.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* MoxMxf */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = MoxMxf;
 		};
 		2A1F76191B28F81C00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E21B28F7FF00343D83 /* MoxFiles.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* MoxFiles */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = MoxFiles;
 		};
 		2A1F761B1B28F81C00343D83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75EC1B28F7FF00343D83 /* IlmBase.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 2A6D4C4C15CDEB0A006BADE7 /* IlmBase */;
+			remoteGlobalIDString = 2A6D4C4C15CDEB0A006BADE7;
 			remoteInfo = IlmBase;
 		};
 /* End PBXContainerItemProxy section */
