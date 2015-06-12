@@ -109,6 +109,26 @@ SDKInit(
 	imStdParms		*stdParms, 
 	imImportInfoRec	*importInfo)
 {
+	int fourCC = 0;
+	VersionInfo version = {0, 0, 0};
+	
+	PrSDKAppInfoSuite *appInfoSuite = NULL;
+	stdParms->piSuites->utilFuncs->getSPBasicSuite()->AcquireSuite(kPrSDKAppInfoSuite, kPrSDKAppInfoSuiteVersion, (const void**)&appInfoSuite);
+	
+	if(appInfoSuite)
+	{
+		appInfoSuite->GetAppInfo(PrSDKAppInfoSuite::kAppInfo_AppFourCC, (void *)&fourCC);
+
+		appInfoSuite->GetAppInfo(PrSDKAppInfoSuite::kAppInfo_Version, (void *)&version);
+	
+		stdParms->piSuites->utilFuncs->getSPBasicSuite()->ReleaseSuite(kPrSDKAppInfoSuite, kPrSDKAppInfoSuiteVersion);
+		
+		// use the AE plug-in in AE, please
+		if(fourCC == kAppAfterEffects)
+			return imUnsupported;
+	}
+
+
 	importInfo->canSave				= kPrFalse;		// Can 'save as' files to disk, real file only.
 	importInfo->canDelete			= kPrFalse;		// File importers only, use if you only if you have child files
 	importInfo->canCalcSizes		= kPrFalse;		// These are for importers that look at a whole tree of files so
