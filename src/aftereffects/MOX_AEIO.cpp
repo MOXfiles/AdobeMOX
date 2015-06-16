@@ -777,7 +777,11 @@ AEIO_DrawSparseFrame(
 		const Rational &fps = head.frameRate();
 		const A_Time &frame_time = sparse_framePPB->tr;
 		
-		const int frame = ((double)frame_time.value / (double)frame_time.scale) / ((double)fps.Numerator / (double)fps.Denominator);
+		const int frame = ((double)frame_time.value / (double)frame_time.scale) * ((double)fps.Numerator / (double)fps.Denominator);
+		
+		const Rational frame_time_rat(frame_time.value, frame_time.scale);
+		const Rational frame_rat = frame_time_rat * fps;
+		assert(frame == (int)((double)frame_rat.Numerator / (double)frame_rat.Denominator));
 		
 		file.getFrame(frame, frame_buffer);
 		
