@@ -777,7 +777,7 @@ AEIO_DrawSparseFrame(
 		const Rational &fps = head.frameRate();
 		const A_Time &frame_time = sparse_framePPB->tr;
 		
-		const int frame = (double)(frame_time.value * fps.Numerator) / (double)(frame_time.scale * fps.Denominator);
+		const int frame = ((double)frame_time.value / (double)frame_time.scale) / ((double)fps.Numerator / (double)fps.Denominator);
 		
 		file.getFrame(frame, frame_buffer);
 		
@@ -1034,6 +1034,8 @@ AEIO_InitOutputSpec(
 	
 	AEGP_SuiteHandler suites(basic_dataP->pica_basicP);
 	
+	assert(*user_interacted == FALSE);
+	
 	try
 	{
 		ErrThrower err;
@@ -1187,7 +1189,7 @@ AEIO_GetOutputInfo(
 	AEIO_Verbiage		*verbiageP)
 { 
 	A_Err err			= A_Err_NONE;
-	AEGP_SuiteHandler	suites(basic_dataP->pica_basicP);
+	//AEGP_SuiteHandler	suites(basic_dataP->pica_basicP);
 
 	strcpy(verbiageP->name, "filename");
 	strcpy(verbiageP->type, "NOX");
@@ -1331,7 +1333,7 @@ AEIO_StartAdding(
 		AEIO_SndEncoding sound_encoding;
 		AEIO_SndSampleSize sound_sample_size;
 		AEIO_SndChannels sound_channels;
-		A_Boolean missing;
+		A_Boolean is_still, missing;
 		
 		err = suites.IOOutSuite()->AEGP_GetOutSpecDimensions(outH, &width, &height);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecDepth(outH, &depth);
@@ -1343,8 +1345,10 @@ AEIO_StartAdding(
 		err = suites.IOOutSuite()->AEGP_GetOutSpecSoundEncoding(outH, &sound_encoding);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecSoundSampleSize(outH, &sound_sample_size);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecSoundChannels(outH, &sound_channels);
+		err = suites.IOOutSuite()->AEGP_GetOutSpecIsStill(outH, &is_still);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecIsMissing(outH, &missing);
 		
+		assert(is_still == FALSE);
 		assert(missing == FALSE);
 		
 		
@@ -1352,12 +1356,12 @@ AEIO_StartAdding(
 		
 		if(fps % 65536 == 0)
 		{
-			frameRate.Numerator = fps / 65536; // FIX_2_FLOAT
+			frameRate.Numerator = fps / 65536;
 			frameRate.Denominator = 1;
 		}
 		else
 		{
-			frameRate.Numerator = (long long)fps * 1001 / 65536;
+			frameRate.Numerator = (FIX_2_FLOAT(fps) * 1001.0) + 0.5;
 			frameRate.Denominator = 1001;
 		}
 		
