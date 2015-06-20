@@ -1341,7 +1341,7 @@ AEIO_StartAdding(
 		
 		err = suites.IOOutSuite()->AEGP_GetOutSpecDimensions(outH, &width, &height);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecDepth(outH, &depth);
-		err = suites.IOOutSuite()->AEGP_SetOutSpecAlphaLabel(outH, &alpha_label);
+		err = suites.IOOutSuite()->AEGP_GetOutSpecAlphaLabel(outH, &alpha_label);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecFPS(outH, &fps);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecDuration(outH, &duration);
 		err = suites.IOOutSuite()->AEGP_GetOutSpecHSF(outH, &par);
