@@ -497,6 +497,7 @@
 					../../../openexr/OpenEXR/IlmImf,
 				);
 				REZ_PREPROCESSOR_DEFINITIONS = __MACH__;
+				SDKROOT = macosx10.6;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Release;
@@ -565,6 +566,7 @@
 					../../../openexr/OpenEXR/IlmImf,
 				);
 				REZ_PREPROCESSOR_DEFINITIONS = __MACH__;
+				SDKROOT = macosx10.6;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;

@@ -1172,6 +1172,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -1192,6 +1193,7 @@
 					../../../../openexr/IlmBase/Imath,
 				);
 				PREBINDING = NO;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};

@@ -574,6 +574,7 @@
 				);
 				PREBINDING = NO;
 				PREMIERE_SDK = "\"../../ext/Premiere Pro CS5 Mac SDK\"";
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -603,6 +604,7 @@
 				);
 				PREBINDING = NO;
 				PREMIERE_SDK = "\"../../ext/Premiere Pro CS5 Mac SDK\"";
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};

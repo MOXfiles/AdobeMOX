@@ -447,6 +447,7 @@
 				HEADER_SEARCH_PATHS = ../../../../../ext/mxflib;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -463,6 +464,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../../../../ext/mxflib;
 				PREBINDING = NO;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};
