@@ -491,6 +491,7 @@ AEIO_InitInSpecFromFile(
 	return ae_err;
 }
 
+
 static A_Err
 AEIO_InitInSpecInteractive(
 	AEIO_BasicData	*basic_dataP,
@@ -602,7 +603,7 @@ AEIO_InflateOptions(
 		
 		if(flat_optionsH)
 		{
-			err = suites.MemorySuite()->AEGP_NewMemHandle( basic_dataP->aegp_plug_id, "Flat Options",
+			err = suites.MemorySuite()->AEGP_NewMemHandle( basic_dataP->aegp_plug_id, "Round Options",
 															sizeof(MOX_InOptions),
 															AEGP_MemFlag_CLEAR, &optionsH);
 			MOX_InOptions *options = NULL,
@@ -686,7 +687,9 @@ AEIO_GetDuration(
 	AEIO_BasicData	*basic_dataP,
 	AEIO_InSpecH	specH, 
 	A_Time			*tr)
-{ 
+{
+	assert(false); // don't think this is getting called
+
 	return AEIO_Err_USE_DFLT_CALLBACK; 
 }
 
@@ -713,7 +716,7 @@ AEIO_InqNextFrameTime(
 	AEIO_TimeDir			time_dir, 
 	A_Boolean				*found0,
 	A_Time					*key_time_tr0)
-{ 
+{
 	return AEIO_Err_USE_DFLT_CALLBACK; 
 }
 
@@ -947,6 +950,8 @@ AEIO_DisposeInSpec(
 {
 	A_Err ae_err =	A_Err_NONE;
 
+	AEGP_SuiteHandler suites(basic_dataP->pica_basicP);	
+
 	try
 	{
 		std::map<AEIO_InSpecH, AEInputFile *>::iterator file = g_infiles.find(specH);
@@ -959,6 +964,24 @@ AEIO_DisposeInSpec(
 		}
 		else
 			assert(false); // where's the file?
+		
+		
+		ErrThrower err;
+		
+		AEIO_Handle optionsH = NULL;
+		
+		err = suites.IOInSuite()->AEGP_GetInSpecOptionsHandle(specH, reinterpret_cast<void**>(&optionsH));
+		
+		if(optionsH)
+		{
+			err = suites.MemorySuite()->AEGP_FreeMemHandle(optionsH);
+		}
+		else
+			assert(false);
+	}
+	catch(ErrThrower &err)
+	{
+		ae_err = err.err();
 	}
 	catch(...)
 	{
