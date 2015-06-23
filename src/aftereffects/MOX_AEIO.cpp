@@ -232,8 +232,6 @@ InflateOptions(MOX_OutOptions *options)
 #pragma mark-
 
 
-static AEGP_PluginID S_mem_id = 0;
-
 static int gNumCPUs = 1;
 
 
@@ -294,18 +292,37 @@ AEIO_VerifyFileImportable(
 	const A_PathType		*file_pathZ, 
 	A_Boolean				*importablePB)
 { 
-	//	This function is an appropriate place to do
-	//	in-depth evaluation of whether or not a given
-	//	file will be importable; AE already does basic
-	//	extension checking. Keep in mind that this 
-	//	function should be fairly speedy, to keep from
-	//	bogging down the user while selecting files.
+	// TODO: Come up with a quick way to check if the file is really importable
 	
-	//	-bbb 3/31/04
-
 	*importablePB = TRUE;
 	
 	return A_Err_NONE; 
+}
+
+
+static MoxFiles::Rational
+AEFrameRate(MoxFiles::Rational fps)
+{
+	using namespace MoxFiles;
+
+	// AE uses slightly different Rational values internally
+	// Would not be a problem if AEGP_SetInSpecNativeFPS took an A_Ratio or A_Time *ahem*
+	// See SDK guide for AEIO_GetTime
+
+	if(fps == Rational(30000, 1001))
+	{
+		return Rational(2997, 100);
+	}
+	else if(fps == Rational(60000, 1001))
+	{
+		return Rational(2997, 50);
+	}
+	else if(fps == Rational(24000, 1001))
+	{
+		return Rational(2997, 125);
+	}
+	else
+		return fps;
 }
 
 
@@ -329,7 +346,7 @@ AEIO_InitInSpecFromFile(
 		
 		
 		// Create options handle
-		err = suites.MemorySuite()->AEGP_NewMemHandle( S_mem_id, "Input Options",
+		err = suites.MemorySuite()->AEGP_NewMemHandle( basic_dataP->aegp_plug_id, "Input Options",
 														sizeof(MOX_InOptions),
 														AEGP_MemFlag_CLEAR, &optionsH);
 		AEIO_Handle old_optionsH = NULL;
@@ -394,8 +411,11 @@ AEIO_InitInSpecFromFile(
 				}
 			}
 			
+			
+			Rational ae_fps = AEFrameRate(fps);
+			
 			const A_Time duration = {head.duration() * fps.Denominator, fps.Numerator};
-			const A_Fixed fixed_fps = FLOAT2FIX((double)fps.Numerator / (double)fps.Denominator);
+			const A_Fixed fixed_fps = FLOAT2FIX((double)ae_fps.Numerator / (double)ae_fps.Denominator);
 			const A_Ratio pixel_aspect = {par.Numerator, par.Denominator};
 			
 			
@@ -529,7 +549,7 @@ AEIO_FlattenOptions(
 		
 		if(optionsH)
 		{
-			err = suites.MemorySuite()->AEGP_NewMemHandle( S_mem_id, "Flat Options",
+			err = suites.MemorySuite()->AEGP_NewMemHandle( basic_dataP->aegp_plug_id, "Flat Options",
 															sizeof(MOX_InOptions),
 															AEGP_MemFlag_CLEAR, flat_optionsPH);
 			MOX_InOptions *options = NULL,
@@ -582,7 +602,7 @@ AEIO_InflateOptions(
 		
 		if(flat_optionsH)
 		{
-			err = suites.MemorySuite()->AEGP_NewMemHandle( S_mem_id, "Flat Options",
+			err = suites.MemorySuite()->AEGP_NewMemHandle( basic_dataP->aegp_plug_id, "Flat Options",
 															sizeof(MOX_InOptions),
 															AEGP_MemFlag_CLEAR, &optionsH);
 			MOX_InOptions *options = NULL,
@@ -676,7 +696,11 @@ AEIO_GetTime(
 	AEIO_BasicData	*basic_dataP,
 	AEIO_InSpecH	specH, 
 	A_Time			*tr)
-{ 
+{
+	// I would *love* for this to be called because it would let me
+	// Return FPS as an A_Time.  Doesn't appear to be happening though.
+	assert(false);
+
 	return AEIO_Err_USE_DFLT_CALLBACK; 
 }
 
@@ -775,13 +799,18 @@ AEIO_DrawSparseFrame(
 		
 		
 		const Rational &fps = head.frameRate();
+		const Rational ae_fps = AEFrameRate(fps);
+		
 		const A_Time &frame_time = sparse_framePPB->tr;
-		
-		const int frame = ((double)frame_time.value / (double)frame_time.scale) * ((double)fps.Numerator / (double)fps.Denominator);
-		
 		const Rational frame_time_rat(frame_time.value, frame_time.scale);
-		const Rational frame_rat = frame_time_rat * fps;
-		assert(frame == (int)((double)frame_rat.Numerator / (double)frame_rat.Denominator));
+		const Rational frame_rat = frame_time_rat * ae_fps;
+		
+		assert(frame_rat.Numerator % frame_rat.Denominator == 0);
+		assert(frame_rat.Denominator == 1);
+		assert(frame_time.scale == ae_fps.Numerator);
+		
+		const int frame = (frame_rat.Denominator == 1 ? frame_rat.Numerator :
+							(double)frame_rat.Numerator / (double)frame_rat.Denominator);
 		
 		file.getFrame(frame, frame_buffer);
 		
@@ -1050,7 +1079,7 @@ AEIO_InitOutputSpec(
 						*old_options		=	NULL;
 						
 		// make new options handle
-		err = suites.MemorySuite()->AEGP_NewMemHandle( S_mem_id, "Output Options",
+		err = suites.MemorySuite()->AEGP_NewMemHandle( basic_dataP->aegp_plug_id, "Output Options",
 												sizeof(MOX_OutOptions),
 												AEGP_MemFlag_CLEAR, &optionsH);
 
@@ -1152,7 +1181,7 @@ AEIO_GetFlatOutputOptions(
 		{
 			err = suites.MemorySuite()->AEGP_LockMemHandle(optionsH, (void**)&options);
 		
-			err = suites.MemorySuite()->AEGP_NewMemHandle( S_mem_id, "Flat Options",
+			err = suites.MemorySuite()->AEGP_NewMemHandle( basic_dataP->aegp_plug_id, "Flat Options",
 															sizeof(MOX_OutOptions),
 															AEGP_MemFlag_CLEAR, flat_optionsPH);
 													
@@ -1365,6 +1394,9 @@ AEIO_StartAdding(
 		}
 		else
 		{
+			// note this is slightly different from what AE uses internally,
+			// using {2997, 100} for 29.97 fps instead of the proper {30000, 1001}
+			
 			frameRate.Numerator = (FIX_2_FLOAT(fps) * 1001.0) + 0.5;
 			frameRate.Denominator = 1001;
 		}
@@ -1719,9 +1751,9 @@ AEIO_Flush(
 	AEIO_BasicData	*basic_dataP,
 	AEIO_OutSpecH	outH)
 { 
-	/*	free any temp buffers you kept around for
-		writing.
-	*/
+	//	free any temp buffers you kept around for
+	//	writing.
+	
 	return A_Err_NONE; 
 }
 
@@ -1930,13 +1962,10 @@ GPMain_IO(
 	ERR(ConstructModuleInfo(pica_basicP, &info));
 	ERR(ConstructFunctionBlock(&funcs));
 
-	ERR(suites.RegisterSuite()->AEGP_RegisterIO(	aegp_plugin_id,
-													0,
-													&info, 
-													&funcs));
-
-	ERR(suites.UtilitySuite()->AEGP_RegisterWithAEGP(	NULL,
-														"NOX",
-														&S_mem_id));
+	ERR(suites.RegisterSuite()->AEGP_RegisterIO(aegp_plugin_id,
+												0,
+												&info, 
+												&funcs));
+	
 	return err;
 }
