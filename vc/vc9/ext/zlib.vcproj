@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MoxFiles"
-	ProjectGUID="{EE8C339B-9B56-4963-BB84-779836EF9C6A}"
-	RootNamespace="MoxFiles"
+	Name="zlib"
+	ProjectGUID="{53B84D3C-5232-42D9-906F-395A291CDEC3}"
+	RootNamespace="zlib"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -24,7 +24,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -86,7 +86,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -107,8 +107,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -149,7 +149,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -171,8 +171,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -212,7 +212,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -235,8 +235,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -276,7 +276,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -296,8 +296,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -339,7 +339,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -360,8 +360,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -403,7 +403,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -425,8 +425,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
@@ -467,7 +467,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -490,8 +490,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories="..\..\..\..\zlib"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
@@ -537,83 +537,63 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.cpp"
+				RelativePath="..\..\..\..\zlib\adler32.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.cpp"
+				RelativePath="..\..\..\..\zlib\compress.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.cpp"
+				RelativePath="..\..\..\..\zlib\crc32.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.cpp"
+				RelativePath="..\..\..\..\zlib\deflate.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.cpp"
+				RelativePath="..\..\..\..\zlib\gzclose.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.cpp"
+				RelativePath="..\..\..\..\zlib\gzlib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.cpp"
+				RelativePath="..\..\..\..\zlib\gzread.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.cpp"
+				RelativePath="..\..\..\..\zlib\gzwrite.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.cpp"
+				RelativePath="..\..\..\..\zlib\infback.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.cpp"
+				RelativePath="..\..\..\..\zlib\inffast.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.cpp"
+				RelativePath="..\..\..\..\zlib\inflate.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.cpp"
+				RelativePath="..\..\..\..\zlib\inftrees.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.cpp"
+				RelativePath="..\..\..\..\zlib\trees.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.cpp"
+				RelativePath="..\..\..\..\zlib\uncompr.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.cpp"
+				RelativePath="..\..\..\..\zlib\zutil.c"
 				>
 			</File>
 		</Filter>
@@ -623,91 +603,47 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.h"
+				RelativePath="..\..\..\..\zlib\crc32.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.h"
+				RelativePath="..\..\..\..\zlib\deflate.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.h"
+				RelativePath="..\..\..\..\zlib\gzguts.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioCompression.h"
+				RelativePath="..\..\..\..\zlib\inffast.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.h"
+				RelativePath="..\..\..\..\zlib\inffixed.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.h"
+				RelativePath="..\..\..\..\zlib\inflate.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.h"
+				RelativePath="..\..\..\..\zlib\inftrees.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.h"
+				RelativePath="..\..\..\..\zlib\trees.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.h"
+				RelativePath="..\..\..\..\zlib\zconf.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.h"
+				RelativePath="..\..\..\..\zlib\zlib.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\VideoCompression.h"
+				RelativePath="..\..\..\..\zlib\zutil.h"
 				>
 			</File>
 		</Filter>
