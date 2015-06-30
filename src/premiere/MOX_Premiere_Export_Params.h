@@ -61,6 +61,12 @@ typedef enum {
 } MOX_VideoBitDepth;
 
 typedef enum {
+	VideoCodec_Uncompressed = 0,
+	VideoCodec_PNG,
+	VideoCodec_OpenEXR
+} MOX_VideoCodec;
+
+typedef enum {
 	AudioBitDepth_8bit = 8,
 	AudioBitDepth_16bit = 16,
 	AudioBitDepth_24bit = 24,
@@ -70,6 +76,7 @@ typedef enum {
 
 
 #define MOXVideoBitDepth	"MOXVideoBitDepth"
+#define MOXVideoCodec		"MOXVideoCodec"
 #define MOXAudioBitDepth	"MOXAudioBitDepth"
 
 

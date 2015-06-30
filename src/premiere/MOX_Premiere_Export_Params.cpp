@@ -80,10 +80,15 @@ exSDKQueryOutputSettings(
 	
 	if(outputSettingsP->inExportVideo)
 	{
-		exParamValues width, height, frameRate, pixelAspectRatio, fieldType;
+		PrTime ticksPerSecond = 0;
+		privateData->timeSuite->GetTicksPerSecond(&ticksPerSecond);
+		
+		
+		exParamValues width, height, alpha, frameRate, pixelAspectRatio, fieldType;
 	
 		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoWidth, &width);
 		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoHeight, &height);
+		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoAlpha, &alpha);
 		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoFPS, &frameRate);
 		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoAspect, &pixelAspectRatio);
 		paramSuite->GetParamValue(exID, mgroupIndex, ADBEVideoFieldType, &fieldType);
@@ -95,14 +100,36 @@ exSDKQueryOutputSettings(
 		outputSettingsP->outVideoAspectDen = pixelAspectRatio.value.ratioValue.denominator;
 		outputSettingsP->outVideoFieldType = fieldType.value.intValue;
 		
-		videoBitrate += 1000;
+		
+		exParamValues bitDepth, codec;
+		
+		paramSuite->GetParamValue(exID, mgroupIndex, MOXVideoBitDepth, &bitDepth);
+		paramSuite->GetParamValue(exID, mgroupIndex, MOXVideoCodec, &codec);
+		
+		
+		const MOX_VideoBitDepth depthVal = (MOX_VideoBitDepth)bitDepth.value.intValue;
+		const size_t bits_per_sample = (depthVal == VideoBitDepth_8bit ? 8 :
+										depthVal == VideoBitDepth_10bit ? 10 :
+										depthVal == VideoBitDepth_12bit ? 12 :
+										depthVal == VideoBitDepth_16bit ? 16 :
+										depthVal == VideoBitDepth_16bit_Float ? 16 :
+										depthVal == VideoBitDepth_32bit_Float ? 32 :
+										8);
+										
+		const size_t channels = (alpha.value.intValue ? 4 : 3);
+		const size_t bits_per_frame = width.value.intValue * height.value.intValue * channels * bits_per_sample;
+		const float fps = (double)ticksPerSecond / (double)frameRate.value.timeValue;
+		const size_t kbits_per_second = (double)bits_per_frame * fps / 1024.0;
+		
+		const float multiplier = (codec.value.intValue == VideoCodec_Uncompressed ? 1.0 : 0.5);
+		
+		videoBitrate += (double)kbits_per_second * multiplier;
 	}
 	
 	
 	if(outputSettingsP->inExportAudio)
 	{
 		exParamValues sampleRate, channelType;
-	
 		paramSuite->GetParamValue(exID, mgroupIndex, ADBEAudioRatePerSecond, &sampleRate);
 		paramSuite->GetParamValue(exID, mgroupIndex, ADBEAudioNumChannels, &channelType);
 		
@@ -120,7 +147,19 @@ exSDKQueryOutputSettings(
 		outputSettingsP->outAudioChannelType = audioFormat;
 		outputSettingsP->outAudioSampleType = kPrAudioSampleType_Compressed;
 		
-		videoBitrate += 1000;
+		
+		exParamValues bitDepth;
+		paramSuite->GetParamValue(exID, mgroupIndex, MOXAudioBitDepth, &bitDepth);
+		
+		const MOX_AudioBitDepth depthVal = (MOX_AudioBitDepth)bitDepth.value.intValue;
+		const size_t bits_per_sample = (depthVal == AudioBitDepth_8bit ? 8 :
+										depthVal == AudioBitDepth_16bit ? 16 :
+										depthVal == AudioBitDepth_24bit ? 24 :
+										depthVal == AudioBitDepth_32bit ? 32 :
+										depthVal == AudioBitDepth_32bit_Float ? 32 :
+										24);
+		
+		videoBitrate += (sampleRate.value.floatValue * audioChannels * bits_per_sample / 1024);
 	}
 	
 	// outBitratePerSecond in kbps
@@ -329,6 +368,25 @@ exSDKGenerateDefaultParams(
 	
 	exportParamSuite->AddParam(exID, gIdx, ADBEVideoCodecGroup, &videoBitDepthParam);
 	
+	
+	// Codec
+	exParamValues codecValues;
+	codecValues.structVersion = 1;
+	codecValues.rangeMin.intValue = VideoCodec_Uncompressed;
+	codecValues.rangeMax.intValue = VideoCodec_OpenEXR;
+	codecValues.value.intValue = VideoCodec_PNG;
+	codecValues.disabled = kPrFalse;
+	codecValues.hidden = kPrFalse;
+	
+	exNewParamInfo codecParam;
+	codecParam.structVersion = 1;
+	strncpy(codecParam.identifier, MOXVideoCodec, 255);
+	codecParam.paramType = exParamType_int;
+	codecParam.flags = exParamFlag_none;
+	codecParam.paramValues = codecValues;
+	
+	exportParamSuite->AddParam(exID, gIdx, ADBEVideoCodecGroup, &codecParam);
+
 									
 	// Version
 	exParamValues versionValues;
@@ -597,9 +655,15 @@ exSDKPostProcessParams(
 	utf16ncpy(paramString, "Bit Depth", 255);
 	exportParamSuite->SetParamName(exID, gIdx, MOXVideoBitDepth, paramString);
 	
-	MOX_VideoBitDepth videoBitDepths[] = { VideoBitDepth_8bit, VideoBitDepth_16bit, VideoBitDepth_32bit_Float };
+	const MOX_VideoBitDepth videoBitDepths[] = {	VideoBitDepth_8bit,
+													VideoBitDepth_16bit,
+													VideoBitDepth_16bit_Float,
+													VideoBitDepth_32bit_Float };
 	
-	const char *videoBitDepthStrings[] = { "8-bit", "16-bit", "32-bit float" };
+	const char *videoBitDepthStrings[] = {	"8-bit",
+											"16-bit",
+											"16-bit float",
+											"32-bit float" };
 	
 	exportParamSuite->ClearConstrainedValues(exID, gIdx, MOXVideoBitDepth);
 	
@@ -613,6 +677,26 @@ exSDKPostProcessParams(
 	}
 	
 	
+	// Video codec
+	utf16ncpy(paramString, "Codec", 255);
+	exportParamSuite->SetParamName(exID, gIdx, MOXVideoCodec, paramString);
+	
+	const MOX_VideoCodec videoCodecs[] = { VideoCodec_Uncompressed, VideoCodec_PNG, VideoCodec_OpenEXR };
+	
+	const char *videoCodecStrings[] = { "Uncompressed", "PNG", "OpenEXR" };
+	
+	exportParamSuite->ClearConstrainedValues(exID, gIdx, MOXVideoCodec);
+	
+	exOneParamValueRec tempVideoCodec;
+	
+	for(csSDK_int32 i=0; i < sizeof(videoCodecs) / sizeof(MOX_VideoCodec); i++)
+	{
+		tempVideoCodec.intValue = videoCodecs[i];
+		utf16ncpy(paramString, videoCodecStrings[i], 255);
+		exportParamSuite->AddConstrainedValuePair(exID, gIdx, MOXVideoCodec, &tempVideoCodec, paramString);
+	}
+	
+
 	// Audio Settings group
 	utf16ncpy(paramString, "Audio Settings", 255);
 	exportParamSuite->SetParamName(exID, gIdx, ADBEBasicAudioGroup, paramString);
@@ -706,14 +790,18 @@ exSDKGetParamSummary(
 	
 	// Standard settings
 	exParamValues width, height, frameRate;
-	
 	paramSuite->GetParamValue(exID, gIdx, ADBEVideoWidth, &width);
 	paramSuite->GetParamValue(exID, gIdx, ADBEVideoHeight, &height);
 	paramSuite->GetParamValue(exID, gIdx, ADBEVideoFPS, &frameRate);
 	
-	exParamValues sampleRateP, channelTypeP;
+	exParamValues bitDepth, codec;
+	paramSuite->GetParamValue(exID, gIdx, MOXVideoBitDepth, &bitDepth);
+	paramSuite->GetParamValue(exID, gIdx, MOXVideoCodec, &codec);
+	
+	exParamValues sampleRateP, channelTypeP, audioBitDepthP;
 	paramSuite->GetParamValue(exID, gIdx, ADBEAudioRatePerSecond, &sampleRateP);
 	paramSuite->GetParamValue(exID, gIdx, ADBEAudioNumChannels, &channelTypeP);
+	paramSuite->GetParamValue(exID, gIdx, MOXAudioBitDepth, &audioBitDepthP);
 
 	
 	
@@ -772,14 +860,37 @@ exSDKGetParamSummary(
 						channelTypeP.value.intValue == kPrAudioChannelType_Mono ? "Mono" :
 						"Stereo");
 
-	stream2 << ", some codec";
+	const MOX_AudioBitDepth audioDepthVal = (MOX_AudioBitDepth)audioBitDepthP.value.intValue;
+	const std::string audioDepth_str = (audioDepthVal == AudioBitDepth_8bit ? "8-bit" :
+										audioDepthVal == AudioBitDepth_16bit ? "16-bit" :
+										audioDepthVal == AudioBitDepth_24bit ? "24-bit" :
+										audioDepthVal == AudioBitDepth_32bit ? "32-bit" :
+										audioDepthVal == AudioBitDepth_32bit_Float ? "32-bit float" :
+										"Unknown");
+	stream2 << ", " << audioDepth_str;
 	
 	summary2 = stream2.str();
 	
 	
+	const MOX_VideoBitDepth videoDepth = (MOX_VideoBitDepth)bitDepth.value.intValue;
+	const MOX_VideoCodec videoCodec = (MOX_VideoCodec)codec.value.intValue;
+	
+	const std::string bitDepth_str = (videoDepth == VideoBitDepth_8bit ? "8-bit" :
+								videoDepth == VideoBitDepth_10bit ? "10-bit" :
+								videoDepth == VideoBitDepth_12bit ? "12-bit" :
+								videoDepth == VideoBitDepth_16bit ? "16-bit" :
+								videoDepth == VideoBitDepth_16bit_Float ? "16-bit float" :
+								videoDepth == VideoBitDepth_32bit_Float ? "32-bit float" :
+								"Unknown");
+	
+	const std::string codec_str = (videoCodec == VideoCodec_Uncompressed ? "Uncompressed" :
+									videoCodec == VideoCodec_PNG ? "PNG" :
+									videoCodec == VideoCodec_OpenEXR ? "OpenEXR" :
+									"Unknown");
+	
 	std::stringstream stream3;
 	
-	stream3 << "Video codec info";
+	stream3 << bitDepth_str << ", " << codec_str << " codec";
 	
 	summary3 = stream3.str();
 	

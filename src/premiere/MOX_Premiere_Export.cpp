@@ -567,8 +567,9 @@ exSDKExport(
 									2);
 	
 	
-	exParamValues videoBitDepthP, audioBitDepthP;
+	exParamValues videoBitDepthP, videoCodecP, audioBitDepthP;
 	paramSuite->GetParamValue(exID, gIdx, MOXVideoBitDepth, &videoBitDepthP);
+	paramSuite->GetParamValue(exID, gIdx, MOXVideoCodec, &videoCodecP);
 	paramSuite->GetParamValue(exID, gIdx, MOXAudioBitDepth, &audioBitDepthP);
 	
 	const MOX_VideoBitDepth videoBitDepth = (MOX_VideoBitDepth)videoBitDepthP.value.intValue;
@@ -652,8 +653,19 @@ exSDKExport(
 			//const Rational par(pixelAspectRatioP.value.ratioValue.numerator, pixelAspectRatioP.value.ratioValue.denominator);
 			const Rational frameRate = get_framerate(ticksPerSecond, frameRateP.value.timeValue);
 			const Rational sampleRate = Rational(sampleRateP.value.floatValue, 1);
+			
+			
+			const MOX_VideoCodec videoCodecVal = (MOX_VideoCodec)videoCodecP.value.intValue;
+			const VideoCompression videoCompression = (videoCodecVal == VideoCodec_Uncompressed ? MoxFiles::UNCOMPRESSED :
+														videoCodecVal == VideoCodec_PNG ? MoxFiles::PNG :
+														videoCodecVal == VideoCodec_OpenEXR ? MoxFiles::OPENEXR :
+														MoxFiles::PNG);
+														
+			const AudioCompression audioCompression = MoxFiles::PCM;
+			
 		
-			Header head(widthP.value.intValue, heightP.value.intValue, frameRate, sampleRate, UNCOMPRESSED, PCM);
+			Header head(widthP.value.intValue, heightP.value.intValue, frameRate, sampleRate, videoCompression, audioCompression);
+			
 			
 			if(exportInfoP->exportVideo)
 			{

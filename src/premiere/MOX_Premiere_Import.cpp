@@ -278,8 +278,10 @@ SDKOpenFile8(
 		const prUTF16Char *path = SDKfileOpenRec8->fileinfo.filepath;
 	
 	#ifdef PRWIN_ENV
+		const DWORD permissions = (SDKfileOpenRec8->inReadWrite == kPrOpenFileAccess_ReadWrite ? GENERIC_WRITE : GENERIC_READ);
+	
 		HANDLE fileH = CreateFileW(path,
-									GENERIC_READ,
+									permissions,
 									FILE_SHARE_READ,
 									NULL,
 									OPEN_EXISTING,
@@ -309,11 +311,16 @@ SDKOpenFile8(
 				HFSUniStr255 dataForkName;
 				FSGetDataForkName(&dataForkName);
 			
+				const SInt8 permissions = (SDKfileOpenRec8->inReadWrite == kPrOpenFileAccess_ReadWrite ? fsRdWrPerm : fsRdPerm);
+			
 				OSErr err = FSOpenFork(	&fileRef,
 										dataForkName.length,
 										dataForkName.unicode,
-										fsRdWrPerm,
+										permissions,
 										&refNum);
+										
+				if(err != noErr)
+					result = imFileOpenFailed;
 			}
 										
 			CFRelease(filePathURL);
@@ -328,7 +335,6 @@ SDKOpenFile8(
 		else
 			result = imFileOpenFailed;
 	#endif
-
 	}
 
 	if(result == malNoError && localRecP->file == NULL)
