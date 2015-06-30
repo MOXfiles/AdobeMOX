@@ -1169,6 +1169,7 @@
 					../../../../openexr/IlmBase/IexMath,
 					../../../../openexr/IlmBase/IlmThread,
 					../../../../openexr/IlmBase/Imath,
+					../../../../zlib,
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -1191,6 +1192,7 @@
 					../../../../openexr/IlmBase/IexMath,
 					../../../../openexr/IlmBase/IlmThread,
 					../../../../openexr/IlmBase/Imath,
+					../../../../zlib,
 				);
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;

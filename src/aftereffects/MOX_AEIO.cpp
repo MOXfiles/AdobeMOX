@@ -326,6 +326,33 @@ AEFrameRate(MoxFiles::Rational fps)
 }
 
 
+static unsigned int
+AEBits(MoxFiles::PixelType type)
+{
+	switch(type)
+	{
+		case MoxFiles::UINT8:
+			return 8;
+		
+		case MoxFiles::UINT10:
+		case MoxFiles::UINT12:
+		case MoxFiles::UINT16:
+		case MoxFiles::UINT16A:
+			return 16;
+		
+		case MoxFiles::UINT32:
+			assert(false);
+			return 32;
+		
+		case MoxFiles::HALF:
+		case MoxFiles::FLOAT:
+			return 32;
+	}
+	
+	throw MoxMxf::ArgExc("Unknown pixel type");
+}
+
+
 static A_Err	
 AEIO_InitInSpecFromFile(
 	AEIO_BasicData		*basic_dataP,
@@ -405,9 +432,9 @@ AEIO_InitInSpecFromFile(
 			{
 				const Channel &chan = i.channel();
 				
-				if(bit_depth < PixelBits(chan.type))
+				if(bit_depth < AEBits(chan.type))
 				{
-					bit_depth = PixelBits(chan.type);
+					bit_depth = AEBits(chan.type);
 				}
 			}
 			
@@ -717,6 +744,8 @@ AEIO_InqNextFrameTime(
 	A_Boolean				*found0,
 	A_Time					*key_time_tr0)
 {
+	// this does get called, but don't think I need to use it
+
 	return AEIO_Err_USE_DFLT_CALLBACK; 
 }
 
@@ -810,7 +839,7 @@ AEIO_DrawSparseFrame(
 		
 		assert(frame_rat.Numerator % frame_rat.Denominator == 0);
 		assert(frame_rat.Denominator == 1);
-		assert(frame_time.scale == ae_fps.Numerator);
+		assert(frame_time.scale == ae_fps.Numerator || frame_time.value == 0);
 		
 		const int frame = (frame_rat.Denominator == 1 ? frame_rat.Numerator :
 							(double)frame_rat.Numerator / (double)frame_rat.Denominator);
@@ -1427,8 +1456,10 @@ AEIO_StartAdding(
 		Rational sampleRate(sample_rate, 1);
 		
 		
+		const VideoCompression vid_compression = (depth >= 96 ? MoxFiles::OPENEXR : MoxFiles::PNG);
+		const AudioCompression aud_compression = MoxFiles::PCM;
 		
-		Header head(width, height, frameRate, sampleRate);
+		Header head(width, height, frameRate, sampleRate, vid_compression, aud_compression);
 		
 		
 		if(depth > 0)
@@ -1441,7 +1472,7 @@ AEIO_StartAdding(
 			
 			const MoxFiles::PixelType pixel_type = (bytes_per_subpixel == 1 ? MoxFiles::UINT8 :
 													bytes_per_subpixel == 2 ? MoxFiles::UINT16 :
-													bytes_per_subpixel == 4 ? MoxFiles::FLOAT :
+													bytes_per_subpixel == 4 ? MoxFiles::HALF :
 													MoxFiles::UINT8);
 											
 			channels.insert("R", Channel(pixel_type));
