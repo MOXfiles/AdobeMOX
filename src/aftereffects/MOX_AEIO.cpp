@@ -349,7 +349,9 @@ AEIO_Idle(
 	AEIO_ModuleSignature	sig,
 	AEIO_IdleFlags			*idle_flags0)
 {
-	const int timeout = 30;
+	// AE expects me to close after every call, but that seems slow.
+	// Instead I'll hang around for just a little
+	const int timeout = 10;
 
 	for(std::map<AEIO_InSpecH, AEInputFile *>::iterator i = g_infiles.begin(); i != g_infiles.end(); ++i)
 	{
