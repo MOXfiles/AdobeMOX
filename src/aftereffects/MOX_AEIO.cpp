@@ -10,11 +10,9 @@
 
 #include <map>
 
-#ifndef __MACH__
 #include <assert.h>
-//#include <time.h>
+#include <time.h>
 //#include <sys/timeb.h>
-#endif
 
 #ifdef MAC_ENV
 	#include <mach/mach.h>
@@ -54,20 +52,42 @@ class AEInputFile
 	AEInputFile(const A_PathType *file_pathZ);
 	~AEInputFile();
 
-	MoxFiles::InputFile & file() { return *_file; }
+	MoxFiles::InputFile & file();
+	
+	void closeIfStale(int timeout);
 	
   private:
+	A_PathType *_path;
+	static size_t pathLen(const A_PathType *path);
+  
 	PlatformIOStream *_stream;
 	MoxFiles::InputFile *_file;
+	
+	time_t _last_access;
+	void updateAccessTime();
+	double timeSinceAccess() const;
 };
 
 AEInputFile::AEInputFile(const A_PathType *file_pathZ) :
 	_stream(NULL),
-	_file(NULL)
+	_file(NULL),
+	_path(NULL)
 {
-	_stream = new PlatformIOStream(file_pathZ, PlatformIOStream::ReadOnly);
+	const size_t len = pathLen(file_pathZ);
+	
+	if(len == 0)
+		throw MoxMxf::ArgExc("Empty path");
+	
+	_path = new A_PathType[len + 1];
+	
+	memcpy(_path, file_pathZ, sizeof(A_PathType) * (len + 1));
+	
+
+	_stream = new PlatformIOStream(_path, PlatformIOStream::ReadOnly);
 	
 	_file = new MoxFiles::InputFile(*_stream);
+	
+	updateAccessTime();
 }
 
 AEInputFile::~AEInputFile()
@@ -75,6 +95,69 @@ AEInputFile::~AEInputFile()
 	delete _file;
 	
 	delete _stream;
+	
+	delete [] _path;
+}
+
+MoxFiles::InputFile &
+AEInputFile::file()
+{
+	if(_stream == NULL)
+	{
+		_stream = new PlatformIOStream(_path, PlatformIOStream::ReadOnly);
+	}
+	
+	if(_file == NULL)
+	{
+		_file = new MoxFiles::InputFile(*_stream);
+	}
+	
+	updateAccessTime();
+	
+	return *_file;
+}
+
+void
+AEInputFile::closeIfStale(int timeout)
+{
+	if(_file != NULL)
+	{
+		assert(_stream != NULL);
+	
+		if(timeSinceAccess() > timeout)
+		{
+			delete _file;
+			_file = NULL;
+			
+			delete _stream;
+			_stream = NULL;
+		}
+	}
+}
+
+size_t
+AEInputFile::pathLen(const A_PathType *path)
+{
+	const A_PathType *p = path;
+	
+	size_t len = 0;
+	
+	while(*p++ != '\0')
+		len++;
+		
+	return len;
+}
+
+void
+AEInputFile::updateAccessTime()
+{
+	_last_access = time(NULL);
+}
+
+double
+AEInputFile::timeSinceAccess() const
+{
+	return difftime(time(NULL), _last_access);
 }
 
 static std::map<AEIO_InSpecH, AEInputFile *> g_infiles;
@@ -265,7 +348,14 @@ AEIO_Idle(
 	AEIO_BasicData			*basic_dataP,
 	AEIO_ModuleSignature	sig,
 	AEIO_IdleFlags			*idle_flags0)
-{ 
+{
+	const int timeout = 30;
+
+	for(std::map<AEIO_InSpecH, AEInputFile *>::iterator i = g_infiles.begin(); i != g_infiles.end(); ++i)
+	{
+		i->second->closeIfStale(timeout);
+	}
+
 	return A_Err_NONE; 
 }
 
@@ -275,6 +365,8 @@ DeathHook(
 	AEGP_GlobalRefcon unused1 ,
 	AEGP_DeathRefcon unused2)
 {
+	assert(g_infiles.size() == 0); // all files were closed, right?
+
 	if( MoxFiles::supportsThreads() )
 		MoxFiles::setGlobalThreadCount(0);
 
@@ -405,7 +497,17 @@ AEIO_InitInSpecFromFile(
 	
 		if(g_infiles.find(specH) == g_infiles.end())
 		{
-			g_infiles[specH] = new AEInputFile(file_pathZ);
+		#ifdef AE_HFS_PATHS	
+			A_char pathZ[AEGP_MAX_PATH_SIZE];
+
+			// convert the path format
+			if(A_Err_NONE != ConvertPath(file_pathZ, pathZ, AEGP_MAX_PATH_SIZE-1) )
+				return AEIO_Err_BAD_FILENAME;
+		#else
+			const A_PathType *pathZ = file_pathZ;
+		#endif
+		
+			g_infiles[specH] = new AEInputFile(pathZ);
 		}
 
 		if(g_infiles[specH] == NULL)
@@ -637,7 +739,7 @@ AEIO_InflateOptions(
 							*flat_options = NULL;
 			
 			err = suites.MemorySuite()->AEGP_LockMemHandle(optionsH, (void**)&options);
-			err = suites.MemorySuite()->AEGP_LockMemHandle(flat_optionsH, (void**)flat_options);
+			err = suites.MemorySuite()->AEGP_LockMemHandle(flat_optionsH, (void**)&flat_options);
 			
 			InflateOptions(flat_options);
 			
@@ -769,7 +871,40 @@ AEIO_DrawSparseFrame(
 		using namespace MoxFiles;
 	
 		if(g_infiles.find(specH) == g_infiles.end())
-			throw MoxMxf::LogicExc("Don't have file");
+		{
+		#ifdef AE_UNICODE_PATHS
+			AEGP_MemHandle pathH = NULL;
+			A_PathType *file_nameZ = NULL;
+			
+			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, &pathH);
+			
+			if(pathH)
+			{
+				suites.MemorySuite()->AEGP_LockMemHandle(pathH, (void **)&file_nameZ);
+			}
+			else
+				return AEIO_Err_BAD_FILENAME; 
+		#else
+			A_PathType file_nameZ[AEGP_MAX_PATH_SIZE];
+			
+			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, file_nameZ);
+		#endif
+			
+		#ifdef AE_HFS_PATHS	
+			// convert the path format
+			if(A_Err_NONE != ConvertPath(file_nameZ, file_nameZ, AEGP_MAX_PATH_SIZE-1) )
+				return AEIO_Err_BAD_FILENAME; 
+		#endif
+			
+			
+			g_infiles[specH] = new AEInputFile(file_nameZ);
+			
+			
+		#ifdef AE_UNICODE_PATHS
+			if(pathH)
+				suites.MemorySuite()->AEGP_FreeMemHandle(pathH);
+		#endif
+		}
 
 		if(g_infiles[specH] == NULL)
 			throw MoxMxf::NullExc("File is NULL");
@@ -893,7 +1028,40 @@ AEIO_GetSound(
 		using namespace MoxFiles;
 	
 		if(g_infiles.find(specH) == g_infiles.end())
-			throw MoxMxf::LogicExc("Don't have file");
+		{
+		#ifdef AE_UNICODE_PATHS
+			AEGP_MemHandle pathH = NULL;
+			A_PathType *file_nameZ = NULL;
+			
+			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, &pathH);
+			
+			if(pathH)
+			{
+				suites.MemorySuite()->AEGP_LockMemHandle(pathH, (void **)&file_nameZ);
+			}
+			else
+				return AEIO_Err_BAD_FILENAME; 
+		#else
+			A_PathType file_nameZ[AEGP_MAX_PATH_SIZE];
+			
+			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, file_nameZ);
+		#endif
+			
+		#ifdef AE_HFS_PATHS	
+			// convert the path format
+			if(A_Err_NONE != ConvertPath(file_nameZ, file_nameZ, AEGP_MAX_PATH_SIZE-1) )
+				return AEIO_Err_BAD_FILENAME; 
+		#endif
+			
+			
+			g_infiles[specH] = new AEInputFile(file_nameZ);
+			
+			
+		#ifdef AE_UNICODE_PATHS
+			if(pathH)
+				suites.MemorySuite()->AEGP_FreeMemHandle(pathH);
+		#endif
+		}
 
 		if(g_infiles[specH] == NULL)
 			throw MoxMxf::NullExc("File is NULL");
