@@ -19,6 +19,8 @@
 		2A541FB91B014C3F009013D8 /* UncompressedPCMCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A541FB71B014C3F009013D8 /* UncompressedPCMCodec.cpp */; };
 		2A5422121B028B96009013D8 /* MPEGCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A5422101B028B96009013D8 /* MPEGCodec.h */; };
 		2A5422131B028B96009013D8 /* MPEGCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A5422111B028B96009013D8 /* MPEGCodec.cpp */; };
+		2A616DF11B683E7F0093FC66 /* DiracCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616DEF1B683E7F0093FC66 /* DiracCodec.h */; };
+		2A616DF21B683E7F0093FC66 /* DiracCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A616DF01B683E7F0093FC66 /* DiracCodec.cpp */; };
 		2A75518B1B41C79900DCA796 /* OpenEXRCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A7551891B41C79900DCA796 /* OpenEXRCodec.h */; };
 		2A75518C1B41C79900DCA796 /* OpenEXRCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A75518A1B41C79900DCA796 /* OpenEXRCodec.cpp */; };
 		2A7551FB1B41E10600DCA796 /* ImfHybridInputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A7551F91B41E10600DCA796 /* ImfHybridInputFile.cpp */; };
@@ -140,6 +142,8 @@
 		2A541FB71B014C3F009013D8 /* UncompressedPCMCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UncompressedPCMCodec.cpp; sourceTree = "<group>"; };
 		2A5422101B028B96009013D8 /* MPEGCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEGCodec.h; sourceTree = "<group>"; };
 		2A5422111B028B96009013D8 /* MPEGCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MPEGCodec.cpp; sourceTree = "<group>"; };
+		2A616DEF1B683E7F0093FC66 /* DiracCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiracCodec.h; sourceTree = "<group>"; };
+		2A616DF01B683E7F0093FC66 /* DiracCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiracCodec.cpp; sourceTree = "<group>"; };
 		2A7551891B41C79900DCA796 /* OpenEXRCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenEXRCodec.h; sourceTree = "<group>"; };
 		2A75518A1B41C79900DCA796 /* OpenEXRCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenEXRCodec.cpp; sourceTree = "<group>"; };
 		2A7551F91B41E10600DCA796 /* ImfHybridInputFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfHybridInputFile.cpp; sourceTree = "<group>"; };
@@ -263,6 +267,8 @@
 				2A75518A1B41C79900DCA796 /* OpenEXRCodec.cpp */,
 				2A7551F91B41E10600DCA796 /* ImfHybridInputFile.cpp */,
 				2A7551FA1B41E10600DCA796 /* ImfHybridInputFile.h */,
+				2A616DEF1B683E7F0093FC66 /* DiracCodec.h */,
+				2A616DF01B683E7F0093FC66 /* DiracCodec.cpp */,
 			);
 			name = MoxFiles;
 			path = ../../../../libmox/MoxFiles;
@@ -319,6 +325,7 @@
 				2A8C70421B3B8FAD0061EA94 /* MemoryFile.h in Headers */,
 				2A75518B1B41C79900DCA796 /* OpenEXRCodec.h in Headers */,
 				2A7551FC1B41E10600DCA796 /* ImfHybridInputFile.h in Headers */,
+				2A616DF11B683E7F0093FC66 /* DiracCodec.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +467,7 @@
 				2A8C70431B3B8FAD0061EA94 /* MemoryFile.cpp in Sources */,
 				2A75518C1B41C79900DCA796 /* OpenEXRCodec.cpp in Sources */,
 				2A7551FB1B41E10600DCA796 /* ImfHybridInputFile.cpp in Sources */,
+				2A616DF21B683E7F0093FC66 /* DiracCodec.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +537,7 @@
 					../../../../openexr/IlmBase/Imath,
 					../../../../openexr/OpenEXR/IlmImf,
 					../../../../libpng,
+					../../../../schroedinger,
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -558,6 +567,7 @@
 					../../../../openexr/IlmBase/Imath,
 					../../../../openexr/OpenEXR/IlmImf,
 					../../../../libpng,
+					../../../../schroedinger,
 				);
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;

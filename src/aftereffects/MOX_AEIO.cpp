@@ -509,7 +509,9 @@ AEIO_InitInSpecFromFile(
 			const A_PathType *pathZ = file_pathZ;
 		#endif
 		
-			g_infiles[specH] = new AEInputFile(pathZ);
+			AEInputFile *inputFile = new AEInputFile(pathZ);
+		
+			g_infiles[specH] = inputFile;
 		}
 
 		if(g_infiles[specH] == NULL)
@@ -872,6 +874,9 @@ AEIO_DrawSparseFrame(
 	
 		using namespace MoxFiles;
 	
+		if( supportsThreads() )
+			setGlobalThreadCount(gNumCPUs);
+		
 		if(g_infiles.find(specH) == g_infiles.end())
 		{
 		#ifdef AE_UNICODE_PATHS
@@ -899,7 +904,9 @@ AEIO_DrawSparseFrame(
 		#endif
 			
 			
-			g_infiles[specH] = new AEInputFile(file_nameZ);
+			AEInputFile *inputFile = new AEInputFile(file_nameZ);
+			
+			g_infiles[specH] = inputFile;
 			
 			
 		#ifdef AE_UNICODE_PATHS
@@ -1626,7 +1633,7 @@ AEIO_StartAdding(
 		Rational sampleRate(sample_rate, 1);
 		
 		
-		const VideoCompression vid_compression = (depth >= 96 ? MoxFiles::OPENEXR : MoxFiles::PNG);
+		const VideoCompression vid_compression = (depth >= 96 ? MoxFiles::OPENEXR : MoxFiles::DIRAC);
 		const AudioCompression aud_compression = MoxFiles::PCM;
 		
 		Header head(width, height, frameRate, sampleRate, vid_compression, aud_compression);
@@ -1692,7 +1699,9 @@ AEIO_StartAdding(
 		
 		if(g_outfiles.find(outH) == g_outfiles.end())
 		{
-			g_outfiles[outH] = new AEOutputFile(file_pathZ, head);
+			AEOutputFile *outputFile = new AEOutputFile(file_pathZ, head);
+		
+			g_outfiles[outH] = outputFile;
 		}
 		else
 			throw MoxMxf::LogicExc("File already exists");
@@ -1954,6 +1963,8 @@ AEIO_EndAdding(
 	
 		if(file != g_outfiles.end())
 		{
+			file->second->file().finalize();
+		
 			delete file->second;
 		
 			g_outfiles.erase(file);

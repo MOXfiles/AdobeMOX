@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A616BA81B67F57A0093FC66 /* dummy.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B241B67F57A0093FC66 /* dummy.cc */; };
+		2A616BBA1B67F57A0093FC66 /* schro-stdint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B3B1B67F57A0093FC66 /* schro-stdint.h */; };
+		2A616BBB1B67F57A0093FC66 /* schro.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B3C1B67F57A0093FC66 /* schro.c */; };
+		2A616BBC1B67F57A0093FC66 /* schro.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B3D1B67F57A0093FC66 /* schro.h */; };
+		2A616BBD1B67F57A0093FC66 /* schroanalysis.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B3E1B67F57A0093FC66 /* schroanalysis.c */; };
+		2A616BBE1B67F57A0093FC66 /* schroanalysis.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B3F1B67F57A0093FC66 /* schroanalysis.h */; };
+		2A616BC01B67F57A0093FC66 /* schroarith.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B411B67F57A0093FC66 /* schroarith.c */; };
+		2A616BC11B67F57A0093FC66 /* schroarith.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B421B67F57A0093FC66 /* schroarith.h */; };
+		2A616BC61B67F57A0093FC66 /* schroasync.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B471B67F57A0093FC66 /* schroasync.h */; };
+		2A616BC71B67F57A0093FC66 /* schrobitstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B481B67F57A0093FC66 /* schrobitstream.h */; };
+		2A616BC81B67F57A0093FC66 /* schrobuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B491B67F57A0093FC66 /* schrobuffer.c */; };
+		2A616BC91B67F57A0093FC66 /* schrobuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B4A1B67F57A0093FC66 /* schrobuffer.h */; };
+		2A616BCA1B67F57A0093FC66 /* schrobufferlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B4B1B67F57A0093FC66 /* schrobufferlist.c */; };
+		2A616BCB1B67F57A0093FC66 /* schrobufferlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B4C1B67F57A0093FC66 /* schrobufferlist.h */; };
+		2A616BCE1B67F57A0093FC66 /* schrodebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B4F1B67F57A0093FC66 /* schrodebug.c */; };
+		2A616BCF1B67F57A0093FC66 /* schrodebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B501B67F57A0093FC66 /* schrodebug.h */; };
+		2A616BD01B67F57A0093FC66 /* schrodecoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B511B67F57A0093FC66 /* schrodecoder.c */; };
+		2A616BD11B67F57A0093FC66 /* schrodecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B521B67F57A0093FC66 /* schrodecoder.h */; };
+		2A616BD21B67F57A0093FC66 /* schrodomain.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B531B67F57A0093FC66 /* schrodomain.c */; };
+		2A616BD31B67F57A0093FC66 /* schrodomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B541B67F57A0093FC66 /* schrodomain.h */; };
+		2A616BD41B67F57A0093FC66 /* schroencoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B551B67F57A0093FC66 /* schroencoder.c */; };
+		2A616BD51B67F57A0093FC66 /* schroencoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B561B67F57A0093FC66 /* schroencoder.h */; };
+		2A616BD61B67F57A0093FC66 /* schroengine.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B571B67F57A0093FC66 /* schroengine.c */; };
+		2A616BD71B67F57A0093FC66 /* schroengine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B581B67F57A0093FC66 /* schroengine.h */; };
+		2A616BD81B67F57A0093FC66 /* schrofft.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B591B67F57A0093FC66 /* schrofft.c */; };
+		2A616BD91B67F57A0093FC66 /* schrofft.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B5A1B67F57A0093FC66 /* schrofft.h */; };
+		2A616BDA1B67F57A0093FC66 /* schrofilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B5B1B67F57A0093FC66 /* schrofilter.c */; };
+		2A616BDB1B67F57A0093FC66 /* schrofilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B5C1B67F57A0093FC66 /* schrofilter.h */; };
+		2A616BDC1B67F57A0093FC66 /* schroframe.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B5D1B67F57A0093FC66 /* schroframe.c */; };
+		2A616BDD1B67F57A0093FC66 /* schroframe.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B5E1B67F57A0093FC66 /* schroframe.h */; };
+		2A616BDE1B67F57A0093FC66 /* schroglobalest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B5F1B67F57A0093FC66 /* schroglobalest.c */; };
+		2A616BE31B67F57A0093FC66 /* schrohierbm.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B641B67F57A0093FC66 /* schrohierbm.c */; };
+		2A616BE41B67F57A0093FC66 /* schrohistogram.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B651B67F57A0093FC66 /* schrohistogram.c */; };
+		2A616BE51B67F57A0093FC66 /* schrohistogram.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B661B67F57A0093FC66 /* schrohistogram.h */; };
+		2A616BE61B67F57A0093FC66 /* schrolimits.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B671B67F57A0093FC66 /* schrolimits.h */; };
+		2A616BE71B67F57A0093FC66 /* schrolist.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B681B67F57A0093FC66 /* schrolist.c */; };
+		2A616BE81B67F57A0093FC66 /* schrolist.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B691B67F57A0093FC66 /* schrolist.h */; };
+		2A616BE91B67F57A0093FC66 /* schrolowdelay.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B6A1B67F57A0093FC66 /* schrolowdelay.c */; };
+		2A616BEA1B67F57A0093FC66 /* schrometric.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B6B1B67F57A0093FC66 /* schrometric.c */; };
+		2A616BEB1B67F57A0093FC66 /* schrometric.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B6C1B67F57A0093FC66 /* schrometric.h */; };
+		2A616BEC1B67F57A0093FC66 /* schromotion.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B6D1B67F57A0093FC66 /* schromotion.c */; };
+		2A616BED1B67F57A0093FC66 /* schromotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B6E1B67F57A0093FC66 /* schromotion.h */; };
+		2A616BEE1B67F57A0093FC66 /* schromotion8.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B6F1B67F57A0093FC66 /* schromotion8.c */; };
+		2A616BEF1B67F57A0093FC66 /* schromotionest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B701B67F57A0093FC66 /* schromotionest.c */; };
+		2A616BF01B67F57A0093FC66 /* schromotionest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B711B67F57A0093FC66 /* schromotionest.h */; };
+		2A616BF11B67F57A0093FC66 /* schromotionfast.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B721B67F57A0093FC66 /* schromotionfast.c */; };
+		2A616BF21B67F57A0093FC66 /* schromotionref.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B731B67F57A0093FC66 /* schromotionref.c */; };
+		2A616BF51B67F57A0093FC66 /* schropack.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B771B67F57A0093FC66 /* schropack.c */; };
+		2A616BF61B67F57A0093FC66 /* schropack.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B781B67F57A0093FC66 /* schropack.h */; };
+		2A616BF71B67F57A0093FC66 /* schroparams.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B791B67F57A0093FC66 /* schroparams.c */; };
+		2A616BF81B67F57A0093FC66 /* schroparams.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B7A1B67F57A0093FC66 /* schroparams.h */; };
+		2A616BF91B67F57A0093FC66 /* schroparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B7B1B67F57A0093FC66 /* schroparse.c */; };
+		2A616BFA1B67F57A0093FC66 /* schroparse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B7C1B67F57A0093FC66 /* schroparse.h */; };
+		2A616BFB1B67F57A0093FC66 /* schrophasecorrelation.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B7D1B67F57A0093FC66 /* schrophasecorrelation.c */; };
+		2A616BFC1B67F57A0093FC66 /* schrophasecorrelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B7E1B67F57A0093FC66 /* schrophasecorrelation.h */; };
+		2A616BFD1B67F57A0093FC66 /* schroquantiser.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B7F1B67F57A0093FC66 /* schroquantiser.c */; };
+		2A616BFE1B67F57A0093FC66 /* schroqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B801B67F57A0093FC66 /* schroqueue.c */; };
+		2A616BFF1B67F57A0093FC66 /* schroqueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B811B67F57A0093FC66 /* schroqueue.h */; };
+		2A616C001B67F57A0093FC66 /* schroroughmotion.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B821B67F57A0093FC66 /* schroroughmotion.c */; };
+		2A616C011B67F57A0093FC66 /* schrossim.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B831B67F57A0093FC66 /* schrossim.c */; };
+		2A616C021B67F57A0093FC66 /* schrossim.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B841B67F57A0093FC66 /* schrossim.h */; };
+		2A616C031B67F57A0093FC66 /* schrotables.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B851B67F57A0093FC66 /* schrotables.c */; };
+		2A616C041B67F57A0093FC66 /* schrotables.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B861B67F57A0093FC66 /* schrotables.h */; };
+		2A616C051B67F57A0093FC66 /* schrotablesinit.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B871B67F57A0093FC66 /* schrotablesinit.c */; };
+		2A616C061B67F57A0093FC66 /* schrounpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B881B67F57A0093FC66 /* schrounpack.c */; };
+		2A616C071B67F57A0093FC66 /* schrounpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B891B67F57A0093FC66 /* schrounpack.h */; };
+		2A616C081B67F57A0093FC66 /* schrounpacktables.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B8A1B67F57A0093FC66 /* schrounpacktables.c */; };
+		2A616C091B67F57A0093FC66 /* schroutils.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B8B1B67F57A0093FC66 /* schroutils.c */; };
+		2A616C0A1B67F57A0093FC66 /* schroutils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B8C1B67F57A0093FC66 /* schroutils.h */; };
+		2A616C0B1B67F57A0093FC66 /* schrovideoformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B8E1B67F57A0093FC66 /* schrovideoformat.c */; };
+		2A616C0C1B67F57A0093FC66 /* schrovideoformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B8F1B67F57A0093FC66 /* schrovideoformat.h */; };
+		2A616C0D1B67F57A0093FC66 /* schrovirtframe.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B901B67F57A0093FC66 /* schrovirtframe.c */; };
+		2A616C0E1B67F57A0093FC66 /* schrovirtframe.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B911B67F57A0093FC66 /* schrovirtframe.h */; };
+		2A616C0F1B67F57A0093FC66 /* schrowavelet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616B921B67F57A0093FC66 /* schrowavelet.h */; };
+		2A616C101B67F57A0093FC66 /* schrowaveletorc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B931B67F57A0093FC66 /* schrowaveletorc.c */; };
+		2A616C111B67F57A0093FC66 /* schrowavelettables.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B941B67F57A0093FC66 /* schrowavelettables.c */; };
+		2A616ED01B6901FD0093FC66 /* schroasync-pthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616B451B67F57A0093FC66 /* schroasync-pthread.c */; };
+		2AFD0FB21B7BFC17001D691C /* schroorc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AFD0FB11B7BFC17001D691C /* schroorc.h */; };
+		2AFD100A1B7C0079001D691C /* schroorc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A616C371B6802830093FC66 /* schroorc.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2A7323051B7446A80006AB4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A7323001B7446A80006AB4E /* orc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A7322D41B7444170006AB4E;
+			remoteInfo = orcc;
+		};
+		2A7323071B7446A80006AB4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A7323001B7446A80006AB4E /* orc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = liborc;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2A616B241B67F57A0093FC66 /* dummy.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dummy.cc; sourceTree = "<group>"; };
+		2A616B3B1B67F57A0093FC66 /* schro-stdint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "schro-stdint.h"; sourceTree = "<group>"; };
+		2A616B3C1B67F57A0093FC66 /* schro.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schro.c; sourceTree = "<group>"; };
+		2A616B3D1B67F57A0093FC66 /* schro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schro.h; sourceTree = "<group>"; };
+		2A616B3E1B67F57A0093FC66 /* schroanalysis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroanalysis.c; sourceTree = "<group>"; };
+		2A616B3F1B67F57A0093FC66 /* schroanalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroanalysis.h; sourceTree = "<group>"; };
+		2A616B401B67F57A0093FC66 /* schroarith-i386.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "schroarith-i386.c"; sourceTree = "<group>"; };
+		2A616B411B67F57A0093FC66 /* schroarith.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroarith.c; sourceTree = "<group>"; };
+		2A616B421B67F57A0093FC66 /* schroarith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroarith.h; sourceTree = "<group>"; };
+		2A616B431B67F57A0093FC66 /* schroasync-gthread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "schroasync-gthread.c"; sourceTree = "<group>"; };
+		2A616B441B67F57A0093FC66 /* schroasync-none.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "schroasync-none.c"; sourceTree = "<group>"; };
+		2A616B451B67F57A0093FC66 /* schroasync-pthread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "schroasync-pthread.c"; sourceTree = "<group>"; };
+		2A616B461B67F57A0093FC66 /* schroasync-win32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "schroasync-win32.c"; sourceTree = "<group>"; };
+		2A616B471B67F57A0093FC66 /* schroasync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroasync.h; sourceTree = "<group>"; };
+		2A616B481B67F57A0093FC66 /* schrobitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrobitstream.h; sourceTree = "<group>"; };
+		2A616B491B67F57A0093FC66 /* schrobuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrobuffer.c; sourceTree = "<group>"; };
+		2A616B4A1B67F57A0093FC66 /* schrobuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrobuffer.h; sourceTree = "<group>"; };
+		2A616B4B1B67F57A0093FC66 /* schrobufferlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrobufferlist.c; sourceTree = "<group>"; };
+		2A616B4C1B67F57A0093FC66 /* schrobufferlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrobufferlist.h; sourceTree = "<group>"; };
+		2A616B4D1B67F57A0093FC66 /* schrocuda.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrocuda.c; sourceTree = "<group>"; };
+		2A616B4E1B67F57A0093FC66 /* schrocuda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrocuda.h; sourceTree = "<group>"; };
+		2A616B4F1B67F57A0093FC66 /* schrodebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrodebug.c; sourceTree = "<group>"; };
+		2A616B501B67F57A0093FC66 /* schrodebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrodebug.h; sourceTree = "<group>"; };
+		2A616B511B67F57A0093FC66 /* schrodecoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrodecoder.c; sourceTree = "<group>"; };
+		2A616B521B67F57A0093FC66 /* schrodecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrodecoder.h; sourceTree = "<group>"; };
+		2A616B531B67F57A0093FC66 /* schrodomain.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrodomain.c; sourceTree = "<group>"; };
+		2A616B541B67F57A0093FC66 /* schrodomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrodomain.h; sourceTree = "<group>"; };
+		2A616B551B67F57A0093FC66 /* schroencoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroencoder.c; sourceTree = "<group>"; };
+		2A616B561B67F57A0093FC66 /* schroencoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroencoder.h; sourceTree = "<group>"; };
+		2A616B571B67F57A0093FC66 /* schroengine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroengine.c; sourceTree = "<group>"; };
+		2A616B581B67F57A0093FC66 /* schroengine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroengine.h; sourceTree = "<group>"; };
+		2A616B591B67F57A0093FC66 /* schrofft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrofft.c; sourceTree = "<group>"; };
+		2A616B5A1B67F57A0093FC66 /* schrofft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrofft.h; sourceTree = "<group>"; };
+		2A616B5B1B67F57A0093FC66 /* schrofilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrofilter.c; sourceTree = "<group>"; };
+		2A616B5C1B67F57A0093FC66 /* schrofilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrofilter.h; sourceTree = "<group>"; };
+		2A616B5D1B67F57A0093FC66 /* schroframe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroframe.c; sourceTree = "<group>"; };
+		2A616B5E1B67F57A0093FC66 /* schroframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroframe.h; sourceTree = "<group>"; };
+		2A616B5F1B67F57A0093FC66 /* schroglobalest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroglobalest.c; sourceTree = "<group>"; };
+		2A616B601B67F57A0093FC66 /* schrogpuframe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrogpuframe.c; sourceTree = "<group>"; };
+		2A616B611B67F57A0093FC66 /* schrogpuframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrogpuframe.h; sourceTree = "<group>"; };
+		2A616B621B67F57A0093FC66 /* schrogpumotion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrogpumotion.c; sourceTree = "<group>"; };
+		2A616B631B67F57A0093FC66 /* schrogpumotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrogpumotion.h; sourceTree = "<group>"; };
+		2A616B641B67F57A0093FC66 /* schrohierbm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrohierbm.c; sourceTree = "<group>"; };
+		2A616B651B67F57A0093FC66 /* schrohistogram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrohistogram.c; sourceTree = "<group>"; };
+		2A616B661B67F57A0093FC66 /* schrohistogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrohistogram.h; sourceTree = "<group>"; };
+		2A616B671B67F57A0093FC66 /* schrolimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrolimits.h; sourceTree = "<group>"; };
+		2A616B681B67F57A0093FC66 /* schrolist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrolist.c; sourceTree = "<group>"; };
+		2A616B691B67F57A0093FC66 /* schrolist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrolist.h; sourceTree = "<group>"; };
+		2A616B6A1B67F57A0093FC66 /* schrolowdelay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrolowdelay.c; sourceTree = "<group>"; };
+		2A616B6B1B67F57A0093FC66 /* schrometric.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrometric.c; sourceTree = "<group>"; };
+		2A616B6C1B67F57A0093FC66 /* schrometric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrometric.h; sourceTree = "<group>"; };
+		2A616B6D1B67F57A0093FC66 /* schromotion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schromotion.c; sourceTree = "<group>"; };
+		2A616B6E1B67F57A0093FC66 /* schromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schromotion.h; sourceTree = "<group>"; };
+		2A616B6F1B67F57A0093FC66 /* schromotion8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schromotion8.c; sourceTree = "<group>"; };
+		2A616B701B67F57A0093FC66 /* schromotionest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schromotionest.c; sourceTree = "<group>"; };
+		2A616B711B67F57A0093FC66 /* schromotionest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schromotionest.h; sourceTree = "<group>"; };
+		2A616B721B67F57A0093FC66 /* schromotionfast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schromotionfast.c; sourceTree = "<group>"; };
+		2A616B731B67F57A0093FC66 /* schromotionref.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schromotionref.c; sourceTree = "<group>"; };
+		2A616B741B67F57A0093FC66 /* schroorc-dist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "schroorc-dist.c"; sourceTree = "<group>"; };
+		2A616B751B67F57A0093FC66 /* schroorc-dist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "schroorc-dist.h"; sourceTree = "<group>"; };
+		2A616B761B67F57A0093FC66 /* schroorc.orc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schroorc.orc; sourceTree = "<group>"; };
+		2A616B771B67F57A0093FC66 /* schropack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schropack.c; sourceTree = "<group>"; };
+		2A616B781B67F57A0093FC66 /* schropack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schropack.h; sourceTree = "<group>"; };
+		2A616B791B67F57A0093FC66 /* schroparams.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroparams.c; sourceTree = "<group>"; };
+		2A616B7A1B67F57A0093FC66 /* schroparams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroparams.h; sourceTree = "<group>"; };
+		2A616B7B1B67F57A0093FC66 /* schroparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroparse.c; sourceTree = "<group>"; };
+		2A616B7C1B67F57A0093FC66 /* schroparse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroparse.h; sourceTree = "<group>"; };
+		2A616B7D1B67F57A0093FC66 /* schrophasecorrelation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrophasecorrelation.c; sourceTree = "<group>"; };
+		2A616B7E1B67F57A0093FC66 /* schrophasecorrelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrophasecorrelation.h; sourceTree = "<group>"; };
+		2A616B7F1B67F57A0093FC66 /* schroquantiser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroquantiser.c; sourceTree = "<group>"; };
+		2A616B801B67F57A0093FC66 /* schroqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroqueue.c; sourceTree = "<group>"; };
+		2A616B811B67F57A0093FC66 /* schroqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroqueue.h; sourceTree = "<group>"; };
+		2A616B821B67F57A0093FC66 /* schroroughmotion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroroughmotion.c; sourceTree = "<group>"; };
+		2A616B831B67F57A0093FC66 /* schrossim.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrossim.c; sourceTree = "<group>"; };
+		2A616B841B67F57A0093FC66 /* schrossim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrossim.h; sourceTree = "<group>"; };
+		2A616B851B67F57A0093FC66 /* schrotables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrotables.c; sourceTree = "<group>"; };
+		2A616B861B67F57A0093FC66 /* schrotables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrotables.h; sourceTree = "<group>"; };
+		2A616B871B67F57A0093FC66 /* schrotablesinit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrotablesinit.c; sourceTree = "<group>"; };
+		2A616B881B67F57A0093FC66 /* schrounpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrounpack.c; sourceTree = "<group>"; };
+		2A616B891B67F57A0093FC66 /* schrounpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrounpack.h; sourceTree = "<group>"; };
+		2A616B8A1B67F57A0093FC66 /* schrounpacktables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrounpacktables.c; sourceTree = "<group>"; };
+		2A616B8B1B67F57A0093FC66 /* schroutils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroutils.c; sourceTree = "<group>"; };
+		2A616B8C1B67F57A0093FC66 /* schroutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroutils.h; sourceTree = "<group>"; };
+		2A616B8E1B67F57A0093FC66 /* schrovideoformat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrovideoformat.c; sourceTree = "<group>"; };
+		2A616B8F1B67F57A0093FC66 /* schrovideoformat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrovideoformat.h; sourceTree = "<group>"; };
+		2A616B901B67F57A0093FC66 /* schrovirtframe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrovirtframe.c; sourceTree = "<group>"; };
+		2A616B911B67F57A0093FC66 /* schrovirtframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrovirtframe.h; sourceTree = "<group>"; };
+		2A616B921B67F57A0093FC66 /* schrowavelet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrowavelet.h; sourceTree = "<group>"; };
+		2A616B931B67F57A0093FC66 /* schrowaveletorc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrowaveletorc.c; sourceTree = "<group>"; };
+		2A616B941B67F57A0093FC66 /* schrowavelettables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schrowavelettables.c; sourceTree = "<group>"; };
+		2A616C371B6802830093FC66 /* schroorc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = schroorc.c; sourceTree = "<group>"; };
+		2A7323001B7446A80006AB4E /* orc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = orc.xcodeproj; path = ../orc/orc.xcodeproj; sourceTree = SOURCE_ROOT; };
+		2AFD0FB11B7BFC17001D691C /* schroorc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schroorc.h; sourceTree = "<group>"; };
+		D2AAC046055464E500DB518D /* libschroedinger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libschroedinger.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D289987405E68DCB004EDB86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* schroedinger */ = {
+			isa = PBXGroup;
+			children = (
+				2AFD0FB11B7BFC17001D691C /* schroorc.h */,
+				2A616C371B6802830093FC66 /* schroorc.c */,
+				2A616AE31B67F57A0093FC66 /* schroedinger */,
+				2A7323001B7446A80006AB4E /* orc.xcodeproj */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = schroedinger;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC046055464E500DB518D /* libschroedinger.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A616AE31B67F57A0093FC66 /* schroedinger */ = {
+			isa = PBXGroup;
+			children = (
+				2A616B241B67F57A0093FC66 /* dummy.cc */,
+				2A616B3B1B67F57A0093FC66 /* schro-stdint.h */,
+				2A616B3C1B67F57A0093FC66 /* schro.c */,
+				2A616B3D1B67F57A0093FC66 /* schro.h */,
+				2A616B3E1B67F57A0093FC66 /* schroanalysis.c */,
+				2A616B3F1B67F57A0093FC66 /* schroanalysis.h */,
+				2A616B401B67F57A0093FC66 /* schroarith-i386.c */,
+				2A616B411B67F57A0093FC66 /* schroarith.c */,
+				2A616B421B67F57A0093FC66 /* schroarith.h */,
+				2A616B431B67F57A0093FC66 /* schroasync-gthread.c */,
+				2A616B441B67F57A0093FC66 /* schroasync-none.c */,
+				2A616B451B67F57A0093FC66 /* schroasync-pthread.c */,
+				2A616B461B67F57A0093FC66 /* schroasync-win32.c */,
+				2A616B471B67F57A0093FC66 /* schroasync.h */,
+				2A616B481B67F57A0093FC66 /* schrobitstream.h */,
+				2A616B491B67F57A0093FC66 /* schrobuffer.c */,
+				2A616B4A1B67F57A0093FC66 /* schrobuffer.h */,
+				2A616B4B1B67F57A0093FC66 /* schrobufferlist.c */,
+				2A616B4C1B67F57A0093FC66 /* schrobufferlist.h */,
+				2A616B4D1B67F57A0093FC66 /* schrocuda.c */,
+				2A616B4E1B67F57A0093FC66 /* schrocuda.h */,
+				2A616B4F1B67F57A0093FC66 /* schrodebug.c */,
+				2A616B501B67F57A0093FC66 /* schrodebug.h */,
+				2A616B511B67F57A0093FC66 /* schrodecoder.c */,
+				2A616B521B67F57A0093FC66 /* schrodecoder.h */,
+				2A616B531B67F57A0093FC66 /* schrodomain.c */,
+				2A616B541B67F57A0093FC66 /* schrodomain.h */,
+				2A616B551B67F57A0093FC66 /* schroencoder.c */,
+				2A616B561B67F57A0093FC66 /* schroencoder.h */,
+				2A616B571B67F57A0093FC66 /* schroengine.c */,
+				2A616B581B67F57A0093FC66 /* schroengine.h */,
+				2A616B591B67F57A0093FC66 /* schrofft.c */,
+				2A616B5A1B67F57A0093FC66 /* schrofft.h */,
+				2A616B5B1B67F57A0093FC66 /* schrofilter.c */,
+				2A616B5C1B67F57A0093FC66 /* schrofilter.h */,
+				2A616B5D1B67F57A0093FC66 /* schroframe.c */,
+				2A616B5E1B67F57A0093FC66 /* schroframe.h */,
+				2A616B5F1B67F57A0093FC66 /* schroglobalest.c */,
+				2A616B601B67F57A0093FC66 /* schrogpuframe.c */,
+				2A616B611B67F57A0093FC66 /* schrogpuframe.h */,
+				2A616B621B67F57A0093FC66 /* schrogpumotion.c */,
+				2A616B631B67F57A0093FC66 /* schrogpumotion.h */,
+				2A616B641B67F57A0093FC66 /* schrohierbm.c */,
+				2A616B651B67F57A0093FC66 /* schrohistogram.c */,
+				2A616B661B67F57A0093FC66 /* schrohistogram.h */,
+				2A616B671B67F57A0093FC66 /* schrolimits.h */,
+				2A616B681B67F57A0093FC66 /* schrolist.c */,
+				2A616B691B67F57A0093FC66 /* schrolist.h */,
+				2A616B6A1B67F57A0093FC66 /* schrolowdelay.c */,
+				2A616B6B1B67F57A0093FC66 /* schrometric.c */,
+				2A616B6C1B67F57A0093FC66 /* schrometric.h */,
+				2A616B6D1B67F57A0093FC66 /* schromotion.c */,
+				2A616B6E1B67F57A0093FC66 /* schromotion.h */,
+				2A616B6F1B67F57A0093FC66 /* schromotion8.c */,
+				2A616B701B67F57A0093FC66 /* schromotionest.c */,
+				2A616B711B67F57A0093FC66 /* schromotionest.h */,
+				2A616B721B67F57A0093FC66 /* schromotionfast.c */,
+				2A616B731B67F57A0093FC66 /* schromotionref.c */,
+				2A616B741B67F57A0093FC66 /* schroorc-dist.c */,
+				2A616B751B67F57A0093FC66 /* schroorc-dist.h */,
+				2A616B761B67F57A0093FC66 /* schroorc.orc */,
+				2A616B771B67F57A0093FC66 /* schropack.c */,
+				2A616B781B67F57A0093FC66 /* schropack.h */,
+				2A616B791B67F57A0093FC66 /* schroparams.c */,
+				2A616B7A1B67F57A0093FC66 /* schroparams.h */,
+				2A616B7B1B67F57A0093FC66 /* schroparse.c */,
+				2A616B7C1B67F57A0093FC66 /* schroparse.h */,
+				2A616B7D1B67F57A0093FC66 /* schrophasecorrelation.c */,
+				2A616B7E1B67F57A0093FC66 /* schrophasecorrelation.h */,
+				2A616B7F1B67F57A0093FC66 /* schroquantiser.c */,
+				2A616B801B67F57A0093FC66 /* schroqueue.c */,
+				2A616B811B67F57A0093FC66 /* schroqueue.h */,
+				2A616B821B67F57A0093FC66 /* schroroughmotion.c */,
+				2A616B831B67F57A0093FC66 /* schrossim.c */,
+				2A616B841B67F57A0093FC66 /* schrossim.h */,
+				2A616B851B67F57A0093FC66 /* schrotables.c */,
+				2A616B861B67F57A0093FC66 /* schrotables.h */,
+				2A616B871B67F57A0093FC66 /* schrotablesinit.c */,
+				2A616B881B67F57A0093FC66 /* schrounpack.c */,
+				2A616B891B67F57A0093FC66 /* schrounpack.h */,
+				2A616B8A1B67F57A0093FC66 /* schrounpacktables.c */,
+				2A616B8B1B67F57A0093FC66 /* schroutils.c */,
+				2A616B8C1B67F57A0093FC66 /* schroutils.h */,
+				2A616B8E1B67F57A0093FC66 /* schrovideoformat.c */,
+				2A616B8F1B67F57A0093FC66 /* schrovideoformat.h */,
+				2A616B901B67F57A0093FC66 /* schrovirtframe.c */,
+				2A616B911B67F57A0093FC66 /* schrovirtframe.h */,
+				2A616B921B67F57A0093FC66 /* schrowavelet.h */,
+				2A616B931B67F57A0093FC66 /* schrowaveletorc.c */,
+				2A616B941B67F57A0093FC66 /* schrowavelettables.c */,
+			);
+			name = schroedinger;
+			path = ../../../../../schroedinger/schroedinger;
+			sourceTree = SOURCE_ROOT;
+		};
+		2A7323011B7446A80006AB4E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A7323061B7446A80006AB4E /* orcc */,
+				2A7323081B7446A80006AB4E /* liborc.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC043055464E500DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A616BBA1B67F57A0093FC66 /* schro-stdint.h in Headers */,
+				2A616BBC1B67F57A0093FC66 /* schro.h in Headers */,
+				2A616BBE1B67F57A0093FC66 /* schroanalysis.h in Headers */,
+				2A616BC11B67F57A0093FC66 /* schroarith.h in Headers */,
+				2A616BC61B67F57A0093FC66 /* schroasync.h in Headers */,
+				2A616BC71B67F57A0093FC66 /* schrobitstream.h in Headers */,
+				2A616BC91B67F57A0093FC66 /* schrobuffer.h in Headers */,
+				2A616BCB1B67F57A0093FC66 /* schrobufferlist.h in Headers */,
+				2A616BCF1B67F57A0093FC66 /* schrodebug.h in Headers */,
+				2A616BD11B67F57A0093FC66 /* schrodecoder.h in Headers */,
+				2A616BD31B67F57A0093FC66 /* schrodomain.h in Headers */,
+				2A616BD51B67F57A0093FC66 /* schroencoder.h in Headers */,
+				2A616BD71B67F57A0093FC66 /* schroengine.h in Headers */,
+				2A616BD91B67F57A0093FC66 /* schrofft.h in Headers */,
+				2A616BDB1B67F57A0093FC66 /* schrofilter.h in Headers */,
+				2A616BDD1B67F57A0093FC66 /* schroframe.h in Headers */,
+				2A616BE51B67F57A0093FC66 /* schrohistogram.h in Headers */,
+				2A616BE61B67F57A0093FC66 /* schrolimits.h in Headers */,
+				2A616BE81B67F57A0093FC66 /* schrolist.h in Headers */,
+				2A616BEB1B67F57A0093FC66 /* schrometric.h in Headers */,
+				2A616BED1B67F57A0093FC66 /* schromotion.h in Headers */,
+				2A616BF01B67F57A0093FC66 /* schromotionest.h in Headers */,
+				2A616BF61B67F57A0093FC66 /* schropack.h in Headers */,
+				2A616BF81B67F57A0093FC66 /* schroparams.h in Headers */,
+				2A616BFA1B67F57A0093FC66 /* schroparse.h in Headers */,
+				2A616BFC1B67F57A0093FC66 /* schrophasecorrelation.h in Headers */,
+				2A616BFF1B67F57A0093FC66 /* schroqueue.h in Headers */,
+				2A616C021B67F57A0093FC66 /* schrossim.h in Headers */,
+				2A616C041B67F57A0093FC66 /* schrotables.h in Headers */,
+				2A616C071B67F57A0093FC66 /* schrounpack.h in Headers */,
+				2A616C0A1B67F57A0093FC66 /* schroutils.h in Headers */,
+				2A616C0C1B67F57A0093FC66 /* schrovideoformat.h in Headers */,
+				2A616C0E1B67F57A0093FC66 /* schrovirtframe.h in Headers */,
+				2A616C0F1B67F57A0093FC66 /* schrowavelet.h in Headers */,
+				2AFD0FB21B7BFC17001D691C /* schroorc.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC045055464E500DB518D /* schroedinger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "schroedinger" */;
+			buildPhases = (
+				D2AAC043055464E500DB518D /* Headers */,
+				D2AAC044055464E500DB518D /* Sources */,
+				D289987405E68DCB004EDB86 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = schroedinger;
+			productName = schroedinger;
+			productReference = D2AAC046055464E500DB518D /* libschroedinger.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "schroedinger" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* schroedinger */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2A7323011B7446A80006AB4E /* Products */;
+					ProjectRef = 2A7323001B7446A80006AB4E /* orc.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D2AAC045055464E500DB518D /* schroedinger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2A7323061B7446A80006AB4E /* orcc */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = orcc;
+			remoteRef = 2A7323051B7446A80006AB4E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A7323081B7446A80006AB4E /* liborc.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liborc.a;
+			remoteRef = 2A7323071B7446A80006AB4E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC044055464E500DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A616BA81B67F57A0093FC66 /* dummy.cc in Sources */,
+				2A616BBB1B67F57A0093FC66 /* schro.c in Sources */,
+				2A616BBD1B67F57A0093FC66 /* schroanalysis.c in Sources */,
+				2A616BC01B67F57A0093FC66 /* schroarith.c in Sources */,
+				2A616BC81B67F57A0093FC66 /* schrobuffer.c in Sources */,
+				2A616BCA1B67F57A0093FC66 /* schrobufferlist.c in Sources */,
+				2A616BCE1B67F57A0093FC66 /* schrodebug.c in Sources */,
+				2A616BD01B67F57A0093FC66 /* schrodecoder.c in Sources */,
+				2A616BD21B67F57A0093FC66 /* schrodomain.c in Sources */,
+				2A616BD41B67F57A0093FC66 /* schroencoder.c in Sources */,
+				2A616BD61B67F57A0093FC66 /* schroengine.c in Sources */,
+				2A616BD81B67F57A0093FC66 /* schrofft.c in Sources */,
+				2A616BDA1B67F57A0093FC66 /* schrofilter.c in Sources */,
+				2A616BDC1B67F57A0093FC66 /* schroframe.c in Sources */,
+				2A616BDE1B67F57A0093FC66 /* schroglobalest.c in Sources */,
+				2A616BE31B67F57A0093FC66 /* schrohierbm.c in Sources */,
+				2A616BE41B67F57A0093FC66 /* schrohistogram.c in Sources */,
+				2A616BE71B67F57A0093FC66 /* schrolist.c in Sources */,
+				2A616BE91B67F57A0093FC66 /* schrolowdelay.c in Sources */,
+				2A616BEA1B67F57A0093FC66 /* schrometric.c in Sources */,
+				2A616BEC1B67F57A0093FC66 /* schromotion.c in Sources */,
+				2A616BEE1B67F57A0093FC66 /* schromotion8.c in Sources */,
+				2A616BEF1B67F57A0093FC66 /* schromotionest.c in Sources */,
+				2A616BF11B67F57A0093FC66 /* schromotionfast.c in Sources */,
+				2A616BF21B67F57A0093FC66 /* schromotionref.c in Sources */,
+				2A616BF51B67F57A0093FC66 /* schropack.c in Sources */,
+				2A616BF71B67F57A0093FC66 /* schroparams.c in Sources */,
+				2A616BF91B67F57A0093FC66 /* schroparse.c in Sources */,
+				2A616BFB1B67F57A0093FC66 /* schrophasecorrelation.c in Sources */,
+				2A616BFD1B67F57A0093FC66 /* schroquantiser.c in Sources */,
+				2A616BFE1B67F57A0093FC66 /* schroqueue.c in Sources */,
+				2A616C001B67F57A0093FC66 /* schroroughmotion.c in Sources */,
+				2A616C011B67F57A0093FC66 /* schrossim.c in Sources */,
+				2A616C031B67F57A0093FC66 /* schrotables.c in Sources */,
+				2A616C051B67F57A0093FC66 /* schrotablesinit.c in Sources */,
+				2A616C061B67F57A0093FC66 /* schrounpack.c in Sources */,
+				2A616C081B67F57A0093FC66 /* schrounpacktables.c in Sources */,
+				2A616C091B67F57A0093FC66 /* schroutils.c in Sources */,
+				2A616C0B1B67F57A0093FC66 /* schrovideoformat.c in Sources */,
+				2A616C0D1B67F57A0093FC66 /* schrovirtframe.c in Sources */,
+				2A616C101B67F57A0093FC66 /* schrowaveletorc.c in Sources */,
+				2A616C111B67F57A0093FC66 /* schrowavelettables.c in Sources */,
+				2A616ED01B6901FD0093FC66 /* schroasync-pthread.c in Sources */,
+				2AFD100A1B7C0079001D691C /* schroorc.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91EC08733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = schroedinger;
+			};
+			name = Debug;
+		};
+		1DEB91ED08733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = schroedinger;
+			};
+			name = Release;
+		};
+		1DEB91F008733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HAVE_CONFIG_H,
+					"SCHRO_ENABLE_UNSTABLE_API=1",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					.,
+					..,
+					../../../../../schroedinger,
+					../../../../../orc,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB91F108733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HAVE_CONFIG_H,
+					"SCHRO_ENABLE_UNSTABLE_API=1",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					.,
+					..,
+					../../../../../schroedinger,
+					../../../../../orc,
+				);
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "schroedinger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91EC08733DB70010E9CD /* Debug */,
+				1DEB91ED08733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "schroedinger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91F008733DB70010E9CD /* Debug */,
+				1DEB91F108733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
