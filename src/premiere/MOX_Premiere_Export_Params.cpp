@@ -165,6 +165,10 @@ exSDKQueryOutputSettings(
 	// outBitratePerSecond in kbps
 	outputSettingsP->outBitratePerSecond = videoBitrate;
 
+#if EXPORTMOD_VERSION >= 5
+	// always doing maximum precision
+	outputSettingsP->outUseMaximumRenderPrecision = kPrTrue;
+#endif
 
 	return result;
 }
@@ -369,12 +373,48 @@ exSDKGenerateDefaultParams(
 	exportParamSuite->AddParam(exID, gIdx, ADBEVideoCodecGroup, &videoBitDepthParam);
 	
 	
+	// Lossless
+	exParamValues losslessValues;
+	losslessValues.structVersion = 1;
+	losslessValues.value.intValue = kPrTrue;
+	losslessValues.disabled = kPrFalse;
+	losslessValues.hidden = kPrFalse;
+	
+	exNewParamInfo losslessParam;
+	losslessParam.structVersion = 1;
+	strncpy(losslessParam.identifier, MOXLossless, 255);
+	losslessParam.paramType = exParamType_bool;
+	losslessParam.flags = exParamFlag_none;
+	losslessParam.paramValues = losslessValues;
+	
+	exportParamSuite->AddParam(exID, gIdx, ADBEVideoCodecGroup, &losslessParam);
+	
+	
+	// Quality
+	exParamValues qualityValues;
+	qualityValues.structVersion = 1;
+	qualityValues.rangeMin.intValue = 1;
+	qualityValues.rangeMax.intValue = 100;
+	qualityValues.value.intValue = 80;
+	qualityValues.disabled = kPrTrue;
+	qualityValues.hidden = kPrFalse;
+	
+	exNewParamInfo qualityParam;
+	qualityParam.structVersion = 1;
+	strncpy(qualityParam.identifier, MOXQuality, 255);
+	qualityParam.paramType = exParamType_int;
+	qualityParam.flags = exParamFlag_slider;
+	qualityParam.paramValues = qualityValues;
+	
+	exportParamSuite->AddParam(exID, gIdx, ADBEVideoCodecGroup, &qualityParam);
+	
+	
 	// Codec
 	exParamValues codecValues;
 	codecValues.structVersion = 1;
-	codecValues.rangeMin.intValue = VideoCodec_Uncompressed;
-	codecValues.rangeMax.intValue = VideoCodec_OpenEXR;
-	codecValues.value.intValue = VideoCodec_PNG;
+	codecValues.rangeMin.intValue = VideoCodec_Auto;
+	codecValues.rangeMax.intValue = VideoCodec_Uncompressed;
+	codecValues.value.intValue = VideoCodec_Auto;
 	codecValues.disabled = kPrFalse;
 	codecValues.hidden = kPrFalse;
 	
@@ -677,13 +717,40 @@ exSDKPostProcessParams(
 	}
 	
 	
+	// Lossless
+	utf16ncpy(paramString, "Lossless", 255);
+	exportParamSuite->SetParamName(exID, gIdx, MOXLossless, paramString);
+	
+	
+	// Quality
+	utf16ncpy(paramString, "Quality", 255);
+	exportParamSuite->SetParamName(exID, gIdx, MOXQuality, paramString);
+	
+	exParamValues qualityValues;
+	exportParamSuite->GetParamValue(exID, gIdx, MOXQuality, &qualityValues);
+	
+	qualityValues.rangeMin.intValue = 1;
+	qualityValues.rangeMax.intValue = 100;
+	
+	exportParamSuite->ChangeParam(exID, gIdx, MOXQuality, &qualityValues);
+
+	
+	
 	// Video codec
 	utf16ncpy(paramString, "Codec", 255);
 	exportParamSuite->SetParamName(exID, gIdx, MOXVideoCodec, paramString);
 	
-	const MOX_VideoCodec videoCodecs[] = { VideoCodec_Uncompressed, VideoCodec_PNG, VideoCodec_OpenEXR };
+	const MOX_VideoCodec videoCodecs[] = {	VideoCodec_Auto,
+											VideoCodec_Dirac,
+											VideoCodec_OpenEXR,
+											VideoCodec_PNG,
+											VideoCodec_Uncompressed };
 	
-	const char *videoCodecStrings[] = { "Uncompressed", "PNG", "OpenEXR" };
+	const char *videoCodecStrings[] = { "Auto",
+										"Dirac",
+										"OpenEXR",
+										"PNG",
+										"Uncompressed" };
 	
 	exportParamSuite->ClearConstrainedValues(exID, gIdx, MOXVideoCodec);
 	
@@ -794,8 +861,10 @@ exSDKGetParamSummary(
 	paramSuite->GetParamValue(exID, gIdx, ADBEVideoHeight, &height);
 	paramSuite->GetParamValue(exID, gIdx, ADBEVideoFPS, &frameRate);
 	
-	exParamValues bitDepth, codec;
+	exParamValues bitDepth, lossless, quality, codec;
 	paramSuite->GetParamValue(exID, gIdx, MOXVideoBitDepth, &bitDepth);
+	paramSuite->GetParamValue(exID, gIdx, MOXLossless, &lossless);
+	paramSuite->GetParamValue(exID, gIdx, MOXQuality, &quality);
 	paramSuite->GetParamValue(exID, gIdx, MOXVideoCodec, &codec);
 	
 	exParamValues sampleRateP, channelTypeP, audioBitDepthP;
@@ -873,6 +942,8 @@ exSDKGetParamSummary(
 	
 	
 	const MOX_VideoBitDepth videoDepth = (MOX_VideoBitDepth)bitDepth.value.intValue;
+	const bool videoLossless = lossless.value.intValue;
+	const int videoQuality = quality.value.intValue;
 	const MOX_VideoCodec videoCodec = (MOX_VideoCodec)codec.value.intValue;
 	
 	const std::string bitDepth_str = (videoDepth == VideoBitDepth_8bit ? "8-bit" :
@@ -883,14 +954,26 @@ exSDKGetParamSummary(
 								videoDepth == VideoBitDepth_32bit_Float ? "32-bit float" :
 								"Unknown");
 	
-	const std::string codec_str = (videoCodec == VideoCodec_Uncompressed ? "Uncompressed" :
-									videoCodec == VideoCodec_PNG ? "PNG" :
+	std::stringstream quality_str;
+	
+	if(videoLossless)
+	{
+		quality_str << "Lossless";
+	}
+	else
+	{
+		quality_str << "Quality " << videoQuality;
+	}
+	
+	const std::string codec_str = (videoCodec == VideoCodec_Dirac ? "Dirac" :
 									videoCodec == VideoCodec_OpenEXR ? "OpenEXR" :
-									"Unknown");
+									videoCodec == VideoCodec_PNG ? "PNG" :
+									videoCodec == VideoCodec_Uncompressed ? "Uncompressed" :
+									"Auto");
 	
 	std::stringstream stream3;
 	
-	stream3 << bitDepth_str << ", " << codec_str << " codec";
+	stream3 << bitDepth_str << ", " << quality_str.str() << ", "<< codec_str << " codec";
 	
 	summary3 = stream3.str();
 	
@@ -917,6 +1000,17 @@ exSDKValidateParamChanged (
 	
 	std::string param = validateParamChangedRecP->changedParamIdentifier;
 	
+	if(param == MOXLossless)
+	{
+		exParamValues losslessValue, qualityValue;
+		
+		paramSuite->GetParamValue(exID, gIdx, MOXLossless, &losslessValue);
+		paramSuite->GetParamValue(exID, gIdx, MOXQuality, &qualityValue);
+		
+		qualityValue.disabled = !!losslessValue.value.intValue;
+		
+		paramSuite->ChangeParam(exID, gIdx, MOXQuality, &qualityValue);
+	}
 
 	return malNoError;
 }

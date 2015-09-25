@@ -567,8 +567,10 @@ exSDKExport(
 									2);
 	
 	
-	exParamValues videoBitDepthP, videoCodecP, audioBitDepthP;
+	exParamValues videoBitDepthP, videoLosslessP, videoQualityP, videoCodecP, audioBitDepthP;
 	paramSuite->GetParamValue(exID, gIdx, MOXVideoBitDepth, &videoBitDepthP);
+	paramSuite->GetParamValue(exID, gIdx, MOXLossless, &videoLosslessP);
+	paramSuite->GetParamValue(exID, gIdx, MOXQuality, &videoQualityP);
 	paramSuite->GetParamValue(exID, gIdx, MOXVideoCodec, &videoCodecP);
 	paramSuite->GetParamValue(exID, gIdx, MOXAudioBitDepth, &audioBitDepthP);
 	
@@ -594,10 +596,10 @@ exSDKExport(
 	renderParms.inHeight = heightP.value.intValue;
 	renderParms.inPixelAspectRatioNumerator = pixelAspectRatioP.value.ratioValue.numerator;
 	renderParms.inPixelAspectRatioDenominator = pixelAspectRatioP.value.ratioValue.denominator;
-	renderParms.inRenderQuality = kPrRenderQuality_High;
+	renderParms.inRenderQuality = (exportInfoP->maximumRenderQuality ? kPrRenderQuality_Max : kPrRenderQuality_High);
 	renderParms.inFieldType = fieldTypeP.value.intValue;
 	renderParms.inDeinterlace = kPrFalse;
-	renderParms.inDeinterlaceQuality = kPrRenderQuality_High;
+	renderParms.inDeinterlaceQuality = (exportInfoP->maximumRenderQuality ? kPrRenderQuality_Max : kPrRenderQuality_High);
 	renderParms.inCompositeOnBlack = (alpha ? kPrFalse : kPrTrue);
 	
 	
@@ -631,21 +633,10 @@ exSDKExport(
 	
 	if(result == malNoError)
 	{
-		//prUTF16Char *filepath = NULL;
-	
 		try
 		{
 			using namespace MoxFiles;
 			
-			//csSDK_int32 pathLen = 0;
-			//result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, NULL);
-			//assert(result == suiteError_NoError);
-			
-			//filepath = new prUTF16Char[pathLen + 1];
-			//result = exportFileSuite->GetPlatformPath(exportInfoP->fileObject, &pathLen, filepath);
-			//assert(result == suiteError_NoError);
-			
-		
 			if( supportsThreads() )
 				setGlobalThreadCount(g_num_cpus);
 			
@@ -655,11 +646,22 @@ exSDKExport(
 			const Rational sampleRate = Rational(sampleRateP.value.floatValue, 1);
 			
 			
+			const MoxFiles::PixelType pixelType = (videoBitDepth == VideoBitDepth_8bit ? MoxFiles::UINT8 :
+													videoBitDepth == VideoBitDepth_10bit ? MoxFiles::UINT10 :
+													videoBitDepth == VideoBitDepth_12bit ? MoxFiles::UINT12 :
+													videoBitDepth == VideoBitDepth_16bit ? MoxFiles::UINT16 :
+													videoBitDepth == VideoBitDepth_16bit_Float ? MoxFiles::HALF :
+													videoBitDepth == VideoBitDepth_32bit_Float ? MoxFiles::FLOAT :
+													MoxFiles::UINT8);
+			
+			const bool lossless = videoLosslessP.value.intValue;
+			
 			const MOX_VideoCodec videoCodecVal = (MOX_VideoCodec)videoCodecP.value.intValue;
-			const VideoCompression videoCompression = (videoCodecVal == VideoCodec_Uncompressed ? MoxFiles::UNCOMPRESSED :
-														videoCodecVal == VideoCodec_PNG ? MoxFiles::PNG :
+			const VideoCompression videoCompression = (	videoCodecVal == VideoCodec_Dirac ? MoxFiles::DIRAC :
 														videoCodecVal == VideoCodec_OpenEXR ? MoxFiles::OPENEXR :
-														MoxFiles::PNG);
+														videoCodecVal == VideoCodec_PNG ? MoxFiles::PNG :
+														videoCodecVal == VideoCodec_Uncompressed ? MoxFiles::UNCOMPRESSED :
+														MoxFiles::VideoCodec::pickCodec(lossless, pixelType, alpha));
 														
 			const AudioCompression audioCompression = MoxFiles::PCM;
 			
@@ -669,14 +671,6 @@ exSDKExport(
 			
 			if(exportInfoP->exportVideo)
 			{
-				const MoxFiles::PixelType pixelType = (videoBitDepth == VideoBitDepth_8bit ? MoxFiles::UINT8 :
-														videoBitDepth == VideoBitDepth_10bit ? MoxFiles::UINT10 :
-														videoBitDepth == VideoBitDepth_12bit ? MoxFiles::UINT12 :
-														videoBitDepth == VideoBitDepth_16bit ? MoxFiles::UINT16 :
-														videoBitDepth == VideoBitDepth_16bit_Float ? MoxFiles::HALF :
-														videoBitDepth == VideoBitDepth_32bit_Float ? MoxFiles::FLOAT :
-														MoxFiles::UINT8);
-				
 				ChannelList &channels = head.channels();
 				
 				channels.insert("R", Channel(pixelType));
@@ -685,6 +679,15 @@ exSDKExport(
 				
 				if(alpha)
 					channels.insert("A", Channel(pixelType));
+				
+				if(lossless)
+				{
+					VideoCodec::setLossless(head);
+				}
+				else
+				{
+					VideoCodec::setQuality(head, videoQualityP.value.intValue);
+				}
 			}
 			
 			
@@ -733,7 +736,6 @@ exSDKExport(
 			}
 			
 			
-			//PlatformIOStream outstream(filepath, PlatformIOStream::ReadWrite);
 			PrIOStream outstream(exportFileSuite, exportInfoP->fileObject);
 			
 			OutputFile outfile(outstream, head);
@@ -894,6 +896,8 @@ exSDKExport(
 				}
 			}
 			
+			outfile.finalize();
+			
 			
 			for(int i = 0; i < 6; i++)
 			{
@@ -905,8 +909,6 @@ exSDKExport(
 		{
 			result = exportReturn_InternalError;
 		}
-		
-		//delete [] filepath;
 	}
 	
 	

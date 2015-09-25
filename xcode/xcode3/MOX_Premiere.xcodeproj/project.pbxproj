@@ -11,6 +11,8 @@
 		2A06EF73177D75F100233616 /* MOX_Premiere_Export_Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A06EF72177D75F100233616 /* MOX_Premiere_Export_Params.cpp */; };
 		2A0935241B430A0700D8416F /* liblibpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A09351D1B4309FD00D8416F /* liblibpng.a */; };
 		2A0935251B430A0900D8416F /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0935231B430A0100D8416F /* libzlib.a */; };
+		2A0BCF011BB5103B00958299 /* liborc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0BCF001BB5103A00958299 /* liborc.a */; };
+		2A0BCF0C1BB5106500958299 /* libschroedinger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0BCEF71BB5103500958299 /* libschroedinger.a */; };
 		2A58AED9176CF23F00669435 /* MOX_Premiere_Export.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A58AED4176CF23F00669435 /* MOX_Premiere_Export.cpp */; };
 		2A58AEDA176CF23F00669435 /* MOX_Premiere_Import.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A58AED6176CF23F00669435 /* MOX_Premiere_Import.cpp */; };
 		2A7892CE1AF13AAB001776FD /* PlatformIOStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A7892BF1AF13AAB001776FD /* PlatformIOStream.cpp */; };
@@ -29,29 +31,64 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0935181B4309FD00D8416F /* libpng.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* liblibpng.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = libpng;
 		};
 		2A0935221B430A0100D8416F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A09351E1B430A0100D8416F /* zlib.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* libzlib.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = zlib;
 		};
 		2A09352D1B430A1500D8416F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0935181B4309FD00D8416F /* libpng.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* libpng */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = libpng;
 		};
 		2A09352F1B430A1500D8416F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A09351E1B430A0100D8416F /* zlib.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* zlib */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = zlib;
+		};
+		2A0BCEF61BB5103500958299 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A0BCEF21BB5103500958299 /* schroedinger.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D /* libschroedinger.a */;
+			remoteInfo = schroedinger;
+		};
+		2A0BCEFD1BB5103A00958299 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A0BCEF81BB5103A00958299 /* orc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A7322D41B7444170006AB4E /* orcc */;
+			remoteInfo = orcc;
+		};
+		2A0BCEFF1BB5103A00958299 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A0BCEF81BB5103A00958299 /* orc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D /* liborc.a */;
+			remoteInfo = liborc;
+		};
+		2A0BCF061BB5104800958299 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A0BCEF21BB5103500958299 /* schroedinger.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* schroedinger */;
+			remoteInfo = schroedinger;
+		};
+		2A0BCF081BB5104800958299 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A0BCEF81BB5103A00958299 /* orc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* liborc */;
+			remoteInfo = liborc;
 		};
 		2AA0DFB81AE4847D0053B71F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -180,6 +217,8 @@
 		2A06EF72177D75F100233616 /* MOX_Premiere_Export_Params.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOX_Premiere_Export_Params.cpp; sourceTree = "<group>"; };
 		2A0935181B4309FD00D8416F /* libpng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpng.xcodeproj; path = ext/libpng.xcodeproj; sourceTree = "<group>"; };
 		2A09351E1B430A0100D8416F /* zlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = zlib.xcodeproj; path = ext/zlib.xcodeproj; sourceTree = "<group>"; };
+		2A0BCEF21BB5103500958299 /* schroedinger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = schroedinger.xcodeproj; path = ext/schroedinger/schroedinger.xcodeproj; sourceTree = "<group>"; };
+		2A0BCEF81BB5103A00958299 /* orc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = orc.xcodeproj; path = ext/orc/orc.xcodeproj; sourceTree = "<group>"; };
 		2A58AED4176CF23F00669435 /* MOX_Premiere_Export.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOX_Premiere_Export.cpp; sourceTree = "<group>"; };
 		2A58AED5176CF23F00669435 /* MOX_Premiere_Export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOX_Premiere_Export.h; sourceTree = "<group>"; };
 		2A58AED6176CF23F00669435 /* MOX_Premiere_Import.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOX_Premiere_Import.cpp; sourceTree = "<group>"; };
@@ -210,6 +249,8 @@
 				2AA0E1AB1AE56F8E0053B71F /* libOpenEXR.a in Frameworks */,
 				2A0935241B430A0700D8416F /* liblibpng.a in Frameworks */,
 				2A0935251B430A0900D8416F /* libzlib.a in Frameworks */,
+				2A0BCF011BB5103B00958299 /* liborc.a in Frameworks */,
+				2A0BCF0C1BB5106500958299 /* libschroedinger.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +273,8 @@
 				2AA0E1621AE56D230053B71F /* OpenEXR.xcodeproj */,
 				2A0935181B4309FD00D8416F /* libpng.xcodeproj */,
 				2A09351E1B430A0100D8416F /* zlib.xcodeproj */,
+				2A0BCEF21BB5103500958299 /* schroedinger.xcodeproj */,
+				2A0BCEF81BB5103A00958299 /* orc.xcodeproj */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 			);
 			name = SDK_File_Import;
@@ -281,6 +324,23 @@
 			isa = PBXGroup;
 			children = (
 				2A0935231B430A0100D8416F /* libzlib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A0BCEF31BB5103500958299 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A0BCEF71BB5103500958299 /* libschroedinger.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A0BCEF91BB5103A00958299 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A0BCEFE1BB5103A00958299 /* orcc */,
+				2A0BCF001BB5103A00958299 /* liborc.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -377,6 +437,8 @@
 				2AA0E1AD1AE56F980053B71F /* PBXTargetDependency */,
 				2A09352E1B430A1500D8416F /* PBXTargetDependency */,
 				2A0935301B430A1500D8416F /* PBXTargetDependency */,
+				2A0BCF071BB5104800958299 /* PBXTargetDependency */,
+				2A0BCF091BB5104800958299 /* PBXTargetDependency */,
 			);
 			name = "MOX Premiere";
 			productInstallPath = "$(HOME)/Library/Bundles";
@@ -427,6 +489,14 @@
 					ProjectRef = 2AA0E1621AE56D230053B71F /* OpenEXR.xcodeproj */;
 				},
 				{
+					ProductGroup = 2A0BCEF91BB5103A00958299 /* Products */;
+					ProjectRef = 2A0BCEF81BB5103A00958299 /* orc.xcodeproj */;
+				},
+				{
+					ProductGroup = 2A0BCEF31BB5103500958299 /* Products */;
+					ProjectRef = 2A0BCEF21BB5103500958299 /* schroedinger.xcodeproj */;
+				},
+				{
 					ProductGroup = 2A09351F1B430A0100D8416F /* Products */;
 					ProjectRef = 2A09351E1B430A0100D8416F /* zlib.xcodeproj */;
 				},
@@ -451,6 +521,27 @@
 			fileType = archive.ar;
 			path = libzlib.a;
 			remoteRef = 2A0935221B430A0100D8416F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A0BCEF71BB5103500958299 /* libschroedinger.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libschroedinger.a;
+			remoteRef = 2A0BCEF61BB5103500958299 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A0BCEFE1BB5103A00958299 /* orcc */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = orcc;
+			remoteRef = 2A0BCEFD1BB5103A00958299 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A0BCF001BB5103A00958299 /* liborc.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liborc.a;
+			remoteRef = 2A0BCEFF1BB5103A00958299 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2AA0DFB91AE4847D0053B71F /* libMoxMxf.a */ = {
@@ -565,6 +656,16 @@
 			isa = PBXTargetDependency;
 			name = zlib;
 			targetProxy = 2A09352F1B430A1500D8416F /* PBXContainerItemProxy */;
+		};
+		2A0BCF071BB5104800958299 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = schroedinger;
+			targetProxy = 2A0BCF061BB5104800958299 /* PBXContainerItemProxy */;
+		};
+		2A0BCF091BB5104800958299 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = liborc;
+			targetProxy = 2A0BCF081BB5104800958299 /* PBXContainerItemProxy */;
 		};
 		2AA0E0261AE48FF50053B71F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

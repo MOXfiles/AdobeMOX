@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0BC44F1BB081BE00958299 /* MOX_Video_Out_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BC44E1BB081BE00958299 /* MOX_Video_Out_Controller.m */; };
+		2A0BC8061BB1EC6400958299 /* MOX_AEIO_Dialogs_Cocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BC8051BB1EC6400958299 /* MOX_AEIO_Dialogs_Cocoa.mm */; };
+		2A0BC82D1BB1FE2800958299 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A0BC82C1BB1FE2800958299 /* Cocoa.framework */; };
 		2A1F74CC1B28D5B500343D83 /* MOX_AEIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F74C91B28D5B500343D83 /* MOX_AEIO.cpp */; };
 		2A1F74CD1B28D5B500343D83 /* MOX_AEIO_PiPL.r in Rez */ = {isa = PBXBuildFile; fileRef = 2A1F74CB1B28D5B500343D83 /* MOX_AEIO_PiPL.r */; };
 		2A1F75341B28DD8900343D83 /* MOX_MissingSuiteError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F75311B28DD8900343D83 /* MOX_MissingSuiteError.cpp */; };
@@ -28,6 +31,7 @@
 		2A754F471B41BCF300DCA796 /* liblibpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A754F461B41BCEE00DCA796 /* liblibpng.a */; };
 		2A75512A1B41BF5500DCA796 /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7551291B41BF4D00DCA796 /* libzlib.a */; };
 		2A856E4E1B7D27400001B919 /* liborc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EAC1B6900A20093FC66 /* liborc.a */; };
+		2A945B361BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A945B351BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,28 +137,28 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E81B28F7FF00343D83 /* mxflib.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* mxflib */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = mxflib;
 		};
 		2A55A9451B8E8B420087D172 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E21B28F7FF00343D83 /* MoxFiles.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* MoxFiles */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = MoxFiles;
 		};
 		2A55A9471B8E8B420087D172 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E51B28F7FF00343D83 /* MoxMxf.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* MoxMxf */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = MoxMxf;
 		};
 		2A55A94C1B8E8B610087D172 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75EC1B28F7FF00343D83 /* IlmBase.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 2A6D4C4C15CDEB0A006BADE7 /* IlmBase */;
+			remoteGlobalIDString = 2A6D4C4C15CDEB0A006BADE7;
 			remoteInfo = IlmBase;
 		};
 		2A616EA21B6900840093FC66 /* PBXContainerItemProxy */ = {
@@ -216,6 +220,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A0BC44D1BB081BE00958299 /* MOX_Video_Out_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOX_Video_Out_Controller.h; sourceTree = "<group>"; };
+		2A0BC44E1BB081BE00958299 /* MOX_Video_Out_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOX_Video_Out_Controller.m; sourceTree = "<group>"; };
+		2A0BC8051BB1EC6400958299 /* MOX_AEIO_Dialogs_Cocoa.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MOX_AEIO_Dialogs_Cocoa.mm; sourceTree = "<group>"; };
+		2A0BC82C1BB1FE2800958299 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2A1F74C91B28D5B500343D83 /* MOX_AEIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOX_AEIO.cpp; sourceTree = "<group>"; };
 		2A1F74CA1B28D5B500343D83 /* MOX_AEIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOX_AEIO.h; sourceTree = "<group>"; };
 		2A1F74CB1B28D5B500343D83 /* MOX_AEIO_PiPL.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; path = MOX_AEIO_PiPL.r; sourceTree = "<group>"; };
@@ -238,6 +246,8 @@
 		2A616EA71B6900A20093FC66 /* orc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = orc.xcodeproj; path = ext/orc/orc.xcodeproj; sourceTree = "<group>"; };
 		2A754F411B41BCEE00DCA796 /* libpng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpng.xcodeproj; path = ext/libpng.xcodeproj; sourceTree = "<group>"; };
 		2A7551241B41BF4D00DCA796 /* zlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = zlib.xcodeproj; path = ext/zlib.xcodeproj; sourceTree = "<group>"; };
+		2A945B321BA3493000E3E086 /* MOX_AEIO_Dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOX_AEIO_Dialogs.h; sourceTree = "<group>"; };
+		2A945B351BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MOX_Video_Out_Dialog.xib; sourceTree = "<group>"; };
 		C4E618CC095A3CE80012CA3F /* NOX.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NOX.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -266,6 +276,7 @@
 				2A75512A1B41BF5500DCA796 /* libzlib.a in Frameworks */,
 				2A616EA41B69008A0093FC66 /* libschroedinger.a in Frameworks */,
 				2A856E4E1B7D27400001B919 /* liborc.a in Frameworks */,
+				2A0BC82D1BB1FE2800958299 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +292,8 @@
 				2A1F75331B28DD8900343D83 /* MOX_SuiteHandler.h */,
 				2A1F75321B28DD8900343D83 /* MOX_SuiteHandler.cpp */,
 				2A1F75311B28DD8900343D83 /* MOX_MissingSuiteError.cpp */,
+				2A945B321BA3493000E3E086 /* MOX_AEIO_Dialogs.h */,
+				2A945B311BA3490E00E3E086 /* mac */,
 			);
 			name = aftereffects;
 			path = ../../src/aftereffects;
@@ -383,6 +396,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2A945B311BA3490E00E3E086 /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				2A0BC8051BB1EC6400958299 /* MOX_AEIO_Dialogs_Cocoa.mm */,
+				2A0BC44D1BB081BE00958299 /* MOX_Video_Out_Controller.h */,
+				2A0BC44E1BB081BE00958299 /* MOX_Video_Out_Controller.m */,
+				2A945B351BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib */,
+			);
+			path = mac;
+			sourceTree = "<group>";
+		};
 		C4E6187C095A3C800012CA3F = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +425,7 @@
 				2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */,
 				2A616EA71B6900A20093FC66 /* orc.xcodeproj */,
 				C4E6188C095A3C800012CA3F /* Products */,
+				2A0BC82C1BB1FE2800958299 /* Cocoa.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -632,6 +657,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A945B361BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +693,8 @@
 				2A1F75351B28DD8900343D83 /* MOX_SuiteHandler.cpp in Sources */,
 				2A1F77A91B2A32A500343D83 /* mxflib_messages.cpp in Sources */,
 				2A1F77AF1B2A32CA00343D83 /* PlatformIOStream.cpp in Sources */,
+				2A0BC44F1BB081BE00958299 /* MOX_Video_Out_Controller.m in Sources */,
+				2A0BC8061BB1EC6400958299 /* MOX_AEIO_Dialogs_Cocoa.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

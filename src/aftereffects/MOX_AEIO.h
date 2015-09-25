@@ -26,7 +26,7 @@ GPMain_IO(
 	A_long				 	major_versionL,			/* >> */		
 	A_long					minor_versionL,			/* >> */		
 #if PF_AE_PLUG_IN_VERSION < PF_AE100_PLUG_IN_VERSION
-	const A_char		 	*file_pathZ,				/* >> platform-specific delimiters */
+	const A_char		 	*file_pathZ,			/* >> platform-specific delimiters */
 	const A_char		 	*res_pathZ,				/* >> platform-specific delimiters */
 #endif
 	AEGP_PluginID			aegp_plugin_id,			/* >> */

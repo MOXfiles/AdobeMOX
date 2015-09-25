@@ -2,6 +2,7 @@
 
 #include "MOX_AEIO.h"
 
+#include "MOX_AEIO_Dialogs.h"
 
 #include <MoxFiles/InputFile.h>
 #include <MoxFiles/OutputFile.h>
@@ -9,6 +10,7 @@
 #include <MoxMxf/PlatformIOStream.h>
 
 #include <map>
+#include <sstream>
 
 #include <assert.h>
 #include <time.h>
@@ -19,7 +21,7 @@
 #endif
 
 
-class ErrThrower : std::exception
+class ErrThrower : public std::exception
 {
   public:
 	ErrThrower(A_Err err = A_Err_NONE) throw() : _err(err) {}
@@ -73,6 +75,9 @@ AEInputFile::AEInputFile(const A_PathType *file_pathZ) :
 	_file(NULL),
 	_path(NULL)
 {
+	if(file_pathZ == NULL)
+		throw MoxMxf::NullExc("Null path");
+
 	const size_t len = pathLen(file_pathZ);
 	
 	if(len == 0)
@@ -180,6 +185,9 @@ AEOutputFile::AEOutputFile(const A_PathType *file_pathZ, const MoxFiles::Header 
 	_stream(NULL),
 	_file(NULL)
 {
+	if(file_pathZ == NULL)
+		throw MoxMxf::NullExc("Null path");
+	
 	_stream = new PlatformIOStream(file_pathZ, PlatformIOStream::ReadWrite);
 	
 	_file = new MoxFiles::OutputFile(*_stream, header);
@@ -210,7 +218,11 @@ typedef struct {
 	A_u_char	magic[4]; // "MOX!"
 	A_u_long	version;
 	A_Boolean	flat; // just for testing
-	A_u_char	reserve[56];
+	A_u_char	bitDepth;
+	A_Boolean	lossless;
+	A_u_char	quality;
+	A_u_long	codec;
+	A_u_char	reserve[48];
 
 } MOX_OutOptions;
 
@@ -219,6 +231,7 @@ static void
 InitOptions(MOX_InOptions *options)
 {
 	memset(options, 0, sizeof(MOX_InOptions));
+	assert(sizeof(MOX_InOptions) == 64);
 
 	options->magic[0] = 'M';
 	options->magic[1] = 'O';
@@ -230,10 +243,29 @@ InitOptions(MOX_InOptions *options)
 	options->flat = FALSE;
 }
 
+typedef A_u_long CodecCode;
+
+static const CodecCode Auto_Codec			= 'auto';
+static const CodecCode Dirac_Codec			= 'Dirc';
+static const CodecCode OpenEXR_Codec		= 'oEXR';
+static const CodecCode PNG_Codec			= 'PNG ';
+static const CodecCode Uncompressed_Codec	= 'Uncm';
+
+enum {
+	Depth_Auto = 0,
+	Depth_8 = 8,
+	Depth_10 = 10,
+	Depth_12 = 12,
+	Depth_16 = 16,
+	Depth_16f = 116,
+	Depth_32f = 132
+};
+
 static void
 InitOptions(MOX_OutOptions *options)
 {
 	memset(options, 0, sizeof(MOX_OutOptions));
+	assert(sizeof(MOX_OutOptions) == 64);
 
 	options->magic[0] = 'M';
 	options->magic[1] = 'O';
@@ -241,6 +273,11 @@ InitOptions(MOX_OutOptions *options)
 	options->magic[3] = '!';
 	
 	options->version = 1;
+	
+	options->bitDepth = Depth_Auto;
+	options->lossless = TRUE;
+	options->quality = 80;
+	options->codec = Auto_Codec;
 	
 	options->flat = FALSE;
 }
@@ -270,6 +307,11 @@ CopyOptions(MOX_OutOptions *dest, const MOX_OutOptions *source)
 	{
 		if(source->version == 1)
 		{
+			dest->bitDepth = source->bitDepth;
+			dest->lossless = source->lossless;
+			dest->quality = source->quality;
+			dest->codec = source->codec;
+		
 			dest->flat = source->flat;
 		}
 		else
@@ -319,8 +361,7 @@ static int gNumCPUs = 1;
 
 
 static A_Err
-InitHook(
-	struct SPBasicSuite *pica_basicP)
+InitHook(struct SPBasicSuite *pica_basicP)
 {
 #ifdef MAC_ENV
 	// get number of CPUs using Mach calls
@@ -364,10 +405,11 @@ AEIO_Idle(
 
 static A_Err
 DeathHook(	
-	AEGP_GlobalRefcon unused1 ,
+	AEGP_GlobalRefcon unused1,
 	AEGP_DeathRefcon unused2)
 {
 	assert(g_infiles.size() == 0); // all files were closed, right?
+	assert(g_outfiles.size() == 0);
 
 	if( MoxFiles::supportsThreads() )
 		MoxFiles::setGlobalThreadCount(0);
@@ -447,6 +489,86 @@ AEBits(MoxFiles::PixelType type)
 }
 
 
+#ifdef AE_HFS_PATHS
+// convert from HFS paths (fnord:Users:mrb:) to Unix paths (/Users/mrb/)
+static int ConvertPath(const char * inPath, char * outPath, int outPathMaxLen)
+{
+	CFStringRef inStr = CFStringCreateWithCString(kCFAllocatorDefault, inPath ,kCFStringEncodingMacRoman);
+	if (inStr == NULL)
+		return -1;
+	CFURLRef url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, inStr, kCFURLHFSPathStyle,0);
+	if (url == NULL)
+		return -1;
+	CFStringRef outStr = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	if (!CFStringGetCString(outStr, outPath, outPathMaxLen, kCFStringEncodingMacRoman))
+		return -1;
+	CFRelease(outStr);
+	CFRelease(url);
+	CFRelease(inStr);
+	return 0;
+}
+#endif // AE_HFS_PATHS
+
+
+static MoxFiles::InputFile &
+GetFile(AEGP_SuiteHandler &suites, AEIO_InSpecH specH, const A_PathType *file_pathZ)
+{
+	if(g_infiles.find(specH) == g_infiles.end())
+	{
+	#ifdef AE_UNICODE_PATHS
+		AEGP_MemHandle pathH = NULL;
+		
+		if(file_pathZ == NULL)
+		{
+			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, &pathH);
+			
+			if(pathH)
+			{
+				suites.MemorySuite()->AEGP_LockMemHandle(pathH, (void **)&file_pathZ);
+			}
+			else
+				throw MoxMxf::NullExc("Couldn't get pathH");
+		}
+	#else
+		A_PathType file_nameZ[AEGP_MAX_PATH_SIZE];
+		
+		if(file_pathZ == NULL)
+		{
+			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, file_nameZ);
+			
+			file_pathZ = file_nameZ;
+		}
+	#endif
+		
+	#ifdef AE_HFS_PATHS	
+		A_char pathZ[AEGP_MAX_PATH_SIZE];
+
+		// convert the path format
+		if(A_Err_NONE != ConvertPath(file_pathZ, pathZ, AEGP_MAX_PATH_SIZE-1) )
+			return AEIO_Err_BAD_FILENAME;
+	#else
+		const A_PathType *pathZ = file_pathZ;
+	#endif
+		
+		
+		AEInputFile *inputFile = new AEInputFile(pathZ);
+	
+		g_infiles[specH] = inputFile;
+		
+		
+	#ifdef AE_UNICODE_PATHS
+		if(pathH)
+			suites.MemorySuite()->AEGP_FreeMemHandle(pathH);
+	#endif
+	}
+
+	if(g_infiles[specH] == NULL)
+		throw MoxMxf::NullExc("File is NULL");
+	
+	return g_infiles[specH]->file();
+}
+
+
 static A_Err	
 AEIO_InitInSpecFromFile(
 	AEIO_BasicData		*basic_dataP,
@@ -496,29 +618,8 @@ AEIO_InitInSpecFromFile(
 		if( supportsThreads() )
 			setGlobalThreadCount(gNumCPUs);
 
-	
-		if(g_infiles.find(specH) == g_infiles.end())
-		{
-		#ifdef AE_HFS_PATHS	
-			A_char pathZ[AEGP_MAX_PATH_SIZE];
-
-			// convert the path format
-			if(A_Err_NONE != ConvertPath(file_pathZ, pathZ, AEGP_MAX_PATH_SIZE-1) )
-				return AEIO_Err_BAD_FILENAME;
-		#else
-			const A_PathType *pathZ = file_pathZ;
-		#endif
 		
-			AEInputFile *inputFile = new AEInputFile(pathZ);
-		
-			g_infiles[specH] = inputFile;
-		}
-
-		if(g_infiles[specH] == NULL)
-			throw MoxMxf::NullExc("File is NULL");
-		
-		
-		InputFile &file = g_infiles[specH]->file();
+		InputFile &file = GetFile(suites, specH, file_pathZ);
 		
 		const Header &head = file.header();
 		
@@ -877,49 +978,8 @@ AEIO_DrawSparseFrame(
 		if( supportsThreads() )
 			setGlobalThreadCount(gNumCPUs);
 		
-		if(g_infiles.find(specH) == g_infiles.end())
-		{
-		#ifdef AE_UNICODE_PATHS
-			AEGP_MemHandle pathH = NULL;
-			A_PathType *file_nameZ = NULL;
-			
-			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, &pathH);
-			
-			if(pathH)
-			{
-				suites.MemorySuite()->AEGP_LockMemHandle(pathH, (void **)&file_nameZ);
-			}
-			else
-				return AEIO_Err_BAD_FILENAME; 
-		#else
-			A_PathType file_nameZ[AEGP_MAX_PATH_SIZE];
-			
-			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, file_nameZ);
-		#endif
-			
-		#ifdef AE_HFS_PATHS	
-			// convert the path format
-			if(A_Err_NONE != ConvertPath(file_nameZ, file_nameZ, AEGP_MAX_PATH_SIZE-1) )
-				return AEIO_Err_BAD_FILENAME; 
-		#endif
-			
-			
-			AEInputFile *inputFile = new AEInputFile(file_nameZ);
-			
-			g_infiles[specH] = inputFile;
-			
-			
-		#ifdef AE_UNICODE_PATHS
-			if(pathH)
-				suites.MemorySuite()->AEGP_FreeMemHandle(pathH);
-		#endif
-		}
-
-		if(g_infiles[specH] == NULL)
-			throw MoxMxf::NullExc("File is NULL");
 		
-		
-		InputFile &file = g_infiles[specH]->file();
+		InputFile &file = GetFile(suites, specH, NULL);
 		
 		const Header &head = file.header();
 		
@@ -1036,47 +1096,8 @@ AEIO_GetSound(
 		
 		using namespace MoxFiles;
 	
-		if(g_infiles.find(specH) == g_infiles.end())
-		{
-		#ifdef AE_UNICODE_PATHS
-			AEGP_MemHandle pathH = NULL;
-			A_PathType *file_nameZ = NULL;
-			
-			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, &pathH);
-			
-			if(pathH)
-			{
-				suites.MemorySuite()->AEGP_LockMemHandle(pathH, (void **)&file_nameZ);
-			}
-			else
-				return AEIO_Err_BAD_FILENAME; 
-		#else
-			A_PathType file_nameZ[AEGP_MAX_PATH_SIZE];
-			
-			suites.IOInSuite()->AEGP_GetInSpecFilePath(specH, file_nameZ);
-		#endif
-			
-		#ifdef AE_HFS_PATHS	
-			// convert the path format
-			if(A_Err_NONE != ConvertPath(file_nameZ, file_nameZ, AEGP_MAX_PATH_SIZE-1) )
-				return AEIO_Err_BAD_FILENAME; 
-		#endif
-			
-			
-			g_infiles[specH] = new AEInputFile(file_nameZ);
-			
-			
-		#ifdef AE_UNICODE_PATHS
-			if(pathH)
-				suites.MemorySuite()->AEGP_FreeMemHandle(pathH);
-		#endif
-		}
-
-		if(g_infiles[specH] == NULL)
-			throw MoxMxf::NullExc("File is NULL");
 		
-		
-		InputFile &file = g_infiles[specH]->file();
+		InputFile &file = GetFile(suites, specH, NULL);
 		
 		
 		A_FpLong sample_rate;
@@ -1351,9 +1372,98 @@ AEIO_UserOptionsDialog(
 	AEIO_OutSpecH			outH, 
 	const PF_EffectWorld	*sample0,
 	A_Boolean				*user_interacted0)
-{ 
-	basic_dataP->msg_func(1, "No options dialog to see here!");
-	return A_Err_NONE;
+{
+	A_Err ae_err = A_Err_NONE;
+	
+	AEGP_SuiteHandler suites(basic_dataP->pica_basicP);
+
+	try
+	{
+		ErrThrower err;
+		
+		AEIO_Handle optionsH = NULL;
+		err = suites.IOOutSuite()->AEGP_GetOutSpecOptionsHandle(outH, (void**)&optionsH);
+		
+		if(optionsH)
+		{
+			MOX_OutOptions *options = NULL;
+			
+			err = suites.MemorySuite()->AEGP_LockMemHandle(optionsH, (void**)&options);
+			
+			if(options)
+			{
+				DialogBitDepth bitDepth = (options->bitDepth == Depth_8 ? DIALOG_BITDEPTH_8 :
+											//options->bitDepth == Depth_10 ? DIALOG_BITDEPTH_10 :
+											//options->bitDepth == Depth_12 ? DIALOG_BITDEPTH_12 :
+											options->bitDepth == Depth_16 ? DIALOG_BITDEPTH_16 :
+											options->bitDepth == Depth_16f ? DIALOG_BITDEPTH_16_FLOAT :
+											options->bitDepth == Depth_32f ? DIALOG_BITDEPTH_32_FLOAT :
+											DIALOG_BITDEPTH_AUTO);
+											
+				bool lossless = options->lossless;
+				int quality = options->quality;
+				
+				DialogCodec codec = (options->codec == Dirac_Codec ? DIALOG_CODEC_DIRAC :
+										options->codec == OpenEXR_Codec ? DIALOG_CODEC_OPENEXR :
+										options->codec == PNG_Codec ? DIALOG_CODEC_PNG :
+										options->codec == Uncompressed_Codec ? DIALOG_CODEC_UNCOMPRESSED :
+										DIALOG_CODEC_AUTO);
+				
+			#ifdef MAC_ENV
+				const char *plugHndl = "com.MOXfiles.AfterEffects.NOX";
+				const void *hwnd = NULL;
+			#else
+				// get platform handles
+				const void *plugHndl = NULL;
+				HWND hwnd = NULL;
+				suites.UtilitySuite()->AEGP_GetMainHWND((void *)&hwnd);
+			#endif
+				
+				bool clicked_ok = MOX_AEIO_Video_Out_Dialog(bitDepth, lossless, quality, codec, plugHndl, hwnd);
+				
+				if(clicked_ok)
+				{
+					options->bitDepth = (bitDepth == DIALOG_BITDEPTH_8 ? Depth_8 :
+											//bitDepth == DIALOG_BITDEPTH_10 ? Depth_10 :
+											//bitDepth == DIALOG_BITDEPTH_12 ? Depth_12 :
+											bitDepth == DIALOG_BITDEPTH_16 ? Depth_16 :
+											bitDepth == DIALOG_BITDEPTH_16_FLOAT ? Depth_16f :
+											bitDepth == DIALOG_BITDEPTH_32_FLOAT ? Depth_32f :
+											Depth_Auto);
+											
+					options->lossless = lossless;
+					options->quality = quality;
+					
+					options->codec = (codec == DIALOG_CODEC_DIRAC ? Dirac_Codec :
+										codec == DIALOG_CODEC_OPENEXR ? OpenEXR_Codec :
+										codec == DIALOG_CODEC_PNG ? PNG_Codec :
+										codec == DIALOG_CODEC_UNCOMPRESSED ? Uncompressed_Codec :
+										Auto_Codec);
+				
+				
+					*user_interacted0 = TRUE;
+				}
+				else
+					*user_interacted0 = FALSE;
+			}
+			else
+				assert(false);
+			
+			err = suites.MemorySuite()->AEGP_UnlockMemHandle(optionsH);
+		}
+		else
+			assert(false);
+	}
+	catch(ErrThrower &err)
+	{
+		ae_err = err.err();
+	}
+	catch(...)
+	{
+		ae_err = AEIO_Err_PARSING;
+	}
+	
+	return ae_err;
 }
 
 
@@ -1450,14 +1560,81 @@ AEIO_GetOutputInfo(
 	AEIO_OutSpecH		outH,
 	AEIO_Verbiage		*verbiageP)
 { 
-	A_Err err			= A_Err_NONE;
-	//AEGP_SuiteHandler	suites(basic_dataP->pica_basicP);
-
-	strcpy(verbiageP->name, "filename");
-	strcpy(verbiageP->type, "NOX");
-	strcpy(verbiageP->sub_type, "no options yet");
+	A_Err ae_err = A_Err_NONE;
 	
-	return err;
+	AEGP_SuiteHandler suites(basic_dataP->pica_basicP);
+	
+	std::stringstream info;
+	
+	try
+	{
+		ErrThrower err;
+		
+		AEIO_Handle optionsH = NULL;
+		err = suites.IOOutSuite()->AEGP_GetOutSpecOptionsHandle(outH, reinterpret_cast<void**>(&optionsH));
+		
+		if(optionsH)
+		{
+			MOX_OutOptions *options = NULL;
+			
+			err = suites.MemorySuite()->AEGP_LockMemHandle(optionsH, (void**)&options);
+			
+			if(options)
+			{
+				if(options->lossless)
+				{
+					info << "Lossless";
+				}
+				else
+				{
+					info << "Quality: " << (int)options->quality;
+				}
+				
+				info << "\n";
+				
+				const char *bit_depth = (options->bitDepth == Depth_8 ? "8-bit" :
+											options->bitDepth == Depth_10 ? "10-bit" :
+											options->bitDepth == Depth_12 ? "12-bit" :
+											options->bitDepth == Depth_16 ? "16-bit" :
+											options->bitDepth == Depth_16f ? "16-bit float" :
+											options->bitDepth == Depth_32f ? "32-bit float" :
+											"Auto bit depth");
+											
+				info << bit_depth;
+				
+				info << "\n";
+				
+				const char *codec = (options->codec == Dirac_Codec ? "Dirac" :
+										options->codec == OpenEXR_Codec ? "OpenEXR" :
+										options->codec == PNG_Codec ? "PNG" :
+										options->codec == Uncompressed_Codec ? "Uncompressed" :
+										"Auto");
+										
+				info << codec << " codec";
+				
+			}
+		
+			err = suites.MemorySuite()->AEGP_UnlockMemHandle(optionsH);
+		}
+		else
+			assert(false);
+	}
+	catch(ErrThrower &err)
+	{
+		ae_err = err.err();
+	}
+	catch(...)
+	{
+		ae_err = AEIO_Err_PARSING;
+	}
+	
+	strcpy(verbiageP->name, "dummy filename");
+	strcpy(verbiageP->type, "NOX");
+	
+	assert(info.str().size() < AEIO_MAX_MESSAGE_LEN);
+	strcpy(verbiageP->sub_type, info.str().c_str());
+	
+  	return ae_err;
 }
 
 
@@ -1580,6 +1757,9 @@ AEIO_StartAdding(
 		if(optionsH)
 		{
 			err = suites.MemorySuite()->AEGP_LockMemHandle(optionsH, (void**)&options);
+			
+			if(options == NULL)
+				throw MoxMxf::NullExc("NULL options");
 		}
 		else
 			throw MoxMxf::NullExc("No options");
@@ -1633,7 +1813,41 @@ AEIO_StartAdding(
 		Rational sampleRate(sample_rate, 1);
 		
 		
-		const VideoCompression vid_compression = (depth >= 96 ? MoxFiles::OPENEXR : MoxFiles::DIRAC);
+		MoxFiles::PixelType pixel_type = MoxFiles::UINT8;
+		bool have_alpha = true;
+		
+		if(depth > 0)
+		{
+			const size_t bytes_per_pixel = (depth >> 3);
+			have_alpha = (bytes_per_pixel == 4 || bytes_per_pixel == 8 || bytes_per_pixel == 16);
+			
+			if(options->bitDepth == Depth_Auto)
+			{
+				const size_t bytes_per_subpixel = (bytes_per_pixel / (have_alpha ? 4 : 3));
+				
+				pixel_type = (bytes_per_subpixel == 1 ? MoxFiles::UINT8 :
+								bytes_per_subpixel == 2 ? MoxFiles::UINT16 :
+								bytes_per_subpixel == 4 ? MoxFiles::HALF :
+								MoxFiles::UINT8);
+			}
+			else
+			{
+				pixel_type = (options->bitDepth == Depth_8 ? MoxFiles::UINT8 :
+								options->bitDepth == Depth_10 ? MoxFiles::UINT10 :
+								options->bitDepth == Depth_12 ? MoxFiles::UINT12 :
+								options->bitDepth == Depth_16 ? MoxFiles::UINT16 :
+								options->bitDepth == Depth_16f ? MoxFiles::HALF :
+								options->bitDepth == Depth_32f ? MoxFiles::FLOAT :
+								MoxFiles::UINT8);
+			}
+		}
+		
+		const VideoCompression vid_compression = (options->codec == Dirac_Codec ? MoxFiles::DIRAC :
+													options->codec == OpenEXR_Codec ? MoxFiles::OPENEXR :
+													options->codec == PNG_Codec ? MoxFiles::PNG :
+													options->codec == Uncompressed_Codec ? MoxFiles::UNCOMPRESSED :
+														MoxFiles::VideoCodec::pickCodec(options->lossless, pixel_type, have_alpha));
+		
 		const AudioCompression aud_compression = MoxFiles::PCM;
 		
 		Header head(width, height, frameRate, sampleRate, vid_compression, aud_compression);
@@ -1642,15 +1856,6 @@ AEIO_StartAdding(
 		if(depth > 0)
 		{
 			ChannelList &channels = head.channels();
-			
-			const size_t bytes_per_pixel = (depth >> 3);
-			const bool have_alpha = (bytes_per_pixel == 4 || bytes_per_pixel == 8 || bytes_per_pixel == 16);
-			const size_t bytes_per_subpixel = (bytes_per_pixel / (have_alpha ? 4 : 3));
-			
-			const MoxFiles::PixelType pixel_type = (bytes_per_subpixel == 1 ? MoxFiles::UINT8 :
-													bytes_per_subpixel == 2 ? MoxFiles::UINT16 :
-													bytes_per_subpixel == 4 ? MoxFiles::HALF :
-													MoxFiles::UINT8);
 											
 			channels.insert("R", Channel(pixel_type));
 			channels.insert("G", Channel(pixel_type));
@@ -1658,6 +1863,15 @@ AEIO_StartAdding(
 			
 			if(have_alpha)
 				channels.insert("A", Channel(pixel_type));
+				
+			if(options->lossless)
+			{
+				VideoCodec::setLossless(head);
+			}
+			else
+			{
+				VideoCodec::setQuality(head, options->quality);
+			}
 		}
 		
 		
@@ -2081,7 +2295,6 @@ ConstructModuleInfo(
 											AEIO_MFlag_VIDEO			| 
 											AEIO_MFlag_AUDIO			|
 											//AEIO_MFlag_NO_TIME			| 
-											AEIO_MFlag_NO_OPTIONS		| 
 											//AEIO_MFlag_CAN_DO_MARKERS	|
 											AEIO_MFlag_HSF_AWARE		|
 											AEIO_MFlag_CAN_DRAW_DEEP;
