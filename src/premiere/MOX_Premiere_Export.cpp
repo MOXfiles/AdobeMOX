@@ -886,7 +886,7 @@ exSDKExport(
 				videoTime += frameRateP.value.timeValue;
 				
 						
-				const float progress = (double)(videoTime - exportInfoP->startTime) / (double)(exportInfoP->endTime - exportInfoP->startTime);
+				const float progress = (double)(videoTime - exportInfoP->startTime) / (double)(exportInfoP->endTime + frameRateP.value.timeValue - exportInfoP->startTime);
 
 				result = mySettings->exportProgressSuite->UpdateProgressPercent(exID, progress);
 				
