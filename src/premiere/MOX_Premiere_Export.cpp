@@ -584,8 +584,8 @@ exSDKExport(
 											videoBitDepth == VideoBitDepth_10bit ? PrPixelFormat_BGRA_4444_16u :
 											videoBitDepth == VideoBitDepth_12bit ? PrPixelFormat_BGRA_4444_16u :
 											videoBitDepth == VideoBitDepth_16bit ? PrPixelFormat_BGRA_4444_16u :
-											videoBitDepth == VideoBitDepth_16bit_Float ? PrPixelFormat_BGRA_4444_32f :
-											videoBitDepth == VideoBitDepth_32bit_Float ? PrPixelFormat_BGRA_4444_32f :
+											videoBitDepth == VideoBitDepth_16bit_Float ? PrPixelFormat_BGRA_4444_32f_Linear :
+											videoBitDepth == VideoBitDepth_32bit_Float ? PrPixelFormat_BGRA_4444_32f_Linear :
 											PrPixelFormat_BGRA_4444_8u);
 	
 	PrPixelFormat pixelFormats[] = { preferredFormat };
@@ -815,7 +815,7 @@ exSDKExport(
 							if(alpha)
 								frame.insert("A", Slice(MoxFiles::UINT16A, origin + (3 * sizeof(unsigned short)), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 32768));
 						}
-						else if(pixFormat == PrPixelFormat_BGRA_4444_32f)
+						else if(pixFormat == PrPixelFormat_BGRA_4444_32f_Linear)
 						{
 							char *origin = frameBufferP + ((height - 1) * rowbytes);
 							

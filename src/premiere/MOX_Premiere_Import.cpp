@@ -478,12 +478,12 @@ SDKGetIndPixelFormat(
 	{
 		const PrPixelFormat pix_fmt = (localRecP->bit_depth == 8 ? PrPixelFormat_BGRA_4444_8u :
 										localRecP->bit_depth == 16 ? PrPixelFormat_BGRA_4444_16u :
-										localRecP->bit_depth == 32 ? PrPixelFormat_BGRA_4444_32f :
+										localRecP->bit_depth == 32 ? PrPixelFormat_BGRA_4444_32f_Linear :
 										PrPixelFormat_BGRA_4444_8u);
 										
 		SDKIndPixelFormatRec->outPixelFormat = pix_fmt;
 	}
-	else if(idx == 1)
+	else if(idx == 1 && localRecP->bit_depth != 32)
 	{
 		SDKIndPixelFormatRec->outPixelFormat = PrPixelFormat_BGRA_4444_8u;
 	}
@@ -822,7 +822,7 @@ SDKGetSourceVideo(
 				frameBuffer.insert("R", Slice(MoxFiles::UINT16A, origin + (sizeof(unsigned short) * 2), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 0));
 				frameBuffer.insert("A", Slice(MoxFiles::UINT16A, origin + (sizeof(unsigned short) * 3), sizeof(unsigned short) * 4, -rowbytes, 1, 1, 32768));
 			}
-			else if(pix_fmt == PrPixelFormat_BGRA_4444_32f)
+			else if(pix_fmt == PrPixelFormat_BGRA_4444_32f_Linear)
 			{
 				frameBuffer.insert("B", Slice(MoxFiles::FLOAT, origin + (sizeof(float) * 0), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
 				frameBuffer.insert("G", Slice(MoxFiles::FLOAT, origin + (sizeof(float) * 1), sizeof(float) * 4, -rowbytes, 1, 1, 0.0));
