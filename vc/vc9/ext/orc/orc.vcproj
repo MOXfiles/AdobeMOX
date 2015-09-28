@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MoxFiles"
-	ProjectGUID="{EE8C339B-9B56-4963-BB84-779836EF9C6A}"
-	RootNamespace="MoxFiles"
+	Name="orc"
+	ProjectGUID="{5DF54369-3B8D-499F-93E5-BEE790E72D5E}"
+	RootNamespace="orc"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -24,7 +24,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -86,7 +86,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -107,8 +107,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -149,7 +149,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -171,8 +171,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -212,7 +212,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -235,8 +235,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -276,7 +276,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -296,8 +296,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -339,7 +339,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -360,8 +360,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -403,7 +403,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -425,8 +425,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
@@ -467,7 +467,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -490,8 +490,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;ORC_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
@@ -537,87 +537,151 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orc.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcbytecode.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orccode.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orccodemem.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orccompiler.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DiracCodec.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orccpu-x86.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcdebug.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcemulateopcodes.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcexecutor.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcfunctions.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcmips.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcmmx.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orconce.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcopcodes.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcparse.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcpowerpc.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-altivec.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-arm.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-c.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-c64x-c.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.cpp"
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-mips.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-mmx.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-neon.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram-sse.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrule.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrules-altivec.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrules-arm.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrules-mips.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrules-mmx.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrules-neon.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrules-sse.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrules-x86.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcsse.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcutils.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcx86.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcx86insn.c"
 				>
 			</File>
 		</Filter>
@@ -627,95 +691,135 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.h"
+				RelativePath=".\config.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.h"
+				RelativePath="..\..\..\..\..\orc\orc\opcodes.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.h"
+				RelativePath="..\..\..\..\..\orc\orc\orc-stdint.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioCompression.h"
+				RelativePath="..\..\..\..\..\orc\orc\orc.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcbytecode.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcbytecodes.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DiracCodec.h"
+				RelativePath="..\..\..\..\..\orc\orc\orccode.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.h"
+				RelativePath="..\..\..\..\..\orc\orc\orccompiler.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcconstant.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.h"
+				RelativePath="..\..\..\..\..\orc\orc\orccpu.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.h"
+				RelativePath="..\..\..\..\..\orc\orc\orccpuinsn.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcdebug.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcemulateopcodes.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcexecutor.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcfunctions.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcinstruction.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcinternal.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.h"
+				RelativePath="..\..\..\..\..\orc\orc\orclimits.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcmips.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcmmx.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcneon.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.h"
+				RelativePath="..\..\..\..\..\orc\orc\orconce.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\VideoCompression.h"
+				RelativePath="..\..\..\..\..\orc\orc\orcopcode.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcparse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcpowerpc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcprogram.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcrule.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcsse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orctarget.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcutils.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcvariable.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcx86.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\orc\orc\orcx86insn.h"
 				>
 			</File>
 		</Filter>

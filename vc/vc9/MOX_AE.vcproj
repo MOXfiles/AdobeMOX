@@ -407,6 +407,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\aftereffects\MOX_AEIO_Dialogs.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\aftereffects\MOX_SuiteHandler.h"
 				>
 			</File>
@@ -414,15 +418,19 @@
 				RelativePath="..\..\..\libmox\MoxMxf\PlatformIOStream.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\src\aftereffects\win\resource.h"
+				>
+			</File>
 			<Filter
 				Name="Windows"
 				>
 				<File
-					RelativePath="..\..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\VC98\Include\BASETSD.H"
+					RelativePath="..\..\..\..\..\..\..\..\..\devstudio\Include\BASETSD.H"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\..\..\..\..\..\..\devstudio\Include\BASETSD.H"
+					RelativePath="..\..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\VC98\Include\BASETSD.H"
 					>
 				</File>
 			</Filter>
@@ -495,6 +503,10 @@
 			Name="Resources"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe"
 			>
+			<File
+				RelativePath="..\..\src\aftereffects\win\MOX_AEIO_Dialogs.rc"
+				>
+			</File>
 			<File
 				RelativePath="..\..\src\aftereffects\MOX_AEIO_PiPL.r"
 				>
@@ -582,6 +594,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\src\aftereffects\MOX_AEIO.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\aftereffects\win\MOX_AEIO_Dialogs_Win.cpp"
 			>
 		</File>
 		<File

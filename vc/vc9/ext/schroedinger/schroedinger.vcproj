@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MoxFiles"
-	ProjectGUID="{EE8C339B-9B56-4963-BB84-779836EF9C6A}"
-	RootNamespace="MoxFiles"
+	Name="schroedinger"
+	ProjectGUID="{3264F060-3C53-46BB-A958-5284FFB6F3A4}"
+	RootNamespace="schroedinger"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -24,7 +24,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -86,7 +86,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -107,8 +107,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -149,7 +149,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -171,8 +171,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -212,7 +212,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -235,8 +235,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -276,7 +276,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -296,8 +296,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -339,7 +339,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -360,8 +360,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -403,7 +403,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -425,8 +425,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
@@ -467,7 +467,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -490,8 +490,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO"
+				AdditionalIncludeDirectories=".;..;..\..\..\..\..\schroedinger;..\..\..\..\..\orc"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;HAVE_CONFIG_H;SCHRO_ENABLE_UNSTABLE_API=1;DISABLE_ORC"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
@@ -537,87 +537,175 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schro.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroanalysis.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroarith.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroasync-win32.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrobuffer.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DiracCodec.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrobufferlist.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrodebug.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrodecoder.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrodomain.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroencoder.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroengine.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrofft.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrofilter.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroframe.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroglobalest.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrohierbm.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrohistogram.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrolist.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrolowdelay.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrometric.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.cpp"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schromotion.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schromotion8.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schromotionest.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schromotionfast.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schromotionref.c"
+				>
+			</File>
+			<File
+				RelativePath=".\schroorc.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schropack.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroparams.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroparse.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrophasecorrelation.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroquantiser.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroqueue.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroroughmotion.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrossim.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrotables.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrotablesinit.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrounpack.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrounpacktables.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroutils.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrovideoformat.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrovirtframe.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrowaveletorc.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrowavelettables.c"
 				>
 			</File>
 		</Filter>
@@ -627,95 +715,163 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.h"
+				RelativePath=".\config.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schro-stdint.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schro.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioCompression.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroanalysis.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroarith.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroasync.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DiracCodec.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrobitstream.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrobuffer.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrobufferlist.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrocuda.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrodebug.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrodecoder.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrodomain.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroencoder.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroengine.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrofft.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrofilter.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroframe.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrogpuframe.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrogpumotion.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrohistogram.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrolimits.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\VideoCompression.h"
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrolist.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrometric.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schromotion.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schromotionest.h"
+				>
+			</File>
+			<File
+				RelativePath=".\schroorc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schropack.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroparams.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroparse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrophasecorrelation.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroqueue.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrossim.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrotables.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrounpack.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schroutils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\schroversion.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrovideoformat.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrovirtframe.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\schroedinger\schroedinger\schrowavelet.h"
 				>
 			</File>
 		</Filter>
@@ -725,6 +881,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath=".\ReadMe.txt"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
