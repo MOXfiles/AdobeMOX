@@ -59,35 +59,35 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0BCEF21BB5103500958299 /* schroedinger.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* libschroedinger.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = schroedinger;
 		};
 		2A0BCEFD1BB5103A00958299 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0BCEF81BB5103A00958299 /* orc.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 2A7322D41B7444170006AB4E /* orcc */;
+			remoteGlobalIDString = 2A7322D41B7444170006AB4E;
 			remoteInfo = orcc;
 		};
 		2A0BCEFF1BB5103A00958299 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0BCEF81BB5103A00958299 /* orc.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* liborc.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = liborc;
 		};
 		2A0BCF061BB5104800958299 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0BCEF21BB5103500958299 /* schroedinger.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* schroedinger */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = schroedinger;
 		};
 		2A0BCF081BB5104800958299 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A0BCEF81BB5103A00958299 /* orc.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* liborc */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = liborc;
 		};
 		2AA0DFB81AE4847D0053B71F /* PBXContainerItemProxy */ = {

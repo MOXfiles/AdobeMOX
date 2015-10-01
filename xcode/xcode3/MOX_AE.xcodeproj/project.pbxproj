@@ -21,6 +21,14 @@
 		2A1F76121B28F80A00343D83 /* libOpenEXR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1F76091B28F7FF00343D83 /* libOpenEXR.a */; };
 		2A1F77A91B2A32A500343D83 /* mxflib_messages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F77A61B2A32A500343D83 /* mxflib_messages.cpp */; };
 		2A1F77AF1B2A32CA00343D83 /* PlatformIOStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F77A81B2A32A500343D83 /* PlatformIOStream.cpp */; };
+		2A3C4DCE1BBB38710019D5D3 /* schroedinger_10bit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A3C4D551BBB369E0019D5D3 /* schroedinger_10bit.cpp */; };
+		2A3C4DF31BBB436F0019D5D3 /* libschroedinger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EA31B6900840093FC66 /* libschroedinger.a */; };
+		2A3C4DF81BBB43A10019D5D3 /* liborc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EAC1B6900A20093FC66 /* liborc.a */; };
+		2A4FDB8D1BBA02A8003B1C69 /* liblibpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A754F461B41BCEE00DCA796 /* liblibpng.a */; };
+		2A4FDB8E1BBA02A9003B1C69 /* libOpenEXR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1F76091B28F7FF00343D83 /* libOpenEXR.a */; };
+		2A4FDB8F1BBA02AA003B1C69 /* liborc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EAC1B6900A20093FC66 /* liborc.a */; };
+		2A4FDB901BBA02AC003B1C69 /* libschroedinger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EA31B6900840093FC66 /* libschroedinger.a */; };
+		2A4FDB911BBA02AC003B1C69 /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7551291B41BF4D00DCA796 /* libzlib.a */; };
 		2A55A8E91B8E78CA0087D172 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A55A8E01B8E787F0087D172 /* main.cpp */; };
 		2A55A9401B8E8B180087D172 /* libMoxFiles.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1F75F51B28F7FF00343D83 /* libMoxFiles.a */; };
 		2A55A9411B8E8B1C0087D172 /* libMoxMxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1F75F81B28F7FF00343D83 /* libMoxMxf.a */; };
@@ -133,6 +141,62 @@
 			remoteGlobalIDString = 2A6D4C4C15CDEB0A006BADE7;
 			remoteInfo = IlmBase;
 		};
+		2A3C4DF41BBB437A0019D5D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = schroedinger;
+		};
+		2A3C4DF91BBB43AA0019D5D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A616EA71B6900A20093FC66 /* orc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = liborc;
+		};
+		2A4FDB7F1BBA0185003B1C69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A616EA71B6900A20093FC66 /* orc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = liborc;
+		};
+		2A4FDB831BBA0298003B1C69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A1F75F01B28F7FF00343D83 /* OpenEXR.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A6D4B1415CDE3DE006BADE7;
+			remoteInfo = OpenEXR;
+		};
+		2A4FDB851BBA0298003B1C69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A616EA71B6900A20093FC66 /* orc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = liborc;
+		};
+		2A4FDB871BBA0298003B1C69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A754F411B41BCEE00DCA796 /* libpng.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = libpng;
+		};
+		2A4FDB891BBA0298003B1C69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = schroedinger;
+		};
+		2A4FDB8B1BBA0298003B1C69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A7551241B41BF4D00DCA796 /* zlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = zlib;
+		};
 		2A55A9431B8E8B420087D172 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75E81B28F7FF00343D83 /* mxflib.xcodeproj */;
@@ -240,6 +304,8 @@
 		2A1F77A61B2A32A500343D83 /* mxflib_messages.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mxflib_messages.cpp; sourceTree = "<group>"; };
 		2A1F77A71B2A32A500343D83 /* PlatformIOStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformIOStream.h; sourceTree = "<group>"; };
 		2A1F77A81B2A32A500343D83 /* PlatformIOStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformIOStream.cpp; sourceTree = "<group>"; };
+		2A3C4D551BBB369E0019D5D3 /* schroedinger_10bit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = schroedinger_10bit.cpp; sourceTree = "<group>"; };
+		2A3C4D671BBB373D0019D5D3 /* schroedinger_10bit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = schroedinger_10bit; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A55A8E01B8E787F0087D172 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2A55A8E51B8E78A40087D172 /* MoxTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MoxTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = schroedinger.xcodeproj; path = ext/schroedinger/schroedinger.xcodeproj; sourceTree = "<group>"; };
@@ -252,6 +318,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A3C4D651BBB373D0019D5D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A3C4DF31BBB436F0019D5D3 /* libschroedinger.a in Frameworks */,
+				2A3C4DF81BBB43A10019D5D3 /* liborc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A55A8E31B8E78A40087D172 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +335,11 @@
 				2A55A9411B8E8B1C0087D172 /* libMoxMxf.a in Frameworks */,
 				2A55A9421B8E8B1F0087D172 /* libmxflib.a in Frameworks */,
 				2A55A94B1B8E8B500087D172 /* libIlmBase.a in Frameworks */,
+				2A4FDB8D1BBA02A8003B1C69 /* liblibpng.a in Frameworks */,
+				2A4FDB8E1BBA02A9003B1C69 /* libOpenEXR.a in Frameworks */,
+				2A4FDB8F1BBA02AA003B1C69 /* liborc.a in Frameworks */,
+				2A4FDB901BBA02AC003B1C69 /* libschroedinger.a in Frameworks */,
+				2A4FDB911BBA02AC003B1C69 /* libzlib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				2A55A8E01B8E787F0087D172 /* main.cpp */,
+				2A3C4D551BBB369E0019D5D3 /* schroedinger_10bit.cpp */,
 			);
 			name = MoxTest;
 			path = ../../../libmox/MoxTest;
@@ -434,6 +515,7 @@
 			children = (
 				C4E618CC095A3CE80012CA3F /* NOX.plugin */,
 				2A55A8E51B8E78A40087D172 /* MoxTest */,
+				2A3C4D671BBB373D0019D5D3 /* schroedinger_10bit */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -441,6 +523,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2A3C4D661BBB373D0019D5D3 /* schroedinger_10bit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A3C4D6F1BBB37630019D5D3 /* Build configuration list for PBXNativeTarget "schroedinger_10bit" */;
+			buildPhases = (
+				2A3C4D641BBB373D0019D5D3 /* Sources */,
+				2A3C4D651BBB373D0019D5D3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A3C4DF51BBB437A0019D5D3 /* PBXTargetDependency */,
+				2A3C4DFA1BBB43AA0019D5D3 /* PBXTargetDependency */,
+			);
+			name = schroedinger_10bit;
+			productName = schroedinger_10bit;
+			productReference = 2A3C4D671BBB373D0019D5D3 /* schroedinger_10bit */;
+			productType = "com.apple.product-type.tool";
+		};
 		2A55A8E41B8E78A40087D172 /* MoxTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A55A8EC1B8E78E80087D172 /* Build configuration list for PBXNativeTarget "MoxTest" */;
@@ -455,6 +555,11 @@
 				2A55A9461B8E8B420087D172 /* PBXTargetDependency */,
 				2A55A9481B8E8B420087D172 /* PBXTargetDependency */,
 				2A55A94D1B8E8B610087D172 /* PBXTargetDependency */,
+				2A4FDB841BBA0298003B1C69 /* PBXTargetDependency */,
+				2A4FDB861BBA0298003B1C69 /* PBXTargetDependency */,
+				2A4FDB881BBA0298003B1C69 /* PBXTargetDependency */,
+				2A4FDB8A1BBA0298003B1C69 /* PBXTargetDependency */,
+				2A4FDB8C1BBA0298003B1C69 /* PBXTargetDependency */,
 			);
 			name = MoxTest;
 			productName = MoxTest;
@@ -481,6 +586,7 @@
 				2A754F4B1B41BCFD00DCA796 /* PBXTargetDependency */,
 				2A75512C1B41BF5D00DCA796 /* PBXTargetDependency */,
 				2A616EB11B6900BF0093FC66 /* PBXTargetDependency */,
+				2A4FDB801BBA0185003B1C69 /* PBXTargetDependency */,
 			);
 			name = "MOX AE";
 			productName = IO.plugin;
@@ -547,6 +653,7 @@
 			targets = (
 				C4E618CB095A3CE80012CA3F /* MOX AE */,
 				2A55A8E41B8E78A40087D172 /* MoxTest */,
+				2A3C4D661BBB373D0019D5D3 /* schroedinger_10bit */,
 			);
 		};
 /* End PBXProject section */
@@ -675,6 +782,14 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A3C4D641BBB373D0019D5D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A3C4DCE1BBB38710019D5D3 /* schroedinger_10bit.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A55A8E21B8E78A40087D172 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -725,6 +840,46 @@
 			isa = PBXTargetDependency;
 			name = IlmBase;
 			targetProxy = 2A1F761B1B28F81C00343D83 /* PBXContainerItemProxy */;
+		};
+		2A3C4DF51BBB437A0019D5D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = schroedinger;
+			targetProxy = 2A3C4DF41BBB437A0019D5D3 /* PBXContainerItemProxy */;
+		};
+		2A3C4DFA1BBB43AA0019D5D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = liborc;
+			targetProxy = 2A3C4DF91BBB43AA0019D5D3 /* PBXContainerItemProxy */;
+		};
+		2A4FDB801BBA0185003B1C69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = liborc;
+			targetProxy = 2A4FDB7F1BBA0185003B1C69 /* PBXContainerItemProxy */;
+		};
+		2A4FDB841BBA0298003B1C69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OpenEXR;
+			targetProxy = 2A4FDB831BBA0298003B1C69 /* PBXContainerItemProxy */;
+		};
+		2A4FDB861BBA0298003B1C69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = liborc;
+			targetProxy = 2A4FDB851BBA0298003B1C69 /* PBXContainerItemProxy */;
+		};
+		2A4FDB881BBA0298003B1C69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libpng;
+			targetProxy = 2A4FDB871BBA0298003B1C69 /* PBXContainerItemProxy */;
+		};
+		2A4FDB8A1BBA0298003B1C69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = schroedinger;
+			targetProxy = 2A4FDB891BBA0298003B1C69 /* PBXContainerItemProxy */;
+		};
+		2A4FDB8C1BBA0298003B1C69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = zlib;
+			targetProxy = 2A4FDB8B1BBA0298003B1C69 /* PBXContainerItemProxy */;
 		};
 		2A55A9441B8E8B420087D172 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -834,6 +989,44 @@
 			};
 			name = Release;
 		};
+		2A3C4D691BBB373D0019D5D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					ext,
+					../../../schroedinger,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = schroedinger_10bit;
+			};
+			name = Debug;
+		};
+		2A3C4D6A1BBB373D0019D5D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					ext,
+					../../../schroedinger,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = schroedinger_10bit;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		2A55A8E71B8E78A40087D172 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -936,6 +1129,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A3C4D6F1BBB37630019D5D3 /* Build configuration list for PBXNativeTarget "schroedinger_10bit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A3C4D691BBB373D0019D5D3 /* Debug */,
+				2A3C4D6A1BBB373D0019D5D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		2A55A8EC1B8E78E80087D172 /* Build configuration list for PBXNativeTarget "MoxTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
