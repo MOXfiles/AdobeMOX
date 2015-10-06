@@ -35,11 +35,14 @@
 		2A55A9421B8E8B1F0087D172 /* libmxflib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1F75FB1B28F7FF00343D83 /* libmxflib.a */; };
 		2A55A94B1B8E8B500087D172 /* libIlmBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1F76001B28F7FF00343D83 /* libIlmBase.a */; };
 		2A55A9501B8E8B6E0087D172 /* mxflib_messages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F77A61B2A32A500343D83 /* mxflib_messages.cpp */; };
-		2A616EA41B69008A0093FC66 /* libschroedinger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EA31B6900840093FC66 /* libschroedinger.a */; };
+		2A74DE541BC31E3000B7EA36 /* dirac_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A74DE531BC31E3000B7EA36 /* dirac_test.cpp */; };
+		2A74DE921BC3286F00B7EA36 /* libdirac-research.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF850DF1BBCD6BE00C3DAD9 /* libdirac-research.a */; };
+		2A74E26E1BC462EA00B7EA36 /* libschroedinger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EA31B6900840093FC66 /* libschroedinger.a */; };
+		2A74E26F1BC462EC00B7EA36 /* liborc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EAC1B6900A20093FC66 /* liborc.a */; };
 		2A754F471B41BCF300DCA796 /* liblibpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A754F461B41BCEE00DCA796 /* liblibpng.a */; };
 		2A75512A1B41BF5500DCA796 /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7551291B41BF4D00DCA796 /* libzlib.a */; };
-		2A856E4E1B7D27400001B919 /* liborc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EAC1B6900A20093FC66 /* liborc.a */; };
 		2A945B361BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A945B351BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib */; };
+		2AF850E01BBCD6D600C3DAD9 /* libdirac-research.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF850DF1BBCD6BE00C3DAD9 /* libdirac-research.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,13 +158,6 @@
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = liborc;
 		};
-		2A4FDB7F1BBA0185003B1C69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A616EA71B6900A20093FC66 /* orc.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D;
-			remoteInfo = liborc;
-		};
 		2A4FDB831BBA0298003B1C69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A1F75F01B28F7FF00343D83 /* OpenEXR.xcodeproj */;
@@ -239,19 +235,33 @@
 			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = orc;
 		};
-		2A616EB01B6900BF0093FC66 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D;
-			remoteInfo = schroedinger;
-		};
 		2A7322D71B7444170006AB4E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A616EA71B6900A20093FC66 /* orc.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2A7322D41B7444170006AB4E;
 			remoteInfo = orcc;
+		};
+		2A74DE931BC3287600B7EA36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF850DA1BBCD6BE00C3DAD9 /* dirac-research.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* dirac-research */;
+			remoteInfo = "dirac-research";
+		};
+		2A74E2701BC462F900B7EA36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A616EA71B6900A20093FC66 /* orc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* liborc */;
+			remoteInfo = liborc;
+		};
+		2A74E2721BC462F900B7EA36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* schroedinger */;
+			remoteInfo = schroedinger;
 		};
 		2A754F451B41BCEE00DCA796 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -280,6 +290,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = zlib;
+		};
+		2AF850DE1BBCD6BE00C3DAD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF850DA1BBCD6BE00C3DAD9 /* dirac-research.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = "dirac-research";
+		};
+		2AF850E11BBCD6E700C3DAD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF850DA1BBCD6BE00C3DAD9 /* dirac-research.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = "dirac-research";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -310,10 +334,13 @@
 		2A55A8E51B8E78A40087D172 /* MoxTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MoxTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = schroedinger.xcodeproj; path = ext/schroedinger/schroedinger.xcodeproj; sourceTree = "<group>"; };
 		2A616EA71B6900A20093FC66 /* orc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = orc.xcodeproj; path = ext/orc/orc.xcodeproj; sourceTree = "<group>"; };
+		2A74DE4F1BC31E1400B7EA36 /* dirac_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dirac_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A74DE531BC31E3000B7EA36 /* dirac_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dirac_test.cpp; sourceTree = "<group>"; };
 		2A754F411B41BCEE00DCA796 /* libpng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpng.xcodeproj; path = ext/libpng.xcodeproj; sourceTree = "<group>"; };
 		2A7551241B41BF4D00DCA796 /* zlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = zlib.xcodeproj; path = ext/zlib.xcodeproj; sourceTree = "<group>"; };
 		2A945B321BA3493000E3E086 /* MOX_AEIO_Dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOX_AEIO_Dialogs.h; sourceTree = "<group>"; };
 		2A945B351BA36A9900E3E086 /* MOX_Video_Out_Dialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MOX_Video_Out_Dialog.xib; sourceTree = "<group>"; };
+		2AF850DA1BBCD6BE00C3DAD9 /* dirac-research.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "dirac-research.xcodeproj"; path = "ext/dirac-research/dirac-research.xcodeproj"; sourceTree = "<group>"; };
 		C4E618CC095A3CE80012CA3F /* NOX.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NOX.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -343,6 +370,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2A74DE4D1BC31E1400B7EA36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A74DE921BC3286F00B7EA36 /* libdirac-research.a in Frameworks */,
+				2A74E26E1BC462EA00B7EA36 /* libschroedinger.a in Frameworks */,
+				2A74E26F1BC462EC00B7EA36 /* liborc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4E618CA095A3CE80012CA3F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,9 +391,8 @@
 				2A1F76121B28F80A00343D83 /* libOpenEXR.a in Frameworks */,
 				2A754F471B41BCF300DCA796 /* liblibpng.a in Frameworks */,
 				2A75512A1B41BF5500DCA796 /* libzlib.a in Frameworks */,
-				2A616EA41B69008A0093FC66 /* libschroedinger.a in Frameworks */,
-				2A856E4E1B7D27400001B919 /* liborc.a in Frameworks */,
 				2A0BC82D1BB1FE2800958299 /* Cocoa.framework in Frameworks */,
+				2AF850E01BBCD6D600C3DAD9 /* libdirac-research.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +475,7 @@
 			children = (
 				2A55A8E01B8E787F0087D172 /* main.cpp */,
 				2A3C4D551BBB369E0019D5D3 /* schroedinger_10bit.cpp */,
+				2A74DE531BC31E3000B7EA36 /* dirac_test.cpp */,
 			);
 			name = MoxTest;
 			path = ../../../libmox/MoxTest;
@@ -488,6 +525,14 @@
 			path = mac;
 			sourceTree = "<group>";
 		};
+		2AF850DB1BBCD6BE00C3DAD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2AF850DF1BBCD6BE00C3DAD9 /* libdirac-research.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C4E6187C095A3C800012CA3F = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +550,7 @@
 				2A7551241B41BF4D00DCA796 /* zlib.xcodeproj */,
 				2A616E9E1B6900840093FC66 /* schroedinger.xcodeproj */,
 				2A616EA71B6900A20093FC66 /* orc.xcodeproj */,
+				2AF850DA1BBCD6BE00C3DAD9 /* dirac-research.xcodeproj */,
 				C4E6188C095A3C800012CA3F /* Products */,
 				2A0BC82C1BB1FE2800958299 /* Cocoa.framework */,
 			);
@@ -516,6 +562,7 @@
 				C4E618CC095A3CE80012CA3F /* NOX.plugin */,
 				2A55A8E51B8E78A40087D172 /* MoxTest */,
 				2A3C4D671BBB373D0019D5D3 /* schroedinger_10bit */,
+				2A74DE4F1BC31E1400B7EA36 /* dirac_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -566,6 +613,25 @@
 			productReference = 2A55A8E51B8E78A40087D172 /* MoxTest */;
 			productType = "com.apple.product-type.tool";
 		};
+		2A74DE4E1BC31E1400B7EA36 /* dirac_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A74DE551BC31E3000B7EA36 /* Build configuration list for PBXNativeTarget "dirac_test" */;
+			buildPhases = (
+				2A74DE4C1BC31E1400B7EA36 /* Sources */,
+				2A74DE4D1BC31E1400B7EA36 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A74DE941BC3287600B7EA36 /* PBXTargetDependency */,
+				2A74E2711BC462F900B7EA36 /* PBXTargetDependency */,
+				2A74E2731BC462F900B7EA36 /* PBXTargetDependency */,
+			);
+			name = dirac_test;
+			productName = dirac_test;
+			productReference = 2A74DE4F1BC31E1400B7EA36 /* dirac_test */;
+			productType = "com.apple.product-type.tool";
+		};
 		C4E618CB095A3CE80012CA3F /* MOX AE */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4E618CE095A3CE90012CA3F /* Build configuration list for PBXNativeTarget "MOX AE" */;
@@ -585,8 +651,7 @@
 				2A1F761C1B28F81C00343D83 /* PBXTargetDependency */,
 				2A754F4B1B41BCFD00DCA796 /* PBXTargetDependency */,
 				2A75512C1B41BF5D00DCA796 /* PBXTargetDependency */,
-				2A616EB11B6900BF0093FC66 /* PBXTargetDependency */,
-				2A4FDB801BBA0185003B1C69 /* PBXTargetDependency */,
+				2AF850E21BBCD6E700C3DAD9 /* PBXTargetDependency */,
 			);
 			name = "MOX AE";
 			productName = IO.plugin;
@@ -612,6 +677,10 @@
 			productRefGroup = C4E6188C095A3C800012CA3F /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 2AF850DB1BBCD6BE00C3DAD9 /* Products */;
+					ProjectRef = 2AF850DA1BBCD6BE00C3DAD9 /* dirac-research.xcodeproj */;
+				},
 				{
 					ProductGroup = 2A1F75ED1B28F7FF00343D83 /* Products */;
 					ProjectRef = 2A1F75EC1B28F7FF00343D83 /* IlmBase.xcodeproj */;
@@ -654,6 +723,7 @@
 				C4E618CB095A3CE80012CA3F /* MOX AE */,
 				2A55A8E41B8E78A40087D172 /* MoxTest */,
 				2A3C4D661BBB373D0019D5D3 /* schroedinger_10bit */,
+				2A74DE4E1BC31E1400B7EA36 /* dirac_test */,
 			);
 		};
 /* End PBXProject section */
@@ -757,6 +827,13 @@
 			remoteRef = 2A7551281B41BF4D00DCA796 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		2AF850DF1BBCD6BE00C3DAD9 /* libdirac-research.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdirac-research.a";
+			remoteRef = 2AF850DE1BBCD6BE00C3DAD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -796,6 +873,14 @@
 			files = (
 				2A55A8E91B8E78CA0087D172 /* main.cpp in Sources */,
 				2A55A9501B8E8B6E0087D172 /* mxflib_messages.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A74DE4C1BC31E1400B7EA36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A74DE541BC31E3000B7EA36 /* dirac_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,11 +936,6 @@
 			name = liborc;
 			targetProxy = 2A3C4DF91BBB43AA0019D5D3 /* PBXContainerItemProxy */;
 		};
-		2A4FDB801BBA0185003B1C69 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = liborc;
-			targetProxy = 2A4FDB7F1BBA0185003B1C69 /* PBXContainerItemProxy */;
-		};
 		2A4FDB841BBA0298003B1C69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OpenEXR;
@@ -901,10 +981,20 @@
 			name = IlmBase;
 			targetProxy = 2A55A94C1B8E8B610087D172 /* PBXContainerItemProxy */;
 		};
-		2A616EB11B6900BF0093FC66 /* PBXTargetDependency */ = {
+		2A74DE941BC3287600B7EA36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "dirac-research";
+			targetProxy = 2A74DE931BC3287600B7EA36 /* PBXContainerItemProxy */;
+		};
+		2A74E2711BC462F900B7EA36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = liborc;
+			targetProxy = 2A74E2701BC462F900B7EA36 /* PBXContainerItemProxy */;
+		};
+		2A74E2731BC462F900B7EA36 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = schroedinger;
-			targetProxy = 2A616EB01B6900BF0093FC66 /* PBXContainerItemProxy */;
+			targetProxy = 2A74E2721BC462F900B7EA36 /* PBXContainerItemProxy */;
 		};
 		2A754F4B1B41BCFD00DCA796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -915,6 +1005,11 @@
 			isa = PBXTargetDependency;
 			name = zlib;
 			targetProxy = 2A75512B1B41BF5D00DCA796 /* PBXContainerItemProxy */;
+		};
+		2AF850E21BBCD6E700C3DAD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "dirac-research";
+			targetProxy = 2AF850E11BBCD6E700C3DAD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1057,6 +1152,48 @@
 			};
 			name = Release;
 		};
+		2A74DE511BC31E1400B7EA36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"../../../dirac-research",
+					"ext/dirac-research",
+					../../../schroedinger,
+					ext,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = dirac_test;
+			};
+			name = Debug;
+		};
+		2A74DE521BC31E1400B7EA36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"../../../dirac-research",
+					"ext/dirac-research",
+					../../../schroedinger,
+					ext,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = dirac_test;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C4E61880095A3C800012CA3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1143,6 +1280,15 @@
 			buildConfigurations = (
 				2A55A8E71B8E78A40087D172 /* Debug */,
 				2A55A8E81B8E78A40087D172 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2A74DE551BC31E3000B7EA36 /* Build configuration list for PBXNativeTarget "dirac_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A74DE511BC31E1400B7EA36 /* Debug */,
+				2A74DE521BC31E1400B7EA36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

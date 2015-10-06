@@ -537,7 +537,8 @@
 					../../../../openexr/IlmBase/Imath,
 					../../../../openexr/OpenEXR/IlmImf,
 					../../../../libpng,
-					../../../../schroedinger,
+					"../../../../dirac-research",
+					"./dirac-research",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -567,7 +568,8 @@
 					../../../../openexr/IlmBase/Imath,
 					../../../../openexr/OpenEXR/IlmImf,
 					../../../../libpng,
-					../../../../schroedinger,
+					"../../../../dirac-research",
+					"./dirac-research",
 				);
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
