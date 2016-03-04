@@ -526,6 +526,37 @@ SDKAnalysis(
 }
 
 
+static unsigned int
+Premiere_PixelBits(MoxFiles::PixelType type)
+{
+	switch(type)
+	{
+		case MoxFiles::UINT8:
+			return 8;
+		
+		case MoxFiles::UINT10:
+			return 16;
+			
+		case MoxFiles::UINT12:
+			return 16;
+			
+		case MoxFiles::UINT16:
+			return 16;
+			
+		case MoxFiles::UINT16A:
+			return 16;
+		
+		case MoxFiles::HALF:
+			return 32;
+		
+		case MoxFiles::FLOAT:
+			return 32;
+	}
+	
+	throw MoxMxf::ArgExc("Unknown pixel type");
+}
+
+
 prMALError 
 SDKGetInfo8(
 	imStdParms			*stdParms, 
@@ -577,9 +608,9 @@ SDKGetInfo8(
 			{
 				const Channel &chan = i.channel();
 				
-				if(bit_depth < PixelBits(chan.type))
+				if(bit_depth < Premiere_PixelBits(chan.type))
 				{
-					bit_depth = PixelBits(chan.type);
+					bit_depth = Premiere_PixelBits(chan.type);
 				}
 			}
 		
@@ -608,7 +639,7 @@ SDKGetInfo8(
 			localRecP->frameRateNum = SDKFileInfo8->vidScale;
 			localRecP->frameRateDen = SDKFileInfo8->vidSampleSize;
 			
-			localRecP->bit_depth = SDKFileInfo8->vidInfo.depth;
+			localRecP->bit_depth = bit_depth;
 		}
 
 		
