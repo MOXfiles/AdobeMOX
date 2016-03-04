@@ -1439,7 +1439,30 @@ AEIO_UserOptionsDialog(
 										codec == DIALOG_CODEC_PNG ? PNG_Codec :
 										codec == DIALOG_CODEC_UNCOMPRESSED ? Uncompressed_Codec :
 										Auto_Codec);
-				
+					
+					if(bitDepth != DIALOG_BITDEPTH_AUTO)
+					{
+						// set the Output Module's depth
+						A_short module_depth = 0;
+						err = suites.IOOutSuite()->AEGP_GetOutSpecDepth(outH, &module_depth);
+
+						const bool module_has_alpha = (module_depth == 32 || module_depth == 64 || module_depth == 128);
+
+						const A_short file_bpc = (bitDepth == DIALOG_BITDEPTH_8 ? 8 :
+													//bitDepth == DIALOG_BITDEPTH_10 ? Depth_10 :
+													//bitDepth == DIALOG_BITDEPTH_12 ? Depth_12 :
+													bitDepth == DIALOG_BITDEPTH_16 ? 16 :
+													bitDepth == DIALOG_BITDEPTH_16_FLOAT ? 32 :
+													bitDepth == DIALOG_BITDEPTH_32_FLOAT ? 32 :
+													32);
+
+						const A_short file_depth = (file_bpc * (module_has_alpha ? 4 : 3));
+
+						if(module_depth != file_depth)
+						{
+							err = suites.IOOutSuite()->AEGP_SetOutSpecDepth(outH, file_depth);
+						}
+					}
 				
 					*user_interacted0 = TRUE;
 				}
