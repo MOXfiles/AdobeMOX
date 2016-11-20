@@ -19,6 +19,8 @@
 		2A541FB91B014C3F009013D8 /* UncompressedPCMCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A541FB71B014C3F009013D8 /* UncompressedPCMCodec.cpp */; };
 		2A5422121B028B96009013D8 /* MPEGCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A5422101B028B96009013D8 /* MPEGCodec.h */; };
 		2A5422131B028B96009013D8 /* MPEGCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A5422111B028B96009013D8 /* MPEGCodec.cpp */; };
+		2A547CBC1CE54AD300F15077 /* DPXCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A547CBA1CE54AD300F15077 /* DPXCodec.h */; };
+		2A547CBD1CE54AD300F15077 /* DPXCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A547CBB1CE54AD300F15077 /* DPXCodec.cpp */; };
 		2A616DF11B683E7F0093FC66 /* DiracCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A616DEF1B683E7F0093FC66 /* DiracCodec.h */; };
 		2A616DF21B683E7F0093FC66 /* DiracCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A616DF01B683E7F0093FC66 /* DiracCodec.cpp */; };
 		2A75518B1B41C79900DCA796 /* OpenEXRCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A7551891B41C79900DCA796 /* OpenEXRCodec.h */; };
@@ -53,6 +55,10 @@
 		2AA0E4A21AE5D9BE0053B71F /* PixelType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AA0E4A11AE5D9BE0053B71F /* PixelType.h */; };
 		2AA0E6141AE6CF6F0053B71F /* FrameBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AA0E6121AE6CF6F0053B71F /* FrameBuffer.h */; };
 		2AA0E6151AE6CF6F0053B71F /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0E6131AE6CF6F0053B71F /* FrameBuffer.cpp */; };
+		2AFBBE971DDB597D00CCAD62 /* JPEG2000Codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AFBBE951DDB597D00CCAD62 /* JPEG2000Codec.h */; };
+		2AFBBE981DDB597D00CCAD62 /* JPEG2000Codec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBBE961DDB597D00CCAD62 /* JPEG2000Codec.cpp */; };
+		2AFBC0C61DDBA11000CCAD62 /* JPEGCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AFBC0C41DDBA11000CCAD62 /* JPEGCodec.h */; };
+		2AFBC0C71DDBA11000CCAD62 /* JPEGCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBC0C51DDBA11000CCAD62 /* JPEGCodec.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +148,8 @@
 		2A541FB71B014C3F009013D8 /* UncompressedPCMCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UncompressedPCMCodec.cpp; sourceTree = "<group>"; };
 		2A5422101B028B96009013D8 /* MPEGCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPEGCodec.h; sourceTree = "<group>"; };
 		2A5422111B028B96009013D8 /* MPEGCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MPEGCodec.cpp; sourceTree = "<group>"; };
+		2A547CBA1CE54AD300F15077 /* DPXCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPXCodec.h; sourceTree = "<group>"; };
+		2A547CBB1CE54AD300F15077 /* DPXCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DPXCodec.cpp; sourceTree = "<group>"; };
 		2A616DEF1B683E7F0093FC66 /* DiracCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiracCodec.h; sourceTree = "<group>"; };
 		2A616DF01B683E7F0093FC66 /* DiracCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiracCodec.cpp; sourceTree = "<group>"; };
 		2A7551891B41C79900DCA796 /* OpenEXRCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenEXRCodec.h; sourceTree = "<group>"; };
@@ -178,6 +186,10 @@
 		2AA0E4A11AE5D9BE0053B71F /* PixelType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelType.h; sourceTree = "<group>"; };
 		2AA0E6121AE6CF6F0053B71F /* FrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
 		2AA0E6131AE6CF6F0053B71F /* FrameBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
+		2AFBBE951DDB597D00CCAD62 /* JPEG2000Codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPEG2000Codec.h; sourceTree = "<group>"; };
+		2AFBBE961DDB597D00CCAD62 /* JPEG2000Codec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JPEG2000Codec.cpp; sourceTree = "<group>"; };
+		2AFBC0C41DDBA11000CCAD62 /* JPEGCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPEGCodec.h; sourceTree = "<group>"; };
+		2AFBC0C51DDBA11000CCAD62 /* JPEGCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JPEGCodec.cpp; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libMoxFiles.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMoxFiles.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -269,6 +281,12 @@
 				2A7551FA1B41E10600DCA796 /* ImfHybridInputFile.h */,
 				2A616DEF1B683E7F0093FC66 /* DiracCodec.h */,
 				2A616DF01B683E7F0093FC66 /* DiracCodec.cpp */,
+				2A547CBA1CE54AD300F15077 /* DPXCodec.h */,
+				2A547CBB1CE54AD300F15077 /* DPXCodec.cpp */,
+				2AFBC0C41DDBA11000CCAD62 /* JPEGCodec.h */,
+				2AFBC0C51DDBA11000CCAD62 /* JPEGCodec.cpp */,
+				2AFBBE951DDB597D00CCAD62 /* JPEG2000Codec.h */,
+				2AFBBE961DDB597D00CCAD62 /* JPEG2000Codec.cpp */,
 			);
 			name = MoxFiles;
 			path = ../../../../libmox/MoxFiles;
@@ -326,6 +344,9 @@
 				2A75518B1B41C79900DCA796 /* OpenEXRCodec.h in Headers */,
 				2A7551FC1B41E10600DCA796 /* ImfHybridInputFile.h in Headers */,
 				2A616DF11B683E7F0093FC66 /* DiracCodec.h in Headers */,
+				2A547CBC1CE54AD300F15077 /* DPXCodec.h in Headers */,
+				2AFBBE971DDB597D00CCAD62 /* JPEG2000Codec.h in Headers */,
+				2AFBC0C61DDBA11000CCAD62 /* JPEGCodec.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +489,9 @@
 				2A75518C1B41C79900DCA796 /* OpenEXRCodec.cpp in Sources */,
 				2A7551FB1B41E10600DCA796 /* ImfHybridInputFile.cpp in Sources */,
 				2A616DF21B683E7F0093FC66 /* DiracCodec.cpp in Sources */,
+				2A547CBD1CE54AD300F15077 /* DPXCodec.cpp in Sources */,
+				2AFBBE981DDB597D00CCAD62 /* JPEG2000Codec.cpp in Sources */,
+				2AFBC0C71DDBA11000CCAD62 /* JPEGCodec.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +562,9 @@
 					../../../../openexr/OpenEXR/IlmImf,
 					../../../../libpng,
 					../../../../schroedinger,
+					../../../../libdpx/libdpx,
+					../../../../openjpeg/src/lib/openjp2,
+					"../../../../libjpeg-turbo",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -568,6 +595,9 @@
 					../../../../openexr/OpenEXR/IlmImf,
 					../../../../libpng,
 					../../../../schroedinger,
+					../../../../libdpx/libdpx,
+					../../../../openjpeg/src/lib/openjp2,
+					"../../../../libjpeg-turbo",
 				);
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;

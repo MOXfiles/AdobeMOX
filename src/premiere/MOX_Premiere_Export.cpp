@@ -659,7 +659,10 @@ exSDKExport(
 			const MOX_VideoCodec videoCodecVal = (MOX_VideoCodec)videoCodecP.value.intValue;
 			const VideoCompression videoCompression = (	videoCodecVal == VideoCodec_Dirac ? MoxFiles::DIRAC :
 														videoCodecVal == VideoCodec_OpenEXR ? MoxFiles::OPENEXR :
+														videoCodecVal == VideoCodec_JPEG ? MoxFiles::JPEG :
+														videoCodecVal == VideoCodec_JPEG2000 ? MoxFiles::JPEG2000 :
 														videoCodecVal == VideoCodec_PNG ? MoxFiles::PNG :
+														videoCodecVal == VideoCodec_DPX ? MoxFiles::DPX :
 														videoCodecVal == VideoCodec_Uncompressed ? MoxFiles::UNCOMPRESSED :
 														MoxFiles::VideoCodec::pickCodec(lossless, pixelType, alpha));
 														

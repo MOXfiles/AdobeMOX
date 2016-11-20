@@ -1,0 +1,297 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A9116211CD9A28500B1C437 /* BaseTypeConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116001CD9A28500B1C437 /* BaseTypeConverter.h */; };
+		2A9116221CD9A28500B1C437 /* Codec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9116011CD9A28500B1C437 /* Codec.cpp */; };
+		2A9116231CD9A28500B1C437 /* Codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116021CD9A28500B1C437 /* Codec.h */; };
+		2A9116241CD9A28500B1C437 /* DPX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9116031CD9A28500B1C437 /* DPX.cpp */; };
+		2A9116251CD9A28500B1C437 /* DPX.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116041CD9A28500B1C437 /* DPX.h */; };
+		2A9116261CD9A28500B1C437 /* DPXHeader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9116051CD9A28500B1C437 /* DPXHeader.cpp */; };
+		2A9116271CD9A28500B1C437 /* DPXHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116061CD9A28500B1C437 /* DPXHeader.h */; };
+		2A9116281CD9A28500B1C437 /* DPXStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116071CD9A28500B1C437 /* DPXStream.h */; };
+		2A9116291CD9A28500B1C437 /* ElementReadStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9116081CD9A28500B1C437 /* ElementReadStream.cpp */; };
+		2A91162A1CD9A28500B1C437 /* ElementReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116091CD9A28500B1C437 /* ElementReadStream.h */; };
+		2A91162B1CD9A28500B1C437 /* EndianSwap.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A91160A1CD9A28500B1C437 /* EndianSwap.h */; };
+		2A91162C1CD9A28500B1C437 /* InStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A91160B1CD9A28500B1C437 /* InStream.cpp */; };
+		2A91162D1CD9A28500B1C437 /* OutStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A91160D1CD9A28500B1C437 /* OutStream.cpp */; };
+		2A91162E1CD9A28500B1C437 /* Reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A91160E1CD9A28500B1C437 /* Reader.cpp */; };
+		2A91162F1CD9A28500B1C437 /* ReaderInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A91160F1CD9A28500B1C437 /* ReaderInternal.h */; };
+		2A9116301CD9A28500B1C437 /* RunLengthEncoding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9116101CD9A28500B1C437 /* RunLengthEncoding.cpp */; };
+		2A9116311CD9A28500B1C437 /* RunLengthEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116111CD9A28500B1C437 /* RunLengthEncoding.h */; };
+		2A9116321CD9A28500B1C437 /* TestFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9116121CD9A28500B1C437 /* TestFunc.cpp */; };
+		2A9116331CD9A28500B1C437 /* TestFunc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116131CD9A28500B1C437 /* TestFunc.h */; };
+		2A9116341CD9A28500B1C437 /* Writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A9116141CD9A28500B1C437 /* Writer.cpp */; };
+		2A9116351CD9A28500B1C437 /* WriterInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9116151CD9A28500B1C437 /* WriterInternal.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2A9116001CD9A28500B1C437 /* BaseTypeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTypeConverter.h; sourceTree = "<group>"; };
+		2A9116011CD9A28500B1C437 /* Codec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Codec.cpp; sourceTree = "<group>"; };
+		2A9116021CD9A28500B1C437 /* Codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Codec.h; sourceTree = "<group>"; };
+		2A9116031CD9A28500B1C437 /* DPX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DPX.cpp; sourceTree = "<group>"; };
+		2A9116041CD9A28500B1C437 /* DPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPX.h; sourceTree = "<group>"; };
+		2A9116051CD9A28500B1C437 /* DPXHeader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DPXHeader.cpp; sourceTree = "<group>"; };
+		2A9116061CD9A28500B1C437 /* DPXHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPXHeader.h; sourceTree = "<group>"; };
+		2A9116071CD9A28500B1C437 /* DPXStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPXStream.h; sourceTree = "<group>"; };
+		2A9116081CD9A28500B1C437 /* ElementReadStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElementReadStream.cpp; sourceTree = "<group>"; };
+		2A9116091CD9A28500B1C437 /* ElementReadStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementReadStream.h; sourceTree = "<group>"; };
+		2A91160A1CD9A28500B1C437 /* EndianSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndianSwap.h; sourceTree = "<group>"; };
+		2A91160B1CD9A28500B1C437 /* InStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InStream.cpp; sourceTree = "<group>"; };
+		2A91160D1CD9A28500B1C437 /* OutStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutStream.cpp; sourceTree = "<group>"; };
+		2A91160E1CD9A28500B1C437 /* Reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Reader.cpp; sourceTree = "<group>"; };
+		2A91160F1CD9A28500B1C437 /* ReaderInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderInternal.h; sourceTree = "<group>"; };
+		2A9116101CD9A28500B1C437 /* RunLengthEncoding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunLengthEncoding.cpp; sourceTree = "<group>"; };
+		2A9116111CD9A28500B1C437 /* RunLengthEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLengthEncoding.h; sourceTree = "<group>"; };
+		2A9116121CD9A28500B1C437 /* TestFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestFunc.cpp; sourceTree = "<group>"; };
+		2A9116131CD9A28500B1C437 /* TestFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFunc.h; sourceTree = "<group>"; };
+		2A9116141CD9A28500B1C437 /* Writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Writer.cpp; sourceTree = "<group>"; };
+		2A9116151CD9A28500B1C437 /* WriterInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriterInternal.h; sourceTree = "<group>"; };
+		D2AAC046055464E500DB518D /* liblibdpx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibdpx.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D289987405E68DCB004EDB86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* libdpx */ = {
+			isa = PBXGroup;
+			children = (
+				2A9114A11CD9A28500B1C437 /* libdpx */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = libdpx;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC046055464E500DB518D /* liblibdpx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A9114A11CD9A28500B1C437 /* libdpx */ = {
+			isa = PBXGroup;
+			children = (
+				2A9115FF1CD9A28500B1C437 /* libdpx */,
+			);
+			name = libdpx;
+			path = ../../../../libdpx;
+			sourceTree = SOURCE_ROOT;
+		};
+		2A9115FF1CD9A28500B1C437 /* libdpx */ = {
+			isa = PBXGroup;
+			children = (
+				2A9116001CD9A28500B1C437 /* BaseTypeConverter.h */,
+				2A9116011CD9A28500B1C437 /* Codec.cpp */,
+				2A9116021CD9A28500B1C437 /* Codec.h */,
+				2A9116031CD9A28500B1C437 /* DPX.cpp */,
+				2A9116041CD9A28500B1C437 /* DPX.h */,
+				2A9116051CD9A28500B1C437 /* DPXHeader.cpp */,
+				2A9116061CD9A28500B1C437 /* DPXHeader.h */,
+				2A9116071CD9A28500B1C437 /* DPXStream.h */,
+				2A9116081CD9A28500B1C437 /* ElementReadStream.cpp */,
+				2A9116091CD9A28500B1C437 /* ElementReadStream.h */,
+				2A91160A1CD9A28500B1C437 /* EndianSwap.h */,
+				2A91160B1CD9A28500B1C437 /* InStream.cpp */,
+				2A91160D1CD9A28500B1C437 /* OutStream.cpp */,
+				2A91160E1CD9A28500B1C437 /* Reader.cpp */,
+				2A91160F1CD9A28500B1C437 /* ReaderInternal.h */,
+				2A9116101CD9A28500B1C437 /* RunLengthEncoding.cpp */,
+				2A9116111CD9A28500B1C437 /* RunLengthEncoding.h */,
+				2A9116121CD9A28500B1C437 /* TestFunc.cpp */,
+				2A9116131CD9A28500B1C437 /* TestFunc.h */,
+				2A9116141CD9A28500B1C437 /* Writer.cpp */,
+				2A9116151CD9A28500B1C437 /* WriterInternal.h */,
+			);
+			path = libdpx;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC043055464E500DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9116211CD9A28500B1C437 /* BaseTypeConverter.h in Headers */,
+				2A9116231CD9A28500B1C437 /* Codec.h in Headers */,
+				2A9116251CD9A28500B1C437 /* DPX.h in Headers */,
+				2A9116271CD9A28500B1C437 /* DPXHeader.h in Headers */,
+				2A9116281CD9A28500B1C437 /* DPXStream.h in Headers */,
+				2A91162A1CD9A28500B1C437 /* ElementReadStream.h in Headers */,
+				2A91162B1CD9A28500B1C437 /* EndianSwap.h in Headers */,
+				2A91162F1CD9A28500B1C437 /* ReaderInternal.h in Headers */,
+				2A9116311CD9A28500B1C437 /* RunLengthEncoding.h in Headers */,
+				2A9116331CD9A28500B1C437 /* TestFunc.h in Headers */,
+				2A9116351CD9A28500B1C437 /* WriterInternal.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC045055464E500DB518D /* libdpx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "libdpx" */;
+			buildPhases = (
+				D2AAC043055464E500DB518D /* Headers */,
+				D2AAC044055464E500DB518D /* Sources */,
+				D289987405E68DCB004EDB86 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libdpx;
+			productName = libdpx;
+			productReference = D2AAC046055464E500DB518D /* liblibdpx.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "libdpx" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* libdpx */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC045055464E500DB518D /* libdpx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC044055464E500DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9116221CD9A28500B1C437 /* Codec.cpp in Sources */,
+				2A9116241CD9A28500B1C437 /* DPX.cpp in Sources */,
+				2A9116261CD9A28500B1C437 /* DPXHeader.cpp in Sources */,
+				2A9116291CD9A28500B1C437 /* ElementReadStream.cpp in Sources */,
+				2A91162C1CD9A28500B1C437 /* InStream.cpp in Sources */,
+				2A91162D1CD9A28500B1C437 /* OutStream.cpp in Sources */,
+				2A91162E1CD9A28500B1C437 /* Reader.cpp in Sources */,
+				2A9116301CD9A28500B1C437 /* RunLengthEncoding.cpp in Sources */,
+				2A9116321CD9A28500B1C437 /* TestFunc.cpp in Sources */,
+				2A9116341CD9A28500B1C437 /* Writer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91EC08733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = libdpx;
+			};
+			name = Debug;
+		};
+		1DEB91ED08733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = libdpx;
+			};
+			name = Release;
+		};
+		1DEB91F008733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = LIBDPX_THREADS;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../../openexr/IlmBase/IlmThread,
+					.,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB91F108733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					LIBDPX_THREADS,
+					NDEBUG,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../../openexr/IlmBase/IlmThread,
+					.,
+				);
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "libdpx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91EC08733DB70010E9CD /* Debug */,
+				1DEB91ED08733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "libdpx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91F008733DB70010E9CD /* Debug */,
+				1DEB91F108733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

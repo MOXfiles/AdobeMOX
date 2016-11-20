@@ -248,7 +248,10 @@ typedef A_u_long CodecCode;
 static const CodecCode Auto_Codec			= 'auto';
 static const CodecCode Dirac_Codec			= 'Dirc';
 static const CodecCode OpenEXR_Codec		= 'oEXR';
+static const CodecCode JPEG_Codec			= 'JPEG';
+static const CodecCode JPEG2000_Codec		= 'JP2K';
 static const CodecCode PNG_Codec			= 'PNG ';
+static const CodecCode DPX_Codec			= 'DPX ';
 static const CodecCode Uncompressed_Codec	= 'Uncm';
 
 enum {
@@ -1405,7 +1408,10 @@ AEIO_UserOptionsDialog(
 				
 				DialogCodec codec = (options->codec == Dirac_Codec ? DIALOG_CODEC_DIRAC :
 										options->codec == OpenEXR_Codec ? DIALOG_CODEC_OPENEXR :
+										options->codec == JPEG_Codec ? DIALOG_CODEC_JPEG :
+										options->codec == JPEG2000_Codec ? DIALOG_CODEC_JPEG2000 :
 										options->codec == PNG_Codec ? DIALOG_CODEC_PNG :
+										options->codec == DPX_Codec ? DIALOG_CODEC_DPX :
 										options->codec == Uncompressed_Codec ? DIALOG_CODEC_UNCOMPRESSED :
 										DIALOG_CODEC_AUTO);
 				
@@ -1424,8 +1430,8 @@ AEIO_UserOptionsDialog(
 				if(clicked_ok)
 				{
 					options->bitDepth = (bitDepth == DIALOG_BITDEPTH_8 ? Depth_8 :
-											//bitDepth == DIALOG_BITDEPTH_10 ? Depth_10 :
-											//bitDepth == DIALOG_BITDEPTH_12 ? Depth_12 :
+											bitDepth == DIALOG_BITDEPTH_10 ? Depth_10 :
+											bitDepth == DIALOG_BITDEPTH_12 ? Depth_12 :
 											bitDepth == DIALOG_BITDEPTH_16 ? Depth_16 :
 											bitDepth == DIALOG_BITDEPTH_16_FLOAT ? Depth_16f :
 											bitDepth == DIALOG_BITDEPTH_32_FLOAT ? Depth_32f :
@@ -1436,7 +1442,10 @@ AEIO_UserOptionsDialog(
 					
 					options->codec = (codec == DIALOG_CODEC_DIRAC ? Dirac_Codec :
 										codec == DIALOG_CODEC_OPENEXR ? OpenEXR_Codec :
+										codec == DIALOG_CODEC_JPEG ? JPEG_Codec :
+										codec == DIALOG_CODEC_JPEG2000 ? JPEG2000_Codec :
 										codec == DIALOG_CODEC_PNG ? PNG_Codec :
+										codec == DIALOG_CODEC_DPX ? DPX_Codec :
 										codec == DIALOG_CODEC_UNCOMPRESSED ? Uncompressed_Codec :
 										Auto_Codec);
 					
@@ -1449,8 +1458,8 @@ AEIO_UserOptionsDialog(
 						const bool module_has_alpha = (module_depth == 32 || module_depth == 64 || module_depth == 128);
 
 						const A_short file_bpc = (bitDepth == DIALOG_BITDEPTH_8 ? 8 :
-													//bitDepth == DIALOG_BITDEPTH_10 ? Depth_10 :
-													//bitDepth == DIALOG_BITDEPTH_12 ? Depth_12 :
+													bitDepth == DIALOG_BITDEPTH_10 ? 16 :
+													bitDepth == DIALOG_BITDEPTH_12 ? 16 :
 													bitDepth == DIALOG_BITDEPTH_16 ? 16 :
 													bitDepth == DIALOG_BITDEPTH_16_FLOAT ? 32 :
 													bitDepth == DIALOG_BITDEPTH_32_FLOAT ? 32 :
@@ -1629,7 +1638,10 @@ AEIO_GetOutputInfo(
 				
 				const char *codec = (options->codec == Dirac_Codec ? "Dirac" :
 										options->codec == OpenEXR_Codec ? "OpenEXR" :
+										options->codec == JPEG_Codec ? "JPEG" :
+										options->codec == JPEG2000_Codec ? "JPEG 2000" :
 										options->codec == PNG_Codec ? "PNG" :
+										options->codec == DPX_Codec ? "DPX" :
 										options->codec == Uncompressed_Codec ? "Uncompressed" :
 										"Auto");
 										
@@ -1867,7 +1879,10 @@ AEIO_StartAdding(
 		
 		const VideoCompression vid_compression = (options->codec == Dirac_Codec ? MoxFiles::DIRAC :
 													options->codec == OpenEXR_Codec ? MoxFiles::OPENEXR :
+													options->codec == JPEG_Codec ? MoxFiles::JPEG :
+													options->codec == JPEG2000_Codec ? MoxFiles::JPEG2000 :
 													options->codec == PNG_Codec ? MoxFiles::PNG :
+													options->codec == DPX_Codec ? MoxFiles::DPX :
 													options->codec == Uncompressed_Codec ? MoxFiles::UNCOMPRESSED :
 														MoxFiles::VideoCodec::pickCodec(options->lossless, pixel_type, have_alpha));
 		

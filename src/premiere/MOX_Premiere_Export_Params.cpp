@@ -743,13 +743,19 @@ exSDKPostProcessParams(
 	const MOX_VideoCodec videoCodecs[] = {	VideoCodec_Auto,
 											VideoCodec_Dirac,
 											VideoCodec_OpenEXR,
+											VideoCodec_JPEG,
+											VideoCodec_JPEG2000,
 											VideoCodec_PNG,
+											VideoCodec_DPX,
 											VideoCodec_Uncompressed };
 	
 	const char *videoCodecStrings[] = { "Auto",
 										"Dirac",
 										"OpenEXR",
+										"JPEG",
+										"JPEG 2000",
 										"PNG",
+										"DPX",
 										"Uncompressed" };
 	
 	exportParamSuite->ClearConstrainedValues(exID, gIdx, MOXVideoCodec);
@@ -967,7 +973,10 @@ exSDKGetParamSummary(
 	
 	const std::string codec_str = (videoCodec == VideoCodec_Dirac ? "Dirac" :
 									videoCodec == VideoCodec_OpenEXR ? "OpenEXR" :
+									videoCodec == VideoCodec_JPEG ? "JPEG" :
+									videoCodec == VideoCodec_JPEG2000 ? "JPEG 2000" :
 									videoCodec == VideoCodec_PNG ? "PNG" :
+									videoCodec == VideoCodec_DPX ? "DPX" :
 									videoCodec == VideoCodec_Uncompressed ? "Uncompressed" :
 									"Auto");
 	

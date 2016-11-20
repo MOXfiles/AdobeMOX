@@ -64,7 +64,10 @@ typedef enum {
 	VideoCodec_Auto = 0,
 	VideoCodec_Dirac,
 	VideoCodec_OpenEXR,
+	VideoCodec_JPEG,
+	VideoCodec_JPEG2000,
 	VideoCodec_PNG,
+	VideoCodec_DPX,
 	VideoCodec_Uncompressed
 } MOX_VideoCodec;
 
