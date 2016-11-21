@@ -90,8 +90,11 @@ static BOOL CALLBACK DialogProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARA
 			ADD_MENU_ITEM(OUT_Codec_Menu, 0, "Auto", DIALOG_CODEC_AUTO, (g_codec == DIALOG_CODEC_AUTO));
 			ADD_MENU_ITEM(OUT_Codec_Menu, 1, "Dirac", DIALOG_CODEC_DIRAC, (g_codec == DIALOG_CODEC_DIRAC));
 			ADD_MENU_ITEM(OUT_Codec_Menu, 2, "OpenEXR", DIALOG_CODEC_OPENEXR, (g_codec == DIALOG_CODEC_OPENEXR));
-			ADD_MENU_ITEM(OUT_Codec_Menu, 3, "PNG", DIALOG_CODEC_PNG, (g_codec == DIALOG_CODEC_PNG));
-			ADD_MENU_ITEM(OUT_Codec_Menu, 4, "Uncompressed", DIALOG_CODEC_UNCOMPRESSED, (g_codec == DIALOG_CODEC_UNCOMPRESSED));
+			ADD_MENU_ITEM(OUT_Codec_Menu, 3, "JPEG", DIALOG_CODEC_JPEG, (g_codec == DIALOG_CODEC_JPEG));
+			ADD_MENU_ITEM(OUT_Codec_Menu, 4, "JPEG 2000", DIALOG_CODEC_JPEG2000, (g_codec == DIALOG_CODEC_JPEG2000));
+			ADD_MENU_ITEM(OUT_Codec_Menu, 5, "PNG", DIALOG_CODEC_PNG, (g_codec == DIALOG_CODEC_PNG));
+			ADD_MENU_ITEM(OUT_Codec_Menu, 6, "DPX", DIALOG_CODEC_DPX, (g_codec == DIALOG_CODEC_DPX));
+			ADD_MENU_ITEM(OUT_Codec_Menu, 7, "Uncompressed", DIALOG_CODEC_UNCOMPRESSED, (g_codec == DIALOG_CODEC_UNCOMPRESSED));
 
 			TrackSlider(hwndDlg);
 			TrackLossless(hwndDlg);
