@@ -310,7 +310,7 @@
 									<reference key="NSOnImage" ref="647169188"/>
 									<reference key="NSMixedImage" ref="540658794"/>
 									<string key="NSAction">_popUpItemAction:</string>
-									<int key="NSTag">7</int>
+									<int key="NSTag">8</int>
 									<reference key="NSTarget" ref="978163556"/>
 								</object>
 								<bool key="NSMenuItemRespectAlignment">YES</bool>
@@ -387,6 +387,17 @@
 											<int key="NSTag">4</int>
 											<reference key="NSTarget" ref="978163556"/>
 										</object>
+										<object class="NSMenuItem" id="104308248">
+											<reference key="NSMenu" ref="776955095"/>
+											<string key="NSTitle">JPEG-LS</string>
+											<string key="NSKeyEquiv"/>
+											<int key="NSMnemonicLoc">2147483647</int>
+											<reference key="NSOnImage" ref="647169188"/>
+											<reference key="NSMixedImage" ref="540658794"/>
+											<string key="NSAction">_popUpItemAction:</string>
+											<int key="NSTag">5</int>
+											<reference key="NSTarget" ref="978163556"/>
+										</object>
 										<object class="NSMenuItem" id="882396458">
 											<reference key="NSMenu" ref="776955095"/>
 											<string key="NSTitle">PNG</string>
@@ -395,7 +406,7 @@
 											<reference key="NSOnImage" ref="647169188"/>
 											<reference key="NSMixedImage" ref="540658794"/>
 											<string key="NSAction">_popUpItemAction:</string>
-											<int key="NSTag">5</int>
+											<int key="NSTag">6</int>
 											<reference key="NSTarget" ref="978163556"/>
 										</object>
 										<object class="NSMenuItem" id="202143372">
@@ -406,14 +417,14 @@
 											<reference key="NSOnImage" ref="647169188"/>
 											<reference key="NSMixedImage" ref="540658794"/>
 											<string key="NSAction">_popUpItemAction:</string>
-											<int key="NSTag">6</int>
+											<int key="NSTag">7</int>
 											<reference key="NSTarget" ref="978163556"/>
 										</object>
 										<reference ref="373326649"/>
 									</object>
 									<reference key="NSMenuFont" ref="597718377"/>
 								</object>
-								<int key="NSSelectedIndex">8</int>
+								<int key="NSSelectedIndex">9</int>
 								<int key="NSPreferredEdge">1</int>
 								<bool key="NSUsesItemFromMenu">YES</bool>
 								<bool key="NSAltersState">YES</bool>
@@ -644,13 +655,13 @@
 							<reference ref="273236951"/>
 							<reference ref="1068735715"/>
 							<reference ref="657041864"/>
-							<reference ref="832160928"/>
 							<reference ref="312094233"/>
 							<reference ref="358310720"/>
 							<reference ref="177162896"/>
 							<reference ref="57881336"/>
 							<reference ref="815114609"/>
 							<reference ref="1018103805"/>
+							<reference ref="832160928"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -806,6 +817,7 @@
 							<reference ref="202143372"/>
 							<reference ref="882396458"/>
 							<reference ref="642521617"/>
+							<reference ref="104308248"/>
 						</object>
 						<reference key="parent" ref="978163556"/>
 					</object>
@@ -920,6 +932,11 @@
 						<reference key="object" ref="642521617"/>
 						<reference key="parent" ref="776955095"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">62</int>
+						<reference key="object" ref="104308248"/>
+						<reference key="parent" ref="776955095"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -982,6 +999,7 @@
 					<string>6.IBPluginDependency</string>
 					<string>60.IBPluginDependency</string>
 					<string>61.IBPluginDependency</string>
+					<string>62.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -1019,10 +1037,10 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDHAAAwtYAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABC5AAAwtQAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{698, 512}, {167, 173}}</string>
+					<string>{{698, 492}, {167, 193}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1065,6 +1083,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1083,7 +1102,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">63</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

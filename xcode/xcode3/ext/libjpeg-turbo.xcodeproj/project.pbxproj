@@ -29,7 +29,6 @@
 		2AE5A8011DDFB7BE007F0B8A /* jcphuff.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A6C71DDFB7BE007F0B8A /* jcphuff.c */; };
 		2AE5A8021DDFB7BE007F0B8A /* jcprepct.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A6C81DDFB7BE007F0B8A /* jcprepct.c */; };
 		2AE5A8031DDFB7BE007F0B8A /* jcsample.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A6C91DDFB7BE007F0B8A /* jcsample.c */; };
-		2AE5A8041DDFB7BE007F0B8A /* jcstest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A6CA1DDFB7BE007F0B8A /* jcstest.c */; };
 		2AE5A8051DDFB7BE007F0B8A /* jctrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A6CB1DDFB7BE007F0B8A /* jctrans.c */; };
 		2AE5A8061DDFB7BE007F0B8A /* jdapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A6CC1DDFB7BE007F0B8A /* jdapimin.c */; };
 		2AE5A8071DDFB7BE007F0B8A /* jdapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A6CD1DDFB7BE007F0B8A /* jdapistd.c */; };
@@ -88,7 +87,6 @@
 		2AE5A8481DDFB7BE007F0B8A /* rdrle.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A7171DDFB7BE007F0B8A /* rdrle.c */; };
 		2AE5A8491DDFB7BE007F0B8A /* rdswitch.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A7181DDFB7BE007F0B8A /* rdswitch.c */; };
 		2AE5A84A1DDFB7BE007F0B8A /* rdtarga.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A7191DDFB7BE007F0B8A /* rdtarga.c */; };
-		2AE5A8AA1DDFB7BE007F0B8A /* tjbench.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A79B1DDFB7BE007F0B8A /* tjbench.c */; };
 		2AE5A8AB1DDFB7BE007F0B8A /* tjunittest.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A79F1DDFB7BE007F0B8A /* tjunittest.c */; };
 		2AE5A8AC1DDFB7BE007F0B8A /* tjutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5A7A01DDFB7BE007F0B8A /* tjutil.c */; };
 		2AE5A8AD1DDFB7BE007F0B8A /* tjutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AE5A7A11DDFB7BE007F0B8A /* tjutil.h */; };
@@ -147,7 +145,6 @@
 		2AE5A6C71DDFB7BE007F0B8A /* jcphuff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcphuff.c; sourceTree = "<group>"; };
 		2AE5A6C81DDFB7BE007F0B8A /* jcprepct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcprepct.c; sourceTree = "<group>"; };
 		2AE5A6C91DDFB7BE007F0B8A /* jcsample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcsample.c; sourceTree = "<group>"; };
-		2AE5A6CA1DDFB7BE007F0B8A /* jcstest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcstest.c; sourceTree = "<group>"; };
 		2AE5A6CB1DDFB7BE007F0B8A /* jctrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jctrans.c; sourceTree = "<group>"; };
 		2AE5A6CC1DDFB7BE007F0B8A /* jdapimin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdapimin.c; sourceTree = "<group>"; };
 		2AE5A6CD1DDFB7BE007F0B8A /* jdapistd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdapistd.c; sourceTree = "<group>"; };
@@ -308,7 +305,6 @@
 		2AE5A78B1DDFB7BE007F0B8A /* jsimdcpu.asm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm.asm; path = jsimdcpu.asm; sourceTree = "<group>"; };
 		2AE5A78C1DDFB7BE007F0B8A /* jsimdext.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = jsimdext.inc; sourceTree = "<group>"; };
 		2AE5A78E1DDFB7BE007F0B8A /* nasm_lt.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = nasm_lt.sh; sourceTree = "<group>"; };
-		2AE5A79B1DDFB7BE007F0B8A /* tjbench.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tjbench.c; sourceTree = "<group>"; };
 		2AE5A79F1DDFB7BE007F0B8A /* tjunittest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tjunittest.c; sourceTree = "<group>"; };
 		2AE5A7A01DDFB7BE007F0B8A /* tjutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tjutil.c; sourceTree = "<group>"; };
 		2AE5A7A11DDFB7BE007F0B8A /* tjutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tjutil.h; sourceTree = "<group>"; };
@@ -384,7 +380,6 @@
 				2AE5A6C71DDFB7BE007F0B8A /* jcphuff.c */,
 				2AE5A6C81DDFB7BE007F0B8A /* jcprepct.c */,
 				2AE5A6C91DDFB7BE007F0B8A /* jcsample.c */,
-				2AE5A6CA1DDFB7BE007F0B8A /* jcstest.c */,
 				2AE5A6CB1DDFB7BE007F0B8A /* jctrans.c */,
 				2AE5A6CC1DDFB7BE007F0B8A /* jdapimin.c */,
 				2AE5A6CD1DDFB7BE007F0B8A /* jdapistd.c */,
@@ -450,7 +445,6 @@
 				2AE5A7181DDFB7BE007F0B8A /* rdswitch.c */,
 				2AE5A7191DDFB7BE007F0B8A /* rdtarga.c */,
 				2AE5A72C1DDFB7BE007F0B8A /* simd */,
-				2AE5A79B1DDFB7BE007F0B8A /* tjbench.c */,
 				2AE5A79F1DDFB7BE007F0B8A /* tjunittest.c */,
 				2AE5A7A01DDFB7BE007F0B8A /* tjutil.c */,
 				2AE5A7A11DDFB7BE007F0B8A /* tjutil.h */,
@@ -677,7 +671,6 @@
 				2AE5A8011DDFB7BE007F0B8A /* jcphuff.c in Sources */,
 				2AE5A8021DDFB7BE007F0B8A /* jcprepct.c in Sources */,
 				2AE5A8031DDFB7BE007F0B8A /* jcsample.c in Sources */,
-				2AE5A8041DDFB7BE007F0B8A /* jcstest.c in Sources */,
 				2AE5A8051DDFB7BE007F0B8A /* jctrans.c in Sources */,
 				2AE5A8061DDFB7BE007F0B8A /* jdapimin.c in Sources */,
 				2AE5A8071DDFB7BE007F0B8A /* jdapistd.c in Sources */,
@@ -719,7 +712,6 @@
 				2AE5A8481DDFB7BE007F0B8A /* rdrle.c in Sources */,
 				2AE5A8491DDFB7BE007F0B8A /* rdswitch.c in Sources */,
 				2AE5A84A1DDFB7BE007F0B8A /* rdtarga.c in Sources */,
-				2AE5A8AA1DDFB7BE007F0B8A /* tjbench.c in Sources */,
 				2AE5A8AB1DDFB7BE007F0B8A /* tjunittest.c in Sources */,
 				2AE5A8AC1DDFB7BE007F0B8A /* tjutil.c in Sources */,
 				2AE5A8AE1DDFB7BE007F0B8A /* transupp.c in Sources */,

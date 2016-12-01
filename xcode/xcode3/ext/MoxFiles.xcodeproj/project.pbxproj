@@ -13,6 +13,8 @@
 		2A1B3AB91AE819E8009E713A /* Codec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B3AB71AE819E8009E713A /* Codec.cpp */; };
 		2A1B3B571AE821F5009E713A /* UncompressedVideoCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A1B3B551AE821F5009E713A /* UncompressedVideoCodec.h */; };
 		2A1B3B581AE821F5009E713A /* UncompressedVideoCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B3B561AE821F5009E713A /* UncompressedVideoCodec.cpp */; };
+		2A365E8D1DEA1D9600B28248 /* JPEGLSCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A365E8B1DEA1D9600B28248 /* JPEGLSCodec.h */; };
+		2A365E8E1DEA1D9600B28248 /* JPEGLSCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A365E8C1DEA1D9600B28248 /* JPEGLSCodec.cpp */; };
 		2A541EC11B0113F2009013D8 /* AudioBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A541EBF1B0113F2009013D8 /* AudioBuffer.cpp */; };
 		2A541EC21B0113F2009013D8 /* AudioBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A541EC01B0113F2009013D8 /* AudioBuffer.h */; };
 		2A541FB81B014C3F009013D8 /* UncompressedPCMCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A541FB61B014C3F009013D8 /* UncompressedPCMCodec.h */; };
@@ -142,6 +144,8 @@
 		2A1B3B551AE821F5009E713A /* UncompressedVideoCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncompressedVideoCodec.h; sourceTree = "<group>"; };
 		2A1B3B561AE821F5009E713A /* UncompressedVideoCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UncompressedVideoCodec.cpp; sourceTree = "<group>"; };
 		2A1B3F8E1AE9579C009E713A /* MoxMxf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MoxMxf.xcodeproj; sourceTree = "<group>"; };
+		2A365E8B1DEA1D9600B28248 /* JPEGLSCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPEGLSCodec.h; sourceTree = "<group>"; };
+		2A365E8C1DEA1D9600B28248 /* JPEGLSCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JPEGLSCodec.cpp; sourceTree = "<group>"; };
 		2A541EBF1B0113F2009013D8 /* AudioBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioBuffer.cpp; sourceTree = "<group>"; };
 		2A541EC01B0113F2009013D8 /* AudioBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioBuffer.h; sourceTree = "<group>"; };
 		2A541FB61B014C3F009013D8 /* UncompressedPCMCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncompressedPCMCodec.h; sourceTree = "<group>"; };
@@ -287,6 +291,8 @@
 				2AFBC0C51DDBA11000CCAD62 /* JPEGCodec.cpp */,
 				2AFBBE951DDB597D00CCAD62 /* JPEG2000Codec.h */,
 				2AFBBE961DDB597D00CCAD62 /* JPEG2000Codec.cpp */,
+				2A365E8B1DEA1D9600B28248 /* JPEGLSCodec.h */,
+				2A365E8C1DEA1D9600B28248 /* JPEGLSCodec.cpp */,
 			);
 			name = MoxFiles;
 			path = ../../../../libmox/MoxFiles;
@@ -347,6 +353,7 @@
 				2A547CBC1CE54AD300F15077 /* DPXCodec.h in Headers */,
 				2AFBBE971DDB597D00CCAD62 /* JPEG2000Codec.h in Headers */,
 				2AFBC0C61DDBA11000CCAD62 /* JPEGCodec.h in Headers */,
+				2A365E8D1DEA1D9600B28248 /* JPEGLSCodec.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +499,7 @@
 				2A547CBD1CE54AD300F15077 /* DPXCodec.cpp in Sources */,
 				2AFBBE981DDB597D00CCAD62 /* JPEG2000Codec.cpp in Sources */,
 				2AFBC0C71DDBA11000CCAD62 /* JPEGCodec.cpp in Sources */,
+				2A365E8E1DEA1D9600B28248 /* JPEGLSCodec.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +572,7 @@
 					../../../../schroedinger,
 					../../../../libdpx/libdpx,
 					../../../../openjpeg/src/lib/openjp2,
+					../../../../charls/src,
 					"../../../../libjpeg-turbo",
 				);
 				ONLY_ACTIVE_ARCH = YES;
@@ -597,6 +606,7 @@
 					../../../../schroedinger,
 					../../../../libdpx/libdpx,
 					../../../../openjpeg/src/lib/openjp2,
+					../../../../charls/src,
 					"../../../../libjpeg-turbo",
 				);
 				PREBINDING = NO;

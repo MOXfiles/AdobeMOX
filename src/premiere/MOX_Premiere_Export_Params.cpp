@@ -745,6 +745,7 @@ exSDKPostProcessParams(
 											VideoCodec_OpenEXR,
 											VideoCodec_JPEG,
 											VideoCodec_JPEG2000,
+											VideoCodec_JPEGLS,
 											VideoCodec_PNG,
 											VideoCodec_DPX,
 											VideoCodec_Uncompressed };
@@ -754,6 +755,7 @@ exSDKPostProcessParams(
 										"OpenEXR",
 										"JPEG",
 										"JPEG 2000",
+										"JPEG-LS",
 										"PNG",
 										"DPX",
 										"Uncompressed" };
@@ -975,6 +977,7 @@ exSDKGetParamSummary(
 									videoCodec == VideoCodec_OpenEXR ? "OpenEXR" :
 									videoCodec == VideoCodec_JPEG ? "JPEG" :
 									videoCodec == VideoCodec_JPEG2000 ? "JPEG 2000" :
+									videoCodec == VideoCodec_JPEGLS ? "JPEG-LS" :
 									videoCodec == VideoCodec_PNG ? "PNG" :
 									videoCodec == VideoCodec_DPX ? "DPX" :
 									videoCodec == VideoCodec_Uncompressed ? "Uncompressed" :

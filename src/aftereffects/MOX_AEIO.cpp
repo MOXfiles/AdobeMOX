@@ -250,6 +250,8 @@ static const CodecCode Dirac_Codec			= 'Dirc';
 static const CodecCode OpenEXR_Codec		= 'oEXR';
 static const CodecCode JPEG_Codec			= 'JPEG';
 static const CodecCode JPEG2000_Codec		= 'JP2K';
+static const CodecCode JPEGLS_Codec			= 'JPLS';
+//static const CodecCode JPEGXT_Codec			= 'JPXT';
 static const CodecCode PNG_Codec			= 'PNG ';
 static const CodecCode DPX_Codec			= 'DPX ';
 static const CodecCode Uncompressed_Codec	= 'Uncm';
@@ -1396,8 +1398,8 @@ AEIO_UserOptionsDialog(
 			if(options)
 			{
 				DialogBitDepth bitDepth = (options->bitDepth == Depth_8 ? DIALOG_BITDEPTH_8 :
-											//options->bitDepth == Depth_10 ? DIALOG_BITDEPTH_10 :
-											//options->bitDepth == Depth_12 ? DIALOG_BITDEPTH_12 :
+											options->bitDepth == Depth_10 ? DIALOG_BITDEPTH_10 :
+											options->bitDepth == Depth_12 ? DIALOG_BITDEPTH_12 :
 											options->bitDepth == Depth_16 ? DIALOG_BITDEPTH_16 :
 											options->bitDepth == Depth_16f ? DIALOG_BITDEPTH_16_FLOAT :
 											options->bitDepth == Depth_32f ? DIALOG_BITDEPTH_32_FLOAT :
@@ -1410,6 +1412,8 @@ AEIO_UserOptionsDialog(
 										options->codec == OpenEXR_Codec ? DIALOG_CODEC_OPENEXR :
 										options->codec == JPEG_Codec ? DIALOG_CODEC_JPEG :
 										options->codec == JPEG2000_Codec ? DIALOG_CODEC_JPEG2000 :
+										options->codec == JPEGLS_Codec ? DIALOG_CODEC_JPEGLS :
+										//options->codec == JPEGXT_Codec ? DIALOG_CODEC_JPEGXT :
 										options->codec == PNG_Codec ? DIALOG_CODEC_PNG :
 										options->codec == DPX_Codec ? DIALOG_CODEC_DPX :
 										options->codec == Uncompressed_Codec ? DIALOG_CODEC_UNCOMPRESSED :
@@ -1444,6 +1448,8 @@ AEIO_UserOptionsDialog(
 										codec == DIALOG_CODEC_OPENEXR ? OpenEXR_Codec :
 										codec == DIALOG_CODEC_JPEG ? JPEG_Codec :
 										codec == DIALOG_CODEC_JPEG2000 ? JPEG2000_Codec :
+										codec == DIALOG_CODEC_JPEGLS ? JPEGLS_Codec :
+										//codec == DIALOG_CODEC_JPEGXT ? JPEGXT_Codec :
 										codec == DIALOG_CODEC_PNG ? PNG_Codec :
 										codec == DIALOG_CODEC_DPX ? DPX_Codec :
 										codec == DIALOG_CODEC_UNCOMPRESSED ? Uncompressed_Codec :
@@ -1640,6 +1646,8 @@ AEIO_GetOutputInfo(
 										options->codec == OpenEXR_Codec ? "OpenEXR" :
 										options->codec == JPEG_Codec ? "JPEG" :
 										options->codec == JPEG2000_Codec ? "JPEG 2000" :
+										options->codec == JPEGLS_Codec ? "JPEG-LS" :
+										//options->codec == JPEGXT_Codec ? "JPEG XT" :
 										options->codec == PNG_Codec ? "PNG" :
 										options->codec == DPX_Codec ? "DPX" :
 										options->codec == Uncompressed_Codec ? "Uncompressed" :
@@ -1881,6 +1889,8 @@ AEIO_StartAdding(
 													options->codec == OpenEXR_Codec ? MoxFiles::OPENEXR :
 													options->codec == JPEG_Codec ? MoxFiles::JPEG :
 													options->codec == JPEG2000_Codec ? MoxFiles::JPEG2000 :
+													options->codec == JPEGLS_Codec ? MoxFiles::JPEGLS :
+													//options->codec == JPEGXT_Codec ? MoxFiles::JPEGXT :
 													options->codec == PNG_Codec ? MoxFiles::PNG :
 													options->codec == DPX_Codec ? MoxFiles::DPX :
 													options->codec == Uncompressed_Codec ? MoxFiles::UNCOMPRESSED :

@@ -21,6 +21,7 @@
 		2A1F76121B28F80A00343D83 /* libOpenEXR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A1F76091B28F7FF00343D83 /* libOpenEXR.a */; };
 		2A1F77A91B2A32A500343D83 /* mxflib_messages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F77A61B2A32A500343D83 /* mxflib_messages.cpp */; };
 		2A1F77AF1B2A32CA00343D83 /* PlatformIOStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F77A81B2A32A500343D83 /* PlatformIOStream.cpp */; };
+		2A36602B1DEB66DA00B28248 /* libcharls.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A36602A1DEB66D000B28248 /* libcharls.a */; };
 		2A3C4DCE1BBB38710019D5D3 /* schroedinger_10bit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A3C4D551BBB369E0019D5D3 /* schroedinger_10bit.cpp */; };
 		2A3C4DF31BBB436F0019D5D3 /* libschroedinger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EA31B6900840093FC66 /* libschroedinger.a */; };
 		2A3C4DF81BBB43A10019D5D3 /* liborc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A616EAC1B6900A20093FC66 /* liborc.a */; };
@@ -143,6 +144,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2A6D4C4C15CDEB0A006BADE7;
 			remoteInfo = IlmBase;
+		};
+		2A3660291DEB66D000B28248 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A3660221DEB66D000B28248 /* charls.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = charls;
+		};
+		2A36602C1DEB66E600B28248 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A3660221DEB66D000B28248 /* charls.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = charls;
 		};
 		2A3C4DF41BBB437A0019D5D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -302,14 +317,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE5AB391DDFE95C007F0B8A /* libjpeg-turbo.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* liblibjpeg-turbo.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = "libjpeg-turbo";
 		};
 		2AE5AB401DDFE97D007F0B8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE5AB391DDFE95C007F0B8A /* libjpeg-turbo.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* libjpeg-turbo */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = "libjpeg-turbo";
 		};
 		2AFBC1591DDBACD100CCAD62 /* PBXContainerItemProxy */ = {
@@ -349,6 +364,7 @@
 		2A1F77A61B2A32A500343D83 /* mxflib_messages.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mxflib_messages.cpp; sourceTree = "<group>"; };
 		2A1F77A71B2A32A500343D83 /* PlatformIOStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformIOStream.h; sourceTree = "<group>"; };
 		2A1F77A81B2A32A500343D83 /* PlatformIOStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformIOStream.cpp; sourceTree = "<group>"; };
+		2A3660221DEB66D000B28248 /* charls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = charls.xcodeproj; path = ext/charls.xcodeproj; sourceTree = "<group>"; };
 		2A3C4D551BBB369E0019D5D3 /* schroedinger_10bit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = schroedinger_10bit.cpp; sourceTree = "<group>"; };
 		2A3C4D671BBB373D0019D5D3 /* schroedinger_10bit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = schroedinger_10bit; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A547C891CE54A5100F15077 /* libdpx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libdpx.xcodeproj; path = ext/libdpx.xcodeproj; sourceTree = "<group>"; };
@@ -408,6 +424,7 @@
 				2A547C961CE54A5F00F15077 /* liblibdpx.a in Frameworks */,
 				2AFBC15B1DDBACD800CCAD62 /* libopenjpeg.a in Frameworks */,
 				2AE5AB3F1DDFE968007F0B8A /* liblibjpeg-turbo.a in Frameworks */,
+				2A36602B1DEB66DA00B28248 /* libcharls.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +501,14 @@
 			name = MoxMxf;
 			path = ../../../libmox/MoxMxf;
 			sourceTree = SOURCE_ROOT;
+		};
+		2A3660231DEB66D000B28248 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A36602A1DEB66D000B28248 /* libcharls.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
 		};
 		2A547C8A1CE54A5100F15077 /* Products */ = {
 			isa = PBXGroup;
@@ -583,6 +608,7 @@
 				2A616EA71B6900A20093FC66 /* orc.xcodeproj */,
 				2AFBC1551DDBACD100CCAD62 /* openjpeg.xcodeproj */,
 				2AE5AB391DDFE95C007F0B8A /* libjpeg-turbo.xcodeproj */,
+				2A3660221DEB66D000B28248 /* charls.xcodeproj */,
 				C4E6188C095A3C800012CA3F /* Products */,
 				2A0BC82C1BB1FE2800958299 /* Cocoa.framework */,
 			);
@@ -668,6 +694,7 @@
 				2A547C981CE54A6A00F15077 /* PBXTargetDependency */,
 				2AFBC15D1DDBACE500CCAD62 /* PBXTargetDependency */,
 				2AE5AB411DDFE97D007F0B8A /* PBXTargetDependency */,
+				2A36602D1DEB66E600B28248 /* PBXTargetDependency */,
 			);
 			name = "MOX AE";
 			productName = IO.plugin;
@@ -693,6 +720,10 @@
 			productRefGroup = C4E6188C095A3C800012CA3F /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 2A3660231DEB66D000B28248 /* Products */;
+					ProjectRef = 2A3660221DEB66D000B28248 /* charls.xcodeproj */;
+				},
 				{
 					ProductGroup = 2A1F75ED1B28F7FF00343D83 /* Products */;
 					ProjectRef = 2A1F75EC1B28F7FF00343D83 /* IlmBase.xcodeproj */;
@@ -813,6 +844,13 @@
 			fileType = "compiled.mach-o.executable";
 			path = dwaLookups;
 			remoteRef = 2A1F760C1B28F7FF00343D83 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A36602A1DEB66D000B28248 /* libcharls.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcharls.a;
+			remoteRef = 2A3660291DEB66D000B28248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2A547C911CE54A5100F15077 /* liblibdpx.a */ = {
@@ -954,6 +992,11 @@
 			isa = PBXTargetDependency;
 			name = IlmBase;
 			targetProxy = 2A1F761B1B28F81C00343D83 /* PBXContainerItemProxy */;
+		};
+		2A36602D1DEB66E600B28248 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = charls;
+			targetProxy = 2A36602C1DEB66E600B28248 /* PBXContainerItemProxy */;
 		};
 		2A3C4DF51BBB437A0019D5D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

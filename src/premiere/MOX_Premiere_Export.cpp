@@ -661,6 +661,7 @@ exSDKExport(
 														videoCodecVal == VideoCodec_OpenEXR ? MoxFiles::OPENEXR :
 														videoCodecVal == VideoCodec_JPEG ? MoxFiles::JPEG :
 														videoCodecVal == VideoCodec_JPEG2000 ? MoxFiles::JPEG2000 :
+														videoCodecVal == VideoCodec_JPEGLS ? MoxFiles::JPEGLS :
 														videoCodecVal == VideoCodec_PNG ? MoxFiles::PNG :
 														videoCodecVal == VideoCodec_DPX ? MoxFiles::DPX :
 														videoCodecVal == VideoCodec_Uncompressed ? MoxFiles::UNCOMPRESSED :

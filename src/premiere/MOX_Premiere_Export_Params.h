@@ -66,6 +66,7 @@ typedef enum {
 	VideoCodec_OpenEXR,
 	VideoCodec_JPEG,
 	VideoCodec_JPEG2000,
+	VideoCodec_JPEGLS,
 	VideoCodec_PNG,
 	VideoCodec_DPX,
 	VideoCodec_Uncompressed
