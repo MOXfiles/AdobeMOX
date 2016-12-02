@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MoxFiles"
-	ProjectGUID="{EE8C339B-9B56-4963-BB84-779836EF9C6A}"
-	RootNamespace="MoxFiles"
+	Name="charls"
+	ProjectGUID="{67F2AEBA-9C0E-4EF8-8EC4-80A50ED41E13}"
+	RootNamespace="charls"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -24,7 +24,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -44,8 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;CHARLS_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -82,11 +81,12 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|x64"
+			Name="Release|Win32"
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -102,16 +102,14 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;CHARLS_STATIC"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -145,12 +143,11 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
+			Name="Debug|x64"
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
-			WholeProgramOptimization="1"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -166,15 +163,15 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;CHARLS_STATIC"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -212,7 +209,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -235,8 +232,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;CHARLS_STATIC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -276,7 +272,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -296,12 +292,10 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;CHARLS_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				StructMemberAlignment="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
@@ -339,7 +333,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -360,12 +354,10 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;CHARLS_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				StructMemberAlignment="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -403,7 +395,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -425,10 +417,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;CHARLS_STATIC"
 				RuntimeLibrary="2"
-				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -467,7 +457,7 @@
 			OutputDirectory="build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="0"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -490,10 +480,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".;.\ext;..\..\..\..\mxflib;..\..\..\..\libmox;..\..\..\..\openexr\IlmBase\Half;..\..\..\..\openexr\IlmBase\Iex;..\..\..\..\openexr\IlmBase\Imath;..\..\..\..\openexr\IlmBase\IlmThread;..\..\..\..\openexr\IlmBase\config.windows;..\..\..\..\openexr\OpenEXR\IlmImf;..\..\..\..\openexr\OpenEXR\config.windows;..\..\..\..\libpng;..\..\..\..\schroedinger;&quot;..\..\..\..\libjpeg-turbo&quot;;..\..\..\..\openjpeg\src\lib\openjp2;..\..\..\..\libdpx\libdpx;..\..\..\..\charls\src;$(NOINHERIT)"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MXFLIB_NO_FILE_IO;OPJ_STATIC;CHARLS_STATIC"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;CHARLS_STATIC"
 				RuntimeLibrary="2"
-				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -537,103 +525,23 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.cpp"
+				RelativePath="..\..\..\..\charls\src\header.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.cpp"
+				RelativePath="..\..\..\..\charls\src\interface.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.cpp"
+				RelativePath="..\..\..\..\charls\src\jpegls.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.cpp"
+				RelativePath="..\..\..\..\charls\src\jpegmarkersegment.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DiracCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DPXCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\JPEG2000Codec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\JPEGCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\JPEGLSCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.cpp"
+				RelativePath="..\..\..\..\charls\src\jpegstreamwriter.cpp"
 				>
 			</File>
 		</Filter>
@@ -643,111 +551,83 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Attribute.h"
+				RelativePath="..\..\..\..\charls\src\colortransform.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioBuffer.h"
+				RelativePath="..\..\..\..\charls\src\config.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioChannelList.h"
+				RelativePath="..\..\..\..\charls\src\context.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\AudioCompression.h"
+				RelativePath="..\..\..\..\charls\src\contextrunmode.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ChannelList.h"
+				RelativePath="..\..\..\..\charls\src\decoderstrategy.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Codec.h"
+				RelativePath="..\..\..\..\charls\src\defaulttraits.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DiracCodec.h"
+				RelativePath="..\..\..\..\charls\src\encoderstrategy.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\DPXCodec.h"
+				RelativePath="..\..\..\..\charls\src\header.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\FrameBuffer.h"
+				RelativePath="..\..\..\..\charls\src\interface.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Header.h"
+				RelativePath="..\..\..\..\charls\src\jpegimagedatasegment.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\ImfHybridInputFile.h"
+				RelativePath="..\..\..\..\charls\src\jpegmarker.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\InputFile.h"
+				RelativePath="..\..\..\..\charls\src\jpegmarkersegment.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\JPEG2000Codec.h"
+				RelativePath="..\..\..\..\charls\src\jpegsegment.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\JPEGCodec.h"
+				RelativePath="..\..\..\..\charls\src\jpegstreamwriter.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\JPEGLSCodec.h"
+				RelativePath="..\..\..\..\charls\src\lookuptable.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MemoryFile.h"
+				RelativePath="..\..\..\..\charls\src\losslesstraits.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\MPEGCodec.h"
+				RelativePath="..\..\..\..\charls\src\processline.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OpenEXRCodec.h"
+				RelativePath="..\..\..\..\charls\src\publictypes.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\OutputFile.h"
+				RelativePath="..\..\..\..\charls\src\scan.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PixelType.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\PNGCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\SampleType.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Thread.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\Types.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedPCMCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\UncompressedVideoCodec.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\libmox\MoxFiles\VideoCompression.h"
+				RelativePath="..\..\..\..\charls\src\util.h"
 				>
 			</File>
 		</Filter>
